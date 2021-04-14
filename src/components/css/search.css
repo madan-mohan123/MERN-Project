@@ -1,0 +1,11 @@
+.search section{
+    background-color: white;
+}
+.search {
+    font-family:'Times New Roman', Times, serif
+}
+.search{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}

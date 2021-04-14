@@ -1,0 +1,74 @@
+.navbar-brand{
+    font-size: 30px;
+    font-weight: bold;
+}
+.brand{
+    color: rgb(241, 100, 19);  
+}
+.navbar{
+    background-color: rgb(81, 59, 223);
+}
+
+.navbar li a:hover{
+border-bottom: 3px solid white;
+}
+.banner{
+    background-image: url('../../images/abstract1.jpg'); 
+    color: white;
+    width: 100%;
+  }
+  .card img{
+      width: 100%;
+      height: 250px;
+  }
+
+
+  /* //reguster */
+
+  .facebook{
+    background-color: rgb(78, 78, 197);
+    color:white;
+  }
+  .twitter{
+    background-color: rgb(80, 194, 240);color:white;
+  }
+  .google{
+    background-color: rgb(216, 27, 27);color:white
+  }
+
+
+  .btn-start{
+    border-radius: 20px;
+    Border:3px solid orange;
+    background-color: transparent;
+  }
+  .btn-start:hover{
+    Border:3px solid rgb(0, 17, 255);
+    background-color:orange;
+  }
+
+
+  .gallery{
+    border: 5px solid skyblue;
+  }
+
+  .gallery img{
+    border-radius: 10px;
+  }
+
+  .overlay{
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    color: #f1f1f1;
+    width: 100%;
+    transition: 0.5s;
+    font-size: 30px;
+    padding: 20px;
+    text-align: center;
+    opacity: 0;
+
+  }
+   .gal-img-con:hover .overlay {
+opacity: 1;
+  }
