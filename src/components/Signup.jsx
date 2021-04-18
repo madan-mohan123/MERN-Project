@@ -1,9 +1,9 @@
 import { NavLink,Redirect  } from "react-router-dom"
 import axios from 'axios'
 import React,{useState} from 'react'
-import CreateShop from './CreateShop'
-const Signup = () =>{
 
+  
+const Signup = () =>{
     const [username, setusername] = useState('');
     const [email, setemail] = useState('');
     const [password, setpassword] = useState('');
@@ -51,7 +51,7 @@ else{
     return(
       <>
       
-      {signup ? <Redirect to={{pathname:"Register/CreateShop",state:{"email":email}}} /> : 
+      {signup ? <Redirect to={{pathname:"/Register/CreateShop",state:{"email":email}}} /> : 
                   <div  id="signupformbox" >
                         <form  id="signupform" >
                             <div className="row m-4">

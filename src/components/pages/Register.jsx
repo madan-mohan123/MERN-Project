@@ -3,6 +3,8 @@ import Signin from '../signin';
 import Signup from '../Signup';
 import Forget from '../Forget';
 import { Route} from 'react-router-dom';
+
+
 const Register = () =>{
     return(
     <>

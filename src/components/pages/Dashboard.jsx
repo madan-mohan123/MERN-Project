@@ -5,30 +5,28 @@ import Mystatic from '../Mystatic';
 import { NavLink } from 'react-router-dom'
 import logo1 from '../../images/images.png';
 import { Route} from 'react-router-dom';
-import React,{useEffect, useState} from 'react'
+import React,{ useState} from 'react'
 import '../css/dashboard.css';
 import {Dropdown} from 'react-bootstrap';
 
-var i=0;
+
+function getTokenShop(){
+    const tokenString = sessionStorage.getItem('token');
+    const tokenData=JSON.parse(tokenString).shopNameToken
+    return(tokenData)
+  
+}
 export default function Dashboard(props) {
-   const [email, setemail] = useState('')
-   const [shopName, setshopName] = useState('')
-    const [nameondashboard, setNameondashboard] = useState('Dashboard')
-   
-        useEffect(()=>{
-            if(i==0){
-                try{
-            setemail(props.location.state.email)
-            setshopName(props.location.state.shopName)
-                }
-                catch(e){
-                    alert("Some Error Occured ! ")
-                }
-            i++;
-            }
-           
+    function logOut(){
+        const token={
+            emailToken:'',
+            shopNameToken:''
         }
-        )
+      
+        sessionStorage.setItem('token',JSON.stringify(token))
+    }
+  
+   const [nameondashboard, setNameondashboard] = useState('Dashboard') 
     return (
        <>
 <div class="container-fluid m-0 p-0">
@@ -61,12 +59,14 @@ export default function Dashboard(props) {
                             <div class="col-md col-sm-8 col-8 d-flex align-items-center justify-content-end" >
                                 
                                     <Dropdown>
-                <Dropdown.Toggle variant="mute" style={{'box-shadow':'0 0 2px grey','backgroundColor':'white'}}>
-                    Hello {email}
+                <Dropdown.Toggle variant="mute " style={{'backgroundColor':'white','color':'green'}}>
+                    {getTokenShop()}
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                     <Dropdown.Item to="#/action-1">Profile</Dropdown.Item>
-                    <Dropdown.Item to="#/action-2">Logout</Dropdown.Item>
+                    <Dropdown.Item> 
+                         <NavLink to={{pathname:"/"}} className="text-decoration-none text-dark" onClick={logOut}>Logout</NavLink> 
+                         </Dropdown.Item>
                     
                 </Dropdown.Menu>
                 </Dropdown>
@@ -77,9 +77,10 @@ export default function Dashboard(props) {
                     <div className="right-main-body">
                 
     <Route exact path="/Dashboard/Profile" component={Profile} />
-    <Route exact path="/Dashboard/Additem" component={() => (<Additem data={email}  />)}/>
-    <Route exact path="/Dashboard/Myitem"  component={() => (<Myitem data={email}  />)}/>
-    <Route exact path="/Dashboard/"  component={() => (<Myitem data={email}  />)}/>                
+    <Route exact path="/Dashboard/Additem" component={Additem}/>
+    <Route exact path="/Dashboard/Myitem" component={Myitem} />
+    {/* <Route exact path="/Dashboard/Myitem"  component={() => (<Myitem data={email}  />)}/> */}
+    <Route exact path="/Dashboard/"  component={Myitem} />                
     <Route exact path="/Dashboard/Mystatic" component={Mystatic}  />
                     
                      

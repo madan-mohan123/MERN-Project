@@ -1,28 +1,64 @@
-import laptop from '../images/laptop.jpg';
-import jeans from '../images/j3.jpg';
-import item from '../images/lh6.jpg';
+
 import hbanner from '../images/ban/ban3.jpg';
 import ban2 from '../images/ban/ban1.jpg';
 import ban3 from '../images/ban/ban2.jpg';
 import {Carousel} from 'react-bootstrap';
 import axios from 'axios'
-import { Route,NavLink } from 'react-router-dom';
-import React,{useState,useEffect} from 'react'
-const Homesearch=()=>{
+import {NavLink} from 'react-router-dom';
+import React from 'react'
+import  { Component } from 'react'
 
-    const [dataList, setDataList] = useState([])
-    useEffect(() => {
- 
-        axios.post('http://localhost:5000/get_items').then((res)=>{
-            
-            setDataList(res.data)
+function setLandingPage(landingtoken){
+sessionStorage.setItem('landingtoken',landingtoken);
+}
 
-        }).catch((gh)=>{
-           
+export default class HomeSearch extends Component {
+
+ constructor(){
+     super();
+     this.state={
+        dataListforMobiles:[],
+dataListforMen:[],
+dataListforWomen:[],
+dataListforElectronics:[]
+     }
+
+
+ }
+
+ componentDidMount(){
+    axios.post('http://localhost:5000/getItemsforSearchPage',{"shopname":"Mobiles","limit":6}).then((res)=>{
+                    console.log(res.data)
+        this.setState({dataListforMobiles:res.data})
+
+    }).catch((gh)=>{
+    
 });
-        });
-    return (
-<>
+axios.post('http://localhost:5000/getItemsforSearchPage',{"shopname":"Electronics","limit":6}).then((res)=>{
+        
+    this.setState({dataListforElectronics:res.data})
+
+    }).catch((gh)=>{
+    
+});
+axios.post('http://localhost:5000/getItemsforSearchPage',{"shopname":"Menwear","limit":6}).then((res)=>{
+        
+    this.setState({dataListforMen:res.data})
+
+    }).catch((gh)=>{
+    
+});
+axios.post('http://localhost:5000/getItemsforSearchPage',{"shopname":"Womenwear","limit":6}).then((res)=>{
+        
+    this.setState({dataListforWomen:res.data})
+
+    }).catch((gh)=>{
+    
+});
+ }
+    render() {
+        return (
+            <>
    <section className="m-2 p-2" >
         <h3 className='mx-2'>Trending</h3>
         <div className="slider m-2">
@@ -72,10 +108,15 @@ const Homesearch=()=>{
         <div>
             <div className="row gx-0 mx-0 my-2 p-2" >
                 <div className="col-md-6 ">
-                    <h4>Best Appliance's</h4>
+                    <h4>Best Mobiles Of the Week</h4>
                 </div>
                 <div className="col-md-6 d-flex justify-content-end">
-                    <button className="btn btn-primary text-white mx-4 px-4 "><NavLink to="/Search/explore/" className='text-white decoration-none'>View All</NavLink></button>
+                <NavLink to={{pathname:"/Search/explore/",state:{"category":"Mobiles"}}} className='text-white text-decoration-none'>
+                    <button className="btn btn-primary text-white mx-4 px-4 "> 
+                    
+                        View All
+                        </button></NavLink>
+                        
                 </div>
             </div>
            
@@ -83,12 +124,12 @@ const Homesearch=()=>{
         <hr />
         <article>
             <div className="row gx-0 m-0">
-            {dataList.map((key,index)=>{
+            {this.state.dataListforMobiles.map((key,index)=>{
                                        return(
                                         
                                         <div className="col-md-2 p-2">
                                         <div className="card border-0">
-                                            <img src={laptop} alt="" />
+                                        < MyImageItem pic={key.Pic}/>
                                             <div className="card-body">
                                                 <p className="card-title text-center">{key.Shopname}</p>
                                                 <p className=" m-0 p-0 text-center">{key.Brand}</p>
@@ -109,10 +150,16 @@ const Homesearch=()=>{
         <div>
             <div className="row gx-0 mx-0 my-2 p-2">
                 <div className="col-md-6 ">
-                    <h4>Men's Footwear</h4>
+                    <h4>Best Men's Wear</h4>
                 </div>
                 <div className="col-md-6 d-flex justify-content-end">
-                    <button className="btn btn-primary mx-4 px-4 ">View All</button>
+                <NavLink to={{pathname:"/Search/explore/",state:{"category":"Menwear"}}} className='text-white text-decoration-none'>
+                    <button className="btn btn-primary mx-4 px-4 ">
+                   View All
+                   </button>
+                   </NavLink>
+                        
+                   
                 </div>
             </div>
            
@@ -120,11 +167,12 @@ const Homesearch=()=>{
         <hr />
         <article>
             <div className="row gx-0 m-0">
-            {dataList.map((key,index)=>{
+            {this.state.dataListforMen.map((key,index)=>{
                                        return(
-                                        <div className="col-md-2 p-2">
-                                        <div className="card border-0">
-                                        <img src={jeans} alt="" />
+                                        <div className="col-md-2 p-2" >
+                                        <div className="card border-0 searchhome">
+                                        < MyImageItem pic={key.Pic}/>
+                                        {/* <img src={jeans} alt=""  style={{'borderRadius':'10px'}} /> */}
                                             <div className="card-body">
                                                 <p className="card-title text-center">{key.Shopname}</p>
                                                 <p className=" m-0 p-0 text-center">{key.Brand}</p>
@@ -146,10 +194,16 @@ const Homesearch=()=>{
         <div>
             <div className="row gx-0 mx-0 my-2 p-2">
                 <div className="col-md-6 ">
-                    <h4>Women's Wear</h4>
+                    <h4>Best Selling Women's Wear</h4>
                 </div>
                 <div className="col-md-6 d-flex justify-content-end">
-                    <button className="btn btn-primary mx-4 px-4 ">View All</button>
+                <NavLink to={{pathname:"/Search/explore/",state:{"category":"Womenwear"}}} className='text-white text-decoration-none'>
+                    <button className="btn btn-primary mx-4 px-4 ">
+                    View All
+                    </button>
+                    </NavLink>
+                        
+                   
                 </div>
             </div>
            
@@ -157,11 +211,11 @@ const Homesearch=()=>{
         <hr />
         <article>
             <div className="row gx-0 m-0">
-            {dataList.map((key,index)=>{
+            {this.state.dataListforWomen.map((key,index)=>{
                                        return(
                                         <div className="col-md-2 p-2">
                                         <div className="card border-0">
-                                        <img src={item} alt="" />
+                                        < MyImageItem pic={key.Pic}/>
                                             <div className="card-body">
                                                 <p className="card-title text-center">{key.Shopname}</p>
                                                 <p className=" m-0 p-0 text-center">{key.Brand}</p>
@@ -179,11 +233,76 @@ const Homesearch=()=>{
         </article>
     </section>
 
+    <section className="mx-2">
+        <div>
+            <div className="row gx-0 mx-0 my-2 p-2">
+                <div className="col-md-6 ">
+                    <h4>Electronics</h4>
+                </div>
+                <div className="col-md-6 d-flex justify-content-end">
+                <NavLink to={{pathname:"/Search/explore/",state:{"category":"Electronics"}}} className='text-white text-decoration-none'>
+                    <button className="btn btn-primary mx-4 px-4 ">
+                    View All
+                    </button>
+                    </NavLink>
+                        
+                   
+                </div>
+            </div>
+           
+        </div>
+        <hr />
+        <article>
+            <div className="row gx-0 m-0">
+            {this.state.dataListforElectronics.map((key,index)=>{
+                                       return(
+                                        <div className="col-md-2 p-2">
+                                        <div className="card border-0">
+                                        < MyImageItem pic={key.Pic}/>
+                                            <div className="card-body">
+                                                <p className="card-title text-center">{key.Shopname}</p>
+                                                <p className=" m-0 p-0 text-center">{key.Brand}</p>
+                                                <p className="m-0 p-0 text-center">{key.Cost}</p>
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                       )})}
+               
+                
+                
+            </div>
+
+        </article>
+    </section>
 
 </>
-
-
-    )
+        )
+    }
 }
 
-export default Homesearch;
+class MyImageItem extends Component {
+    constructor(props){
+        super(props)
+        this.state={
+            pic:this.props.pic
+        }
+    }
+
+    componentDidMount(){
+         axios.post('http://localhost:5000/getImage',{"imagename":this.state.pic}).then((res)=>{  
+           
+                           this.setState({pic:res.data})
+                      })
+        
+    }
+    
+   render() {
+       return (
+           <>
+<img src={this.state.pic} class="card-img-top"  style={{'borderRadius':'10px','height':'170px'}}  />
+
+           </>
+       )
+   }
+}

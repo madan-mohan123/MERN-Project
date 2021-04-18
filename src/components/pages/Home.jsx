@@ -1,7 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import Navigation from '../Navigation'
-import Search from './Search'
 import laptop from '../../images/laptop.jpg';
 import iphone from '../../images/iphone.jpg';
 import jeans from '../../images/j2.jpg';

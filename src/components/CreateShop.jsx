@@ -2,12 +2,26 @@ import React,{useState} from 'react'
 import { Redirect } from 'react-router'
 
 import axios from 'axios'
-export default function CreateShop(props) {
+
+function setToken(userToken){
+    sessionStorage.setItem('token',userToken)
+
+    }
+    function getTokenEmail(){
+        const tokenString = sessionStorage.getItem('token');
+        const tokenemail=JSON.parse(tokenString).emailToken
+        return(tokenemail)
+      
+    }
+
+
+const CreateShop=(props) =>{
 
     const [goToDash, setgoToDash] = useState(false)
     const [shopName, setShopName] = useState('')
     const [category, setcategory] = useState('')
-const GoToDash=(e)=>{
+
+   const GoToDash=(e)=>{
     e.preventDefault();
    const mydata={
         "email":props.location.state.email,
@@ -21,11 +35,18 @@ const GoToDash=(e)=>{
             mydata
         )
         .then(res=>{
-            if(res.data== "Exist"){
+            if(res.data == "Exist"){
                 alert("Shop Exist, Try another Account");
             }
-            else if(res.data=="OK"){
+            else if(res.data == "OK"){
                 alert("Your Shop Created ? ")
+
+                const token={
+                    emailToken: props.location.state.email,
+                    shopNameToken: shopName
+                }
+               
+                setToken(JSON.stringify(token))
                 setgoToDash(true)
             }
            
@@ -39,10 +60,11 @@ const GoToDash=(e)=>{
         alert("Field Cannot Be Empty")
     }
 }
+
     return (
         <>
 
-        {goToDash ? <Redirect to={{pathname:"/Dashboard",data:{"email":props.email,"shopName":shopName}}}  /> : ""}
+        {goToDash ? <Redirect to={{pathname:"/Dashboard",state:{"email":getTokenEmail(),"shopName":shopName}}}  /> : ""}
         <div className="container-fluidx">
         <div className="registerbox ">
             
@@ -75,14 +97,14 @@ const GoToDash=(e)=>{
                                     }} id="" className='w-100 form-control '>
                                         <optgroup>
                                             <option value="Electronics">Electronic</option>
-                                            <option value="Garments">Garments</option>
+                                            {/* <option value="Garments">Garments</option> */}
                                             <option value="Mobiles">Mobiles</option>
-                                            <option value="Toys">Toys</option>
-                                            <option value="Interior">Interior</option>
-                                            <option value="Menswear">Mens'wear</option>
-                                            <option value="womenswear">Women's wear</option>
-                                            <option value="others">Others</option>
-                                            <option value="children">Children</option>
+                                            {/* <option value="Toys">Toys</option> */}
+                                            {/* <option value="Interior">Interior</option> */}
+                                            <option value="Menwear">Men wear</option>
+                                            <option value="Womenwear">Women wear</option>
+                                            {/* <option value="others">Others</option>
+                                            <option value="children">Children</option> */}
 
 
                                         </optgroup>
@@ -107,3 +129,5 @@ const GoToDash=(e)=>{
         </>
     )
 }
+
+export default CreateShop;

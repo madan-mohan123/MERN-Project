@@ -4,11 +4,13 @@ import Dashboard from './components/pages/Dashboard';
 import Home from './components/pages/Home';
 import { Route, Switch } from 'react-router-dom';
 import Register from './components/pages/Register';
-// import Mystatic from './components/Mystatic';
 import Search from './components/pages/Search'
 import CreateShop from './components/CreateShop';
 import PageNotFound from './components/pages/PageNotFound';
-
+import BuyItem from './components/BuyItem';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+import popsss from './components/css/pop.css'
 
 
 const App=()=> {
@@ -28,6 +30,7 @@ const App=()=> {
       <Route exact path="/Register/CreateShop" component={CreateShop} />
       <Route exact path="/Search/" component={Search} />
       <Route exact path="/Search/explore" component={Search} />
+      <Route exact path="/Search/explore/buy/:id" component={BuyItem} />
       <Route  component={PageNotFound} />
     </Switch >
     

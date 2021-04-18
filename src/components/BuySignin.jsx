@@ -1,67 +1,9 @@
-import { NavLink, Redirect } from "react-router-dom"
-import React,{useState } from 'react'
-import axios from 'axios'
-
-
-
-
-function setToken(userToken){
-sessionStorage.setItem('token',userToken)
-}
-
-
-
-
-
-const Signin = () => {
-    const [email, setemail] = useState('');
-    const [password, setpassword] = useState('');
-    const [login, setlogin] = useState(false);
-    const [shopName, setshopName] = useState('')
-
-    const onsubmit=(e)=>{
-        e.preventDefault();
-        const mydata={
-        
-            email:email,
-            password:password
-        }
-
-        axios.post(
-            'http://localhost:5000/get_auth',
-            mydata
-        )
-        .then(res=>{
-            // console.log(res.data.Auth)
-            if(res.data.Auth){
-                alert("successfully Login");
-                const token={
-                    emailToken:email,
-                    shopNameToken:res.data.ShopName
-                }
-                // JSON.stringify(token)
-                setToken(JSON.stringify(token))
-                setlogin(true)
-            //    getToken()
-               setshopName(res.data.ShopName)
-            }
-            else{
-                alert("Wrong Email Id Or Password");  
-            
-               
-            }
-        })
-        .catch(err=>{
-            alert("OOPs! Something Wrong " + err)
-        })
-   
-
-    }
-
-    return(    
-<>
-{login ? <Redirect to={{pathname:"/Dashboard",state:{"email":email,"shopName":shopName}}} /> : "" }
-<div  id="loginformbox">
+import React, { Component } from 'react'
+import { NavLink } from "react-router-dom"
+export default class BuySignin extends Component {
+    render() {
+        return (
+            <div  id="loginformbox">
                         <form  id="loginform">
                             <div className="row m-4 d-flex justify-content-center">
                                 <h3 className="text-center">Login to your account</h3>
@@ -71,12 +13,12 @@ const Signin = () => {
                             </div>
                             <div className="row">
                                 <div className="col-md m-2 ">
-                                <input type="text" placeholder="Email Address" name="email" onChange={(e)=>{setemail(e.target.value)}} />
+                                <input type="text" placeholder="Email Address" name="email"/>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col-md m-2">
-                                <input type="password" placeholder="PassWord" name="password" onChange={(e)=>{setpassword(e.target.value)}}/>
+                                <input type="password" placeholder="PassWord" name="password" />
                                 </div>
                             </div>
                             
@@ -99,9 +41,7 @@ const Signin = () => {
                             </div>
                         </form>
                     </div>
-
-</>
-    );
+                    
+        )
+    }
 }
-
-export default Signin;

@@ -9,3 +9,20 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.search .searchhome:hover{
+transform: scale(0.9);
+box-shadow: 0 0 3px 3px grey;
+}
+.search .searchexplore:hover{
+ position: relative;
+ top: 10px;
+    }
+    
+    .buyitem{
+        font-family: Arial, Helvetica, sans-serif
+    }
+
+    .buyitem section{
+        background-color: white;
+    }
