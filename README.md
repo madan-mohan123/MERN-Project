@@ -1,70 +1,125 @@
-# Getting Started with Create React App
+<h2 align="center">Full stack Project-II</h2>
+<h2 align="center">(2020-2021)</h2>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h2 align="center">On</h2>
+<p align="center">
+	<img  src="https://upload.wikimedia.org/wikipedia/en/4/42/GLA_University_logo.png" alt="Material Bread logo"
 
-## Available Scripts
+</p>
 
-In the project directory, you can run:
+<h4 align="center">“Shopping Web Myshop.com”</h4>
+<h4 align="center">MID-TERM REPORT</h4>
 
-### `npm start`
+<h4 align="center">Institute of Engineering & Technology</h4>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Submitted by-
+### `Madan Mohan (181500354-H)`                                               
+### `Udit Aggarwal (181500765-H)`                                             
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Supervised By:-
+Mr. Pankaj Kapoor
+Senior Technical Trainer
+Department of Computer Engineering & Applications
+         
+ Full Stack-II Synopsis
+ B. Tech 3rd year
+               
 
-### `npm test`
+## Project Group Members:
+1. Udit Aggarwal (21/181500765-H)
+2. Madan Mohan (09/181500354-H)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Project Supervisor: Mr. Pankaj Kapoor  , Senior Technical Trainer
 
-### `npm run build`
+# Introduction:
+In today’s technology everything goes online from tip of pencil to all things that are present everywhere around us. Generally we purchase all thing from available online shops like Amazon, flipchart etc. This web application gives ease access to all customer and owner of shop. In other websites, customers does not know that where the product comes. Here all customers are able to know the details of retailer like location, shop name etc. 
+This is e-commerce plate for buying and selling the product at own their cost and also customer may give the reviews to the products so, that shop owner make thing good as possible. Everyone wants the business online even small shop. Shop owner register here with their credentials and make account for shop. He uploads the product and share the shop name and location also. Now, when customers comes to online store and see different products as per requirement, he made purchased from particular shop.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Problem Statement
+The online store web application sets up a dashboard for shop owner so that he makes their shop like offline method Also, customers can easily track their location. This system also provides a review system in which user can rate the purchased items.                                                                   ii         
+The proposed is beneficial for those people who make their shop online and grow business in short of time. The payment method is cash on delivery which makes sense for customer who hesitate by sharing their bank details to anyone. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Existing system:
+There are some problems with the existing system that discussed below.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<p align="center">Table 1.1</p>
+<table align="center"> 
+	<th >Existing system</th>
+	<th>Current System</th>
+	<tr>
+		<td>Require high speed internet due page reload again.</td>
+		<td>Require slow internet connection and less require page reload.</td>
+	</tr>
+	<tr>
+		<td>Difficulty face in purchase product.</td>
+		<td>Easily product can be purchased. </td>
+	</tr>
+	<tr>
+		<td>Does not know the location of product from where it comes</td>
+		<td>May Know the detail like address.</td>
+	</tr>
+	<tr>
+		<td>After getting product problems cannot be listen properly.</td>
+		<td>These can be possible here by knowing the details.</td>
+	</tr>
+</table>
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Objective:
+The problem discussed above is only reason to developing this kind of application. “Myshop.com” gives better user experience for customers and shop owner. 
+1.	Easy to use and portable.
+2.	Single page Application & easily accessible.
+3.	Require slow internet connection.
+4.	Attracting dashboard with fully responsiveness.
+5.	Product easily purchased.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Department of Computer Engineering & Application                                                                     iii           
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Methodology:
+It outlines how data will be collected and tools for collecting data. Model view controller (MVC) is software design for developing web applications. It consists three parts like
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. Model -The lowest level of the pattern which is responsible for maintaining data.
+2. View-It is responsible for displaying all or a portion of the data to the user.
+3. Controller-Software code that controls the interaction between model and view.
 
-## Learn More
+## Working: 
+MVC isolates the application logic from the user interface layer and supports separation of concern. Here controller receives all requests for the application and then work with model to prepare any data needed by the view. The view then uses the data prepared by the controller to generate a final presentable response. It can be understood with the following diagram.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+ 
 
-### Code Splitting
+## Planning:
+This project is divided into four modules. Which are as follows?
+1.Authentication: In this module, user can make their account on shopping platform.  So that every information can be monitored.                                                                   iv            
+2.	Shopping owner Dashboard: From here authenticated user may create the shop and add item into his/her shop like traditional shop owner put their products.
+3.	Search Dashboard: From here everyone can search his/her product as per requirement.
+4.	Buyer Dashboard: This dashboard is intensely made for the buyer so that he can easily monitor his activities.
+5.	 Contact Page: Anyone contact from here to shop owner on requirement.
+## Hardware requirement:
+1.	Pc with at least 8GB RAM
+2.	 i5 processor or upgraded
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+## Software requirement:
+1.	Vs code IDE 
+2.	Git Repository
+3.	Express, React Js ,JavaScript, Html5, React-Bootstrap
+## Database:
+MongoDB
+## References:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+https://expressjs.com/en/guide/routing.html
+https://expressjs.com/en/4x/api.html
+https://nodejs.org/docs/latest-v13.x/api/http.html
+https://www.npmjs.com/package/react-popper
+https://react-bootstrap.github.io/components/alerts/
+                                                                     v            
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
