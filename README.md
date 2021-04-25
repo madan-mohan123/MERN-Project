@@ -18,18 +18,15 @@
 
 ## Supervised By:-
 Mr. Pankaj Kapoor
-Senior Technical Trainer
-Department of Computer Engineering & Applications
-         
- Full Stack-II Synopsis
- B. Tech 3rd year
-               
+### `Senior Technical Trainer`
+
 
 ## Project Group Members:
 1. Udit Aggarwal (21/181500765-H)
 2. Madan Mohan (09/181500354-H)
 
-## Project Supervisor: Mr. Pankaj Kapoor  , Senior Technical Trainer
+## Project Supervisor: 
+@ Mr. Pankaj Kapoor  , Senior Technical Trainer
 
 # Introduction:
 In today’s technology everything goes online from tip of pencil to all things that are present everywhere around us. Generally we purchase all thing from available online shops like Amazon, flipchart etc. This web application gives ease access to all customer and owner of shop. In other websites, customers does not know that where the product comes. Here all customers are able to know the details of retailer like location, shop name etc. 
@@ -73,7 +70,7 @@ The problem discussed above is only reason to developing this kind of applicatio
 4.	Attracting dashboard with fully responsiveness.
 5.	Product easily purchased.
 
-## Department of Computer Engineering & Application                                                                     iii           
+                                            
 
 ## Methodology:
 It outlines how data will be collected and tools for collecting data. Model view controller (MVC) is software design for developing web applications. It consists three parts like
@@ -108,11 +105,13 @@ This project is divided into four modules. Which are as follows?
 MongoDB
 ## References:
 
-https://expressjs.com/en/guide/routing.html
-https://expressjs.com/en/4x/api.html
-https://nodejs.org/docs/latest-v13.x/api/http.html
-https://www.npmjs.com/package/react-popper
-https://react-bootstrap.github.io/components/alerts/
+<ul>
+    <li>https://expressjs.com/en/guide/routing.html</li>
+<li>https://expressjs.com/en/4x/api.html</li>
+<li>https://nodejs.org/docs/latest-v13.x/api/http.html</li>
+<li>https://www.npmjs.com/package/react-popper</li>
+<li>https://react-bootstrap.github.io/components/alerts/</li>
+</ul>
                                                                      v            
 
 
