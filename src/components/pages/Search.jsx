@@ -3,7 +3,7 @@ import Searchnav from '../Searchnav'
 import Homesearch from '../../components/HomeSearch'
 import  SearchBar  from "../../components/SearchExplore";
 import { Route,} from 'react-router-dom';
-import searchcss from '../css/search.css'
+import '../css/search.css'
 
 const Search=()=>{
 return(

@@ -1,4 +1,3 @@
-
 import React from 'react'
 import Dashboard from './components/pages/Dashboard';
 import Home from './components/pages/Home';
@@ -8,9 +7,9 @@ import Search from './components/pages/Search'
 import CreateShop from './components/CreateShop';
 import PageNotFound from './components/pages/PageNotFound';
 import BuyItem from './components/BuyItem';
-import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import popsss from './components/css/pop.css'
+import BuyDash from './components/pages/BuyDash';
+import Contact from './components/pages/Contactus';
 
 
 const App=()=> {
@@ -30,7 +29,12 @@ const App=()=> {
       <Route exact path="/Register/CreateShop" component={CreateShop} />
       <Route exact path="/Search/" component={Search} />
       <Route exact path="/Search/explore" component={Search} />
-      <Route exact path="/Search/explore/buy/:id" component={BuyItem} />
+      <Route exact path="/Search/explore/buy:id" component={BuyItem} />
+      <Route exact path="/buyerdash" component={BuyDash} />
+      <Route exact path="/buyerdash/cart"  component={BuyDash}/>
+      <Route exact path="/buyerdash/history" component={BuyDash} />
+      <Route exact path="/buyerdash/address" component={BuyDash} />
+      <Route exact path="/Contact" component={Contact} />
       <Route  component={PageNotFound} />
     </Switch >
     

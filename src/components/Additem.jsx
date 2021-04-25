@@ -1,14 +1,13 @@
 
 import axios from 'axios'
 import React,{useEffect, useState} from 'react'
-import defaultimage from '../images/lh6.jpg';
+import defaultimage from '../images/purchase.jpg';
 function getToken(){
     const tokenString = sessionStorage.getItem('token');
     const tokenData=JSON.parse(tokenString)
     return(tokenData)
   
 }
-
 
 const Additem = () => {
 
@@ -21,10 +20,12 @@ const [desc, setDesc] = useState('')
 const [pic, setPic] = useState('')
 const [discount, setDiscount] = useState('')
 const [email, setemail] = useState('')
-const [value, setValue] = useState('');
+
 useEffect(()=>{   
     setemail(getToken().emailToken)
-    setShopname(getToken().shopNameToken)   
+    setShopname(getToken().shopNameToken) 
+   
+    
 }, [])
 
 const uploadData=(e)=>{
@@ -42,24 +43,22 @@ const uploadData=(e)=>{
     formdata.append('pbrand',pbrand);
     formdata.append('discount',discount);
     formdata.append('email',email)
-   const config = {
-        headers: {
-            'content-type': 'multipart/form-data'
-        }
-    };
+//    const config = {
+//         headers: {
+//             'content-type': 'multipart/form-data'
+//         }
+//     };
    
          axios.post('http://localhost:5000/save_items',formdata).then((res)=>{
         alert("Uploaded Successfully")
-        console.log(res)
+      
         
     }).catch((gh)=>{
-        alert("Some Erroe Occured")
+        alert("Some Error Occured")
     })
    
    
 }
-
-
 
     return(
        <>
@@ -67,7 +66,7 @@ const uploadData=(e)=>{
           <form onSubmit={onsubmit} encType="multitype">
                             <div className="row m-2 p-2 gx-0">
                                 <div className="col-md-3 col-sm-4 col-4" >
-                                    <img src={pic =='' ? defaultimage : URL.createObjectURL(pic)} alt="nn" class='product-logo img-fluid' style={{height:"200px",'borderRadius':'10px'}} />
+                                    <img src={pic ==='' ? defaultimage : URL.createObjectURL(pic)} alt="nn" class='product-logo img-fluid' style={{height:"200px",'borderRadius':'10px'}} />
                                    
                                 </div>
                                 <div className="col-md-4 col-sm-2 col-4 py-4"  >
@@ -103,14 +102,12 @@ const uploadData=(e)=>{
                                     }} id="" className='w-75 form-control '>
                                         <optgroup>
                                             <option value="Electronics">Electronic</option>
-                                            {/* <option value="Garments">Garments</option> */}
+                                           
                                             <option value="Mobiles">Mobiles</option>
-                                            {/* <option value="Toys">Toys</option> */}
-                                            {/* <option value="Interior">Interior</option> */}
+                                           
                                             <option value="Menwear">Men wear</option>
                                             <option value="Womenwear">Women wear</option>
-                                            {/* <option value="others">Others</option>
-                                            <option value="children">Children</option> */}
+                                            
 
 
                                         </optgroup>

@@ -1,7 +1,7 @@
-import headphone from '../images/mobile/head.jpg';
+
 import axios from 'axios'
 import React, { Component } from 'react'
-import DeleteItem from './pages/DeleteItem';
+import {OverlayTrigger,Popover} from 'react-bootstrap'
 function getTokenEmail(){
     const tokenString = sessionStorage.getItem('token');
     const tokenemail=JSON.parse(tokenString).emailToken
@@ -11,7 +11,7 @@ function getTokenEmail(){
 
 
 function removeArticle(data){
-    console.log(data)
+   
     axios.post('http://localhost:5000/delete_items',{"id":data}).then((res)=>{  
              alert("Successfully Deleted")
              
@@ -53,20 +53,39 @@ export default class MyItem extends Component {
                    
                           return(
                        
-                       <div class="col-md-3 col-sm-6   p-2  d-flex justify-content-center">
+                       <div class="col-md-4 col-sm-6 col-lg-3  p-2 d-flex justify-content-center">
                        <div class="card mx-2 my-2" style={{width: '18rem'}}>
                            < MyImageItem pic={key.Pic}/>
+
+                           
+
                                <div class="card-body">
+                              
                                <h5 className="card-title text-center">{key.Name}</h5>
-                               <p className="my-0"><span className="text-warning"><b>ShopName:</b></span> {key.Shopname}</p>
-                               <p className="my-0"><span className="text-primary"><b>Brand:</b></span> {key.Brand}</p>
-                               <p className="my-2"><span style={{color:"green",fontSize:"20px"}}><b>{key.Cost}</b></span></p>
-                               <button className="btn btn-warning" id={key._id} onClick={
+                               <p className="my-0"><span ><b>Brand:</b></span> {key.Brand}</p>
+                              <p className="my-0"><span style={{color:"green",fontSize:"20px"}}><b>Rs {key.Cost}</b></span></p>
+                                 <span>
+                               <OverlayTrigger trigger="hover" placement="top" overlay={
+                                <Popover id="popover-basic">
+                                <Popover.Title as="h3">Details</Popover.Title>
+                                <Popover.Content>
+                                <div>
+                                <p className="my-0">{key.Shopname}</p>
+                               <p className="my-0">{key.Description}</p>
+                            </div>
+                                </Popover.Content>
+                            </Popover>
+                            }>
+                            <button className="btn btn-secondary py-0 mb-2">Info</button>
+                        </OverlayTrigger>
+                               </span>
+                               <button className="btn btn-warning w-100" id={key._id} onClick={
                                    (e)=>{
-                                    
-                                       removeArticle(e.target.id)   
+                                       removeArticle(e.target.id)
+                                         
                                    }
                                }>Remove</button>
+                             
                                </div>
                        </div>
                        

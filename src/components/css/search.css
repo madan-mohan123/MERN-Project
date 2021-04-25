@@ -1,22 +1,28 @@
 .search section{
     background-color: white;
 }
-.search {
+.search,.buyitem,.buydash {
     font-family:'Times New Roman', Times, serif
 }
+.buydash {
+    font-family: 'Zen Dots', cursive;
+}
+
 .search{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 .search .searchhome:hover{
 transform: scale(0.9);
 box-shadow: 0 0 3px 3px grey;
 }
+.search .searchexplore{
+   
+    transition: 0.6s;
+    }
 .search .searchexplore:hover{
- position: relative;
- top: 10px;
+    transform: scale(1.1);
     }
     
     .buyitem{
@@ -26,3 +32,9 @@ box-shadow: 0 0 3px 3px grey;
     .buyitem section{
         background-color: white;
     }
+    
+    .search .searchhome{
+        transition: 0.4s;
+       /* background-color: rgb(121, 121, 121); */
+       box-shadow:0 0 3px blue;
+        }

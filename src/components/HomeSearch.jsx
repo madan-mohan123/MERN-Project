@@ -1,16 +1,14 @@
-
-import hbanner from '../images/ban/ban3.jpg';
+import hbanner from '../images/ai.jpg';
 import ban2 from '../images/ban/ban1.jpg';
 import ban3 from '../images/ban/ban2.jpg';
-import {Carousel} from 'react-bootstrap';
+import ban4 from '../images/loggdg.jpeg';
+
+import {Carousel,Spinner} from 'react-bootstrap';
 import axios from 'axios'
 import {NavLink} from 'react-router-dom';
 import React from 'react'
 import  { Component } from 'react'
 
-function setLandingPage(landingtoken){
-sessionStorage.setItem('landingtoken',landingtoken);
-}
 
 export default class HomeSearch extends Component {
 
@@ -18,43 +16,42 @@ export default class HomeSearch extends Component {
      super();
      this.state={
         dataListforMobiles:[],
-dataListforMen:[],
-dataListforWomen:[],
-dataListforElectronics:[]
+        dataListforMen:[],
+        dataListforWomen:[],
+        dataListforElectronics:[]
      }
-
-
  }
 
  componentDidMount(){
+
     axios.post('http://localhost:5000/getItemsforSearchPage',{"shopname":"Mobiles","limit":6}).then((res)=>{
                     console.log(res.data)
         this.setState({dataListforMobiles:res.data})
 
-    }).catch((gh)=>{
+    }).catch((er)=>{
     
 });
-axios.post('http://localhost:5000/getItemsforSearchPage',{"shopname":"Electronics","limit":6}).then((res)=>{
-        
-    this.setState({dataListforElectronics:res.data})
+    axios.post('http://localhost:5000/getItemsforSearchPage',{"shopname":"Electronics","limit":6}).then((res)=>{
+            
+        this.setState({dataListforElectronics:res.data})
 
-    }).catch((gh)=>{
-    
-});
-axios.post('http://localhost:5000/getItemsforSearchPage',{"shopname":"Menwear","limit":6}).then((res)=>{
+        }).catch((er)=>{
         
-    this.setState({dataListforMen:res.data})
+    });
+    axios.post('http://localhost:5000/getItemsforSearchPage',{"shopname":"Menwear","limit":6}).then((res)=>{
+            
+        this.setState({dataListforMen:res.data})
 
-    }).catch((gh)=>{
-    
-});
-axios.post('http://localhost:5000/getItemsforSearchPage',{"shopname":"Womenwear","limit":6}).then((res)=>{
+        }).catch((er)=>{
         
-    this.setState({dataListforWomen:res.data})
+    });
+    axios.post('http://localhost:5000/getItemsforSearchPage',{"shopname":"Womenwear","limit":6}).then((res)=>{
+            
+        this.setState({dataListforWomen:res.data})
 
-    }).catch((gh)=>{
-    
-});
+        }).catch((er)=>{
+        
+    });
  }
     render() {
         return (
@@ -63,43 +60,52 @@ axios.post('http://localhost:5000/getItemsforSearchPage',{"shopname":"Womenwear"
         <h3 className='mx-2'>Trending</h3>
         <div className="slider m-2">
           
-            <Carousel>
-  <Carousel.Item interval={500}>
-    <img
-      className="d-block w-100"
-      src={hbanner}
-      alt="First slide"
-      height="400px"
-    />
-    <Carousel.Caption>
-      <h2>Diwali Sale</h2>
-      <p>Get 50% Discount On Each Item</p>
-    </Carousel.Caption>
-  </Carousel.Item>
-  <Carousel.Item interval={500}>
-    <img
-      className="d-block w-100"
-      src={ban2}
-      alt="Second slide"
-      height="400px"
-    />
-    <Carousel.Caption>
-      <h2>Join To us To Get More Benefits</h2>
-     
-    </Carousel.Caption>
-  </Carousel.Item>
-  <Carousel.Item>
-    <img
-      className="d-block w-100"
-      src={ban3}
-      alt="Third slide"
-      height="400px"
-    />
-    <Carousel.Caption>
-      <h2>Thousands of customer who get discount</h2>
-     
-    </Carousel.Caption>
-  </Carousel.Item>
+<Carousel>
+        <Carousel.Item interval={500}>
+            <img
+            className="d-block w-100"
+            src={hbanner}
+            alt="First slide"
+            height="400px"
+            />
+            <Carousel.Caption>
+            <h2>Diwali Sale</h2>
+            </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item interval={500}>
+            <img
+            className="d-block w-100"
+            src={ban2}
+            alt="Second slide"
+            height="400px"
+            />
+            <Carousel.Caption>
+            <h2>Join To us To Get More Benefits</h2>
+            
+            </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+            <img
+            className="d-block w-100"
+            src={ban3}
+            alt="Third slide"
+            height="400px"
+            />
+            <Carousel.Caption>
+            <h2>Thousands of customer who get discount</h2>
+            
+            </Carousel.Caption>
+        </Carousel.Item>
+
+        <Carousel.Item interval={500}>
+            <img
+            className="d-block w-100"
+            src={ban4}
+            alt="Second slide"
+            height="400px"
+            />
+        
+        </Carousel.Item>
 </Carousel>
         </div>
     </section>
@@ -127,13 +133,15 @@ axios.post('http://localhost:5000/getItemsforSearchPage',{"shopname":"Womenwear"
             {this.state.dataListforMobiles.map((key,index)=>{
                                        return(
                                         
-                                        <div className="col-md-2 p-2">
-                                        <div className="card border-0">
-                                        < MyImageItem pic={key.Pic}/>
+                                        <div className="col-md-3 col-sm-4 col-6 col-lg-2 p-2">
+                                        <div className="card border-0 searchhome">
+                                        {key.Pic!=null ?
+                                        < MyImageItem pic={key.Pic}/> :<Spinner animation="grow" variant="warning" /> }
                                             <div className="card-body">
-                                                <p className="card-title text-center">{key.Shopname}</p>
+                                                <p className="card-title text-center m-0" style={{'fontSize':'18px'}}><b>{key.Name}</b></p>
                                                 <p className=" m-0 p-0 text-center">{key.Brand}</p>
-                                                <p className="m-0 p-0 text-center">{key.Cost}</p>
+                                                <p className="m-0 p-0 text-center">Rs {key.Cost}</p>
+                                                <p className="m-0 p-0 text-center" ><span style={{'color':'grey'}}>Myshop.com</span> </p>
                                             </div>
                                            
                                         </div>
@@ -169,14 +177,15 @@ axios.post('http://localhost:5000/getItemsforSearchPage',{"shopname":"Womenwear"
             <div className="row gx-0 m-0">
             {this.state.dataListforMen.map((key,index)=>{
                                        return(
-                                        <div className="col-md-2 p-2" >
+                                        <div className="col-md-3 col-sm-4 col-6 col-lg-2 p-2" >
                                         <div className="card border-0 searchhome">
-                                        < MyImageItem pic={key.Pic}/>
-                                        {/* <img src={jeans} alt=""  style={{'borderRadius':'10px'}} /> */}
-                                            <div className="card-body">
-                                                <p className="card-title text-center">{key.Shopname}</p>
+                                            {key.Pic!=null ?
+                                        < MyImageItem pic={key.Pic}/> :<Spinner animation="grow" variant="warning" /> }
+                                        <div className="card-body">
+                                                <p className="card-title text-center m-0" style={{'fontSize':'18px'}}><b>{key.Name}</b></p>
                                                 <p className=" m-0 p-0 text-center">{key.Brand}</p>
-                                                <p className="m-0 p-0 text-center">{key.Cost}</p>
+                                                <p className="m-0 p-0 text-center">Rs {key.Cost}</p>
+                                                <p className="m-0 p-0 text-center" ><span style={{'color':'grey'}}>Myshop.com</span> </p>
                                             </div>
                                            
                                         </div>
@@ -213,13 +222,14 @@ axios.post('http://localhost:5000/getItemsforSearchPage',{"shopname":"Womenwear"
             <div className="row gx-0 m-0">
             {this.state.dataListforWomen.map((key,index)=>{
                                        return(
-                                        <div className="col-md-2 p-2">
-                                        <div className="card border-0">
+                                        <div className="col-md-3 col-sm-4 col-6 col-lg-2 p-2">
+                                        <div className="card border-0 searchhome">
                                         < MyImageItem pic={key.Pic}/>
-                                            <div className="card-body">
-                                                <p className="card-title text-center">{key.Shopname}</p>
+                                        <div className="card-body">
+                                                <p className="card-title text-center m-0" style={{'fontSize':'18px'}}><b>{key.Name}</b></p>
                                                 <p className=" m-0 p-0 text-center">{key.Brand}</p>
-                                                <p className="m-0 p-0 text-center">{key.Cost}</p>
+                                                <p className="m-0 p-0 text-center">Rs {key.Cost}</p>
+                                                <p className="m-0 p-0 text-center" ><span style={{'color':'grey'}}>Myshop.com</span> </p>
                                             </div>
                                            
                                         </div>
@@ -256,13 +266,14 @@ axios.post('http://localhost:5000/getItemsforSearchPage',{"shopname":"Womenwear"
             <div className="row gx-0 m-0">
             {this.state.dataListforElectronics.map((key,index)=>{
                                        return(
-                                        <div className="col-md-2 p-2">
-                                        <div className="card border-0">
+                                        <div className="col-md-3 col-sm-4 col-6 col-lg-2 p-2">
+                                        <div className="card border-0 searchhome">
                                         < MyImageItem pic={key.Pic}/>
-                                            <div className="card-body">
-                                                <p className="card-title text-center">{key.Shopname}</p>
+                                        <div className="card-body">
+                                                <p className="card-title text-center m-0" style={{'fontSize':'18px'}}><b>{key.Name}</b></p>
                                                 <p className=" m-0 p-0 text-center">{key.Brand}</p>
-                                                <p className="m-0 p-0 text-center">{key.Cost}</p>
+                                                <p className="m-0 p-0 text-center">Rs {key.Cost}</p>
+                                                <p className="m-0 p-0 text-center" ><span style={{'color':'grey'}}>Myshop.com</span> </p>
                                             </div>
                                            
                                         </div>
@@ -300,7 +311,7 @@ class MyImageItem extends Component {
    render() {
        return (
            <>
-<img src={this.state.pic} class="card-img-top"  style={{'borderRadius':'10px','height':'170px'}}  />
+<img src={this.state.pic} alt="img" class="card-img-top"  style={{'borderRadius':'10px','height':'170px'}}  />
 
            </>
        )

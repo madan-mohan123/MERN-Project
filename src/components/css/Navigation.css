@@ -6,7 +6,8 @@
     color: rgb(241, 100, 19);  
 }
 .navbar{
-    background-color: rgb(81, 59, 223);
+    /* background-color: rgb(81, 59, 223); */
+    background-color:rgb(38, 61, 87);
 }
 
 .navbar li a:hover{
@@ -48,9 +49,7 @@ border-bottom: 3px solid white;
   }
 
 
-  .gallery{
-    border: 5px solid skyblue;
-  }
+ 
 
   .gallery img{
     border-radius: 10px;

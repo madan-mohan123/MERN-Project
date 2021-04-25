@@ -29,16 +29,16 @@ const CreateShop=(props) =>{
         "category":category
     }
 
-    if(shopName!="" && category!=""){
+    if(shopName!=="" && category!==""){
         axios.post(
             'http://localhost:5000/saveProfile',
             mydata
         )
         .then(res=>{
-            if(res.data == "Exist"){
+            if(res.data === "Exist"){
                 alert("Shop Exist, Try another Account");
             }
-            else if(res.data == "OK"){
+            else if(res.data === "OK"){
                 alert("Your Shop Created ? ")
 
                 const token={
@@ -94,7 +94,7 @@ const CreateShop=(props) =>{
         <div class="col-md">
        
          <select name="" className='w-100 form-control' onChange={(e)=>{setcategory(e.target.value)
-                                    }} id="" className='w-100 form-control '>
+                                    }} >
                                         <optgroup>
                                             <option value="Electronics">Electronic</option>
                                             {/* <option value="Garments">Garments</option> */}

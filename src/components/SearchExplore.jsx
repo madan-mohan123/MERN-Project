@@ -1,10 +1,10 @@
-import item from '../images/lh6.jpg';
+
 import {Dropdown} from 'react-bootstrap';
 import React, { Component } from 'react'
+import logoimg from '../images/images.png'
 
-import logoimg from '../images/shopify.png'
 import axios from 'axios'
-import {NavLink, Redirect} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 //context Api
 const contextapi=React.createContext();
 
@@ -38,17 +38,18 @@ this.setState({searchData:res.data})
     return (
       <>
           <nav>
-      <div className="row mx-0 px-0 gx-0 " style={{"backgroundImage": "linear-gradient(red,white)"}}>
-          <div className="col-md-10 mx-auto  p-2">
+      <div className="row mx-0 px-0 gx-0 " style={{backgroundColor:'rgb(38, 61, 87)'}}>
+          <div className="col-md-11 mx-auto  p-2">
               <div className="row gx-0">
-                  <div className="col-md-2 d-flex flex-row">
-                      <img src={logoimg} style={{'borderRadius':'2px'}} height="40px" alt="" />
-                      <h6 className="p-2">MyShop.com</h6>
+                  <div className="col-md-3 d-flex flex-row my-2">
+                  <NavLink style={{fontFamily:"Zen Dots, cursive",fontSize:'25px'}} className="text-white mx-2 text-decoration-none" to="/Contact">
+                        <img src={logoimg} className="img-fluid rounded-circle px-2 d-sm-none d-md-inline-block d-none" alt="" style={{ height:"40px"}}/>
+                        MyShop.<span style={{color:'blue'}}>com</span> </NavLink>
                   </div>
-                  <div className="col-md-6">
-                  <div class="input-group">
+                  <div className="col-md-5 col-sm-11 col-11">
+                  <div class="input-group m-2">
                  
-          <span class="input-group-text bg-grey m-0 p-0 border-none">
+          <span class="input-group-text bg-grey m-0 p-0 border-none d-sm-none d-md-none d-lg-block d-none">
           <select name="" onChange={(e)=>{this.setState({searchkeyword:e.target.value})}
                                   } id="" className='form-control '>
                   <optgroup>
@@ -61,7 +62,7 @@ this.setState({searchData:res.data})
            </select>
           </span>
      
-      <input class="form-control " placeholder="Search here ..." 
+      <input className="form-control " placeholder="Search here ..." 
       onChange={(e)=>{this.setState({querydata:e.target.value})}}
       />
       <button onClick={this.handleclk} className="bg-white m-0 btn " style={{"borderRadius":'0 10px 10px 0'}}>Go</button>
@@ -70,14 +71,14 @@ this.setState({searchData:res.data})
                       
                       
                   </div>
-                  <div className="col-md-4 ">
-              <NavLink to='/Register/Signin' className="text-white text-decoration-none">
-                <button className="btn  mx-4 px-4 bg-warning text-white" ><i class="fa fa-sign-in" aria-hidden="true" style={{'fontSize':'20px','marginRight':'10px'}}></i>
+                  <div className="col-md-4 col-sm-12">
+              <NavLink to='/buyerdash' className="text-white text-decoration-none">
+                <button className="btn  m-2 px-4 bg-warning text-white" ><i class="fa fa-sign-in" aria-hidden="true" style={{'fontSize':'20px','marginRight':'10px'}}></i>
        Login
        </button>
         </NavLink>
-        <NavLink to='/Register' className="text-white text-decoration-none">
-                      <button className="btn btn-secondary mx-4 px-4"><i class="fa fa-cart-arrow-down" aria-hidden="true" style={{'fontSize':'20px','marginRight':'10px'}}></i>Cart</button>
+        <NavLink to='/buyerdash' className="text-white text-decoration-none">
+                      <button className="btn btn-secondary m-2 px-4"><i class="fa fa-cart-arrow-down" aria-hidden="true" style={{'fontSize':'20px','marginRight':'10px'}}></i>Cart</button>
                       </NavLink>
                   </div>
                  
@@ -117,17 +118,14 @@ class MyImageItem extends Component {
  render() {
      return (
          <>
-<img src={this.state.pic} class="card-img-top img-fluid"  style={{'borderRadius':'10px','height':'180px'}}  />
+<img src={this.state.pic} alt="img" class="card-img-top img-fluid"  style={{'borderRadius':'10px','height':'180px'}}  />
 
          </>
      )
  }
 }
 
-function GotoBuyDash(id){
-  alert(id);
- return <Redirect to={{pathname:"/"}} />
-  }
+
 
 class SearchExplore extends Component {
 
@@ -143,8 +141,8 @@ constructor(props)
 
 componentDidMount(){
 console.log(this.context.querydata)
-    if(this.context.querydata == ""){
-    axios.post('http://localhost:5000/getItemsforSearchPage',{"shopname":this.context.landingpage,"limit":10}).then((res)=>{   
+    if(this.context.querydata === ""){
+    axios.post('http://localhost:5000/getItemsforSearchPage',{"shopname":this.context.landingpage,"limit":30}).then((res)=>{   
     this.setState({landingData:res.data})
     }).catch((gh)=>{
     
@@ -164,11 +162,11 @@ render() {
         return (
             <>
 <section className="m-2" >
-        <div className="row gx-0 p-2">
-           <div className="col-md-9 mx-auto">
-               <div className="row gx-0 ">
-                <div className="col">
-                <Dropdown>
+        <div className="row gx-0 p-2 m-0 d-sm-none d-md-block d-none">
+           <div className="col-md-10 mx-auto">
+               <div className="row gx-0 m-0 ">
+                <div className="col-md-3 col-sm-4 col-lg-2 m-2">
+                <Dropdown >
                 <Dropdown.Toggle variant="mute" style={{'box-shadow':'0 0 2px grey'}}>
                     Men's Wear
                 </Dropdown.Toggle>
@@ -180,9 +178,9 @@ render() {
                     <Dropdown.Item to="#/action-2">Undergarments</Dropdown.Item>
                     <Dropdown.Item to="#/action-3">Jeans</Dropdown.Item>
                 </Dropdown.Menu>
-                </Dropdown>
+                </Dropdown  >
                 </div>
-                <div className="col">
+                <div className="col-md-3 col-sm-4 col-lg-2 m-2">
                 <Dropdown>
   <Dropdown.Toggle variant="mute" style={{'box-shadow':'0 0 2px grey'}}>
     Women's wear
@@ -197,7 +195,7 @@ render() {
   </Dropdown.Menu>
 </Dropdown>
                  </div>
-                 <div className="col">
+                 <div className="col-md-3 col-sm-4 col-lg-2 m-2">
                  <Dropdown>
   <Dropdown.Toggle variant="mute" style={{'box-shadow':'0 0 2px grey'}}>
     Mobiles
@@ -212,7 +210,7 @@ render() {
   </Dropdown.Menu>
 </Dropdown>
                  </div>
-                 <div className="col">
+                 <div className="col-md-3 col-sm-4 col-lg-2 m-2">
                  <Dropdown>
   <Dropdown.Toggle variant="mute" style={{'box-shadow':'0 0 2px grey'}}>
     Electronics
@@ -227,22 +225,8 @@ render() {
   </Dropdown.Menu>
 </Dropdown>
                  </div>
-                 <div className="col">
-                 <Dropdown>
-  <Dropdown.Toggle variant="mute" style={{'box-shadow':'0 0 2px grey'}}>
-    Sports
-  </Dropdown.Toggle>
-
-  <Dropdown.Menu>
-    <Dropdown.Item to="#/action-1">Cricket</Dropdown.Item>
-    <Dropdown.Item to="#/action-2">Tennis</Dropdown.Item>
-    <Dropdown.Item to="#/action-3">Football</Dropdown.Item>
-    <Dropdown.Item to="#/action-3">Polo</Dropdown.Item>
-    <Dropdown.Item to="#/action-3">Basket ball</Dropdown.Item>
-  </Dropdown.Menu>
-</Dropdown>
-                 </div>
-                 <div className="col">
+                 
+                 <div className="col-md-3 col-sm-4 col-lg-2 m-2">
                  <Dropdown>
   <Dropdown.Toggle variant="mute" style={{'box-shadow':'0 0 2px grey'}}>
     Toys
@@ -265,33 +249,36 @@ render() {
 
 
     <div className="m-2">
-    <div className="row gx-0 m-0 p-0" >
+    <div className="row gx-0 m-0 p-0 m-0" >
         <div className="col-md-2 my-2 px-0" >
            <SearchFilter />
         </div>
 
         <div className="col-md-10 px-0 my-2 " >
-            <section className="left-side-bar p-2" >
-            <p>Home <b>&gt;</b> {this.context.querydata == "" ? this.context.landingpage:this.context.searchkeyword}  
+            <section className="left-side-bar p-2 " >
+            <p>Home <b>&gt;</b> {this.context.querydata === "" ? this.context.landingpage:this.context.searchkeyword}  
             </p>
-            <p> {this.context.querydata == "" ? this.context.landingpage : this.context.querydata} <b>(Showing result 1-20 from 100)</b>
+            <p> {this.context.querydata === "" ? this.context.landingpage : this.context.querydata} <b>(Showing result 1-20 from 100)</b>
   </p>
             <hr />
             <article>
-                <div className="row gx-0 px-2" >
+                <div className="row gx-0 px-2 m-0" >
                 {
-                this.context.querydata == "" ? this.state.landingData.map((key,index)=>{
+                this.context.querydata === "" ? this.state.landingData.map((key,index)=>{
                                        return(
-              <div className="col-md-2 p-2" >
+              <div className="col-md-3 col-sm-4 col-6 col-lg-2 p-2" >
                         <div className="card p-2 searchexplore border-0" style={{'boxShadow':'0 0 3px 3px grey'}}>
                         <MyImageItem pic={key.Pic}/>
                             <div className="my-2">
                                 <p className=" my-0" style={{"opacity": "0.8"}} >{key.Name}</p>
-                                <p className=" m-0 p-0 ">{key.Description}</p>
-                                <p className="m-0 p-0 "><b>Rs {key.Cost}</b> <span style={{"textDecoration": 'line-through',' opacity':'0.7','fontSize':'13px'}}>Rs {key.cost}</span> <span style={{"color": 'green','font-size':'13px'}}><b>{key.Discount}% off</b></span></p>
-                                <p style={{"color": 'green','fontSize':'13px'}}>{key.Shopname}</p>
+                               <div style={{'height':'20px','overflow':'hidden'}}>
+
+                               
+                                <p className="m-0 p-0 "><b>Rs {key.Cost}</b> <span style={{"textDecoration": 'line-through',' opacity':'0.7','fontSize':'13px','margin-left':'10px'}}>Rs {key.cost}</span> <span style={{"color": 'green','font-size':'13px'}}><b>{key.Discount}% off</b></span></p>
+                                </div>
+                                <p className="m-0 p-0 " style={{"color": 'grey','fontSize':'15px'}}>My.shopcom</p>
                             </div>
-                            <NavLink to={{pathname:'buy/?id='+key._id}} id={key._id} className="d-block btn btn-primary">
+                            <NavLink to={{pathname:'buy?id='+key._id}} id={key._id} className="d-block btn btn-primary">
                           Buy
                             </NavLink>
                            
@@ -301,15 +288,21 @@ render() {
                                        )}) : 
                                        this.context.searchData.map((key,index)=>{
                                         return(
-                         <div className="col-md-2 p-2">
-                         <div className="card border-0">
+                         <div className="col-md-3 col-sm-4 col-6 col-lg-2 p-2">
+                        <div className="card p-2 searchexplore border-0" style={{'boxShadow':'0 0 3px blue'}}>
                          <MyImageItem pic={key.Pic}/>
-                             <div className="my-2">
-                                 <p className=" my-0" style={{"opacity": "0.8"}} >{key.Name}</p>
-                                 <p className=" m-0 p-0 ">{key.Description}</p>
-                                 <p className="m-0 p-0 "><b>Rs {key.Cost}</b> <span style={{"textDecoration": 'line-through',' opacity':'0.7','fontSize':'13px'}}>Rs {key.cost}</span> <span style={{"color": 'green','font-size':'13px'}}><b>{key.Discount}% off</b></span></p>
-                                 <p style={{"color": 'green','fontSize':'13px'}}>{key.Shopname}</p>
-                        </div>
+                         <div className="my-2">
+                                <p className=" my-0" style={{"opacity": "0.8"}} >{key.Name}</p>
+                                <div style={{'height':'20px','overflow':'hidden'}}>
+                         
+<p className="m-0 p-0 "><b>Rs {key.Cost}</b> <span style={{"textDecoration": 'line-through',' opacity':'0.7','fontSize':'13px','margin-left':'10px'}}>Rs {key.cost}</span> <span style={{"color": 'green','font-size':'13px'}}><b>{key.Discount}% off</b></span></p>
+</div>
+                                <p className="m-0 p-0 " style={{"color": 'grey','fontSize':'15px'}}>My.shopcom</p>
+                            
+                            </div>
+                            <NavLink to={{pathname:'buy?id='+key._id}} id={key._id} className="d-block btn btn-warning">
+                          Buy
+                            </NavLink>
                             
                          </div>
                      </div>
@@ -321,20 +314,7 @@ render() {
                    
                     
                    
-                    
-                    
-                    {/* <div className="col-md-2 p-2">
-                        <div className="card border-0">
-                            <img src={item} alt="" />
-                            <div className="my-2">
-                                <p className=" my-0" style={{"opacity": "0.8"}} >PUMA</p>
-                                <p className=" m-0 p-0 ">Zod Runner v3 for men</p>
-                                <p className="m-0 p-0 "><b>Rs 1067</b> <span style={{"textDecoration": 'line-through',' opacity':'0.7','fontSize':'13px'}}>Rs 9000</span> <span style={{"color": 'green','font-size':'13px'}}><b>40% off</b></span></p>
-                                <p style={{"color": 'green','fontSize':'13px'}}>Buy 100 more,save extra 15%</p>
-                           </div>
-                           
-                        </div>
-                    </div> */}
+                   
                 </div>
                 
                 
@@ -357,7 +337,7 @@ class SearchFilter extends Component {
   render() {
     return (
       <>
-        <section className="left-side-bar p-2" style={{"height": "100vh"}} >
+        <section className="left-side-bar p-2 d-sm-none d-md-block d-none" style={{"height": "100vh"}} >
                 <h5>Filter </h5>
                 <hr />
               

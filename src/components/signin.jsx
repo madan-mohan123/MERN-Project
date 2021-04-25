@@ -2,22 +2,18 @@ import { NavLink, Redirect } from "react-router-dom"
 import React,{useState } from 'react'
 import axios from 'axios'
 
-
-
-
 function setToken(userToken){
 sessionStorage.setItem('token',userToken)
 }
 
 
-
-
-
-const Signin = () => {
+const Signin = (props) => {
     const [email, setemail] = useState('');
     const [password, setpassword] = useState('');
     const [login, setlogin] = useState(false);
+    
     const [shopName, setshopName] = useState('')
+
 
     const onsubmit=(e)=>{
         e.preventDefault();
@@ -26,29 +22,31 @@ const Signin = () => {
             email:email,
             password:password
         }
+        
 
         axios.post(
             'http://localhost:5000/get_auth',
             mydata
         )
         .then(res=>{
-            // console.log(res.data.Auth)
             if(res.data.Auth){
+               
                 alert("successfully Login");
                 const token={
                     emailToken:email,
                     shopNameToken:res.data.ShopName
                 }
-                // JSON.stringify(token)
+               
                 setToken(JSON.stringify(token))
                 setlogin(true)
-            //    getToken()
-               setshopName(res.data.ShopName)
-            }
-            else{
-                alert("Wrong Email Id Or Password");  
-            
                
+               setshopName(res.data.ShopName)
+          
+            
+        }
+
+            else{
+                alert("Wrong Email Id Or Password");      
             }
         })
         .catch(err=>{
@@ -60,14 +58,19 @@ const Signin = () => {
 
     return(    
 <>
-{login ? <Redirect to={{pathname:"/Dashboard",state:{"email":email,"shopName":shopName}}} /> : "" }
+{login  ?
+ <Redirect to={{pathname:"/Dashboard",state:{"email":email,"shopName":shopName}}} /> : 
 <div  id="loginformbox">
                         <form  id="loginform">
                             <div className="row m-4 d-flex justify-content-center">
                                 <h3 className="text-center">Login to your account</h3>
                             </div>
                             <div className="row m-4 d-flex justify-content-center">
-                                <p className="text-center">Don't have an account?<NavLink to="/Register/" id="signupformlink">Sign Up Free!</NavLink></p>
+                                <p className="text-center">Don't have an account?<NavLink to={
+                                    
+                                      { pathname:'/Register/'}
+                                      
+                                   } id="signupformlink">Sign Up Free!</NavLink></p>
                             </div>
                             <div className="row">
                                 <div className="col-md m-2 ">
@@ -99,6 +102,7 @@ const Signin = () => {
                             </div>
                         </form>
                     </div>
+}
 
 </>
     );
