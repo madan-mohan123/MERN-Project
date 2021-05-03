@@ -31,7 +31,7 @@ const CreateShop=(props) =>{
 
     if(shopName!=="" && category!==""){
         axios.post(
-            'http://localhost:5000/saveProfile',
+            'https://myshop-12.herokuapp.com/saveProfile',
             mydata
         )
         .then(res=>{

@@ -24,7 +24,7 @@ constructor(props)
 handleclk=(e)=>{
 e.preventDefault();
 
-axios.post('http://localhost:5000/getSearchResult',{"category":this.state.searchkeyword,"productName":this.state.querydata}).then((res)=>{
+axios.post('https://myshop-12.herokuapp.com/getSearchResult',{"category":this.state.searchkeyword,"productName":this.state.querydata}).then((res)=>{
   console.log(res.data)
 
 this.setState({searchData:res.data})
@@ -108,7 +108,7 @@ class MyImageItem extends Component {
   }
 
   componentDidMount(){
-       axios.post('http://localhost:5000/getImage',{"imagename":this.state.pic}).then((res)=>{  
+       axios.post('https://myshop-12.herokuapp.com/getImage',{"imagename":this.state.pic}).then((res)=>{  
          
                          this.setState({pic:res.data})
                     })
@@ -142,7 +142,7 @@ constructor(props)
 componentDidMount(){
 console.log(this.context.querydata)
     if(this.context.querydata === ""){
-    axios.post('http://localhost:5000/getItemsforSearchPage',{"shopname":this.context.landingpage,"limit":30}).then((res)=>{   
+    axios.post('https://myshop-12.herokuapp.com/getItemsforSearchPage',{"shopname":this.context.landingpage,"limit":30}).then((res)=>{   
     this.setState({landingData:res.data})
     }).catch((gh)=>{
     

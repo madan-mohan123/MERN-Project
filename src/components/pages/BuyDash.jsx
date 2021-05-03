@@ -59,7 +59,7 @@ export default class buyDash extends Component {
        
         if(this.state.username!=="" && this.state.email !==""&& this.state.password!== ""){
             if(this.state.password === this.state.repassword){
-             axios.post('http://localhost:5000/save_auth',signupdata).then((res)=>{ 
+             axios.post('https://myshop-12.herokuapp.com/save_auth',signupdata).then((res)=>{ 
                  if(res.data === false){
                      alert("Account Exist, Try another Account");
                  }
@@ -93,7 +93,7 @@ export default class buyDash extends Component {
     };
   
     if(this.state.email !==""&& this.state.password!== ""){     
-         axios.post('http://localhost:5000/get_auth',signindata).then((res)=>{ 
+         axios.post('https://myshop-12.herokuapp.com/get_auth',signindata).then((res)=>{ 
             if(res.data.Auth){
                 alert("successfully Login");
                 const emailTokenforbuyer=
@@ -117,7 +117,7 @@ export default class buyDash extends Component {
   }
 
   completebuy=()=>{
-    axios.post('http://localhost:5000/Cart_buy_item',{"email" : getTokenforCredentials()}).then((res)=>{ 
+    axios.post('https://myshop-12.herokuapp.com/Cart_buy_item',{"email" : getTokenforCredentials()}).then((res)=>{ 
         if(res.data===true){
             alert("Thanks for Buying")
         }
@@ -356,14 +356,14 @@ class BuyAddress extends Component {
             phoneno:this.state.phoneno 
         }
         
-        axios.post('http://localhost:5000/save_buy_address',{"email":this.state.email,"address":data}).then((res)=>{ 
+        axios.post('https://myshop-12.herokuapp.com/save_buy_address',{"email":this.state.email,"address":data}).then((res)=>{ 
           alert("Address Updated")
     }
 )
     }
 
     componentDidMount(){
-        axios.post('http://localhost:5000/get_buy_address',{"email":this.state.email}).then((res)=>{ 
+        axios.post('https://myshop-12.herokuapp.com/get_buy_address',{"email":this.state.email}).then((res)=>{ 
            this.setState({address:res.data})
            
 
@@ -496,7 +496,7 @@ class Buycart extends Component {
     }
 
     componentDidMount(){
-axios.post('http://localhost:5000/cart_item',{"email":this.state.email}).then((res)=>{ 
+axios.post('https://myshop-12.herokuapp.com/cart_item',{"email":this.state.email}).then((res)=>{ 
     this.setState({purchasedinfo:res.data})  
     }
 )
@@ -540,7 +540,7 @@ class BuyHistory extends Component {
     }
 
     componentDidMount(){
-axios.post('http://localhost:5000/purchase_item',{"email":this.state.email}).then((res)=>{ 
+axios.post('https://myshop-12.herokuapp.com/purchase_item',{"email":this.state.email}).then((res)=>{ 
     this.setState({purchasedinfo:res.data})    
     }
 )
@@ -587,9 +587,9 @@ class Showitems extends Component {
         }
     }
     buy=()=>{
-        axios.post('http://localhost:5000/get_buy_address',{"email":getTokenforCredentials()}).then((res)=>{ 
+        axios.post('https://myshop-12.herokuapp.com/get_buy_address',{"email":getTokenforCredentials()}).then((res)=>{ 
             if(res.data["Address"] !== null){
-                axios.post('http://localhost:5000/single_buy',{"email" : getTokenforCredentials(),"id":this.state.id}).then((res)=>{ 
+                axios.post('https://myshop-12.herokuapp.com/single_buy',{"email" : getTokenforCredentials(),"id":this.state.id}).then((res)=>{ 
                     if(res.data===true){
                         alert("Thanks for Buying and You can update Address Later")
                     }
@@ -618,7 +618,7 @@ class Showitems extends Component {
             "address":this.state.address
         }
   
-                axios.post('http://localhost:5000/single_buy',{"email" : getTokenforCredentials(),"id":this.state.id,"address":data}).then((res)=>{ 
+                axios.post('https://myshop-12.herokuapp.com/single_buy',{"email" : getTokenforCredentials(),"id":this.state.id,"address":data}).then((res)=>{ 
                     if(res.data===true){
                         alert("Thanks for Buying $ You can update Address Later")
                     }
@@ -630,7 +630,7 @@ class Showitems extends Component {
             }
 
             remove=()=>{
-                axios.post('http://localhost:5000/remove_from_cart',{"id":this.state.id,'email':getTokenforCredentials()}).then((res)=>{ 
+                axios.post('https://myshop-12.herokuapp.com/remove_from_cart',{"id":this.state.id,'email':getTokenforCredentials()}).then((res)=>{ 
                     if(res.data===true){
                         alert("Cart is Removed")
                     }
@@ -642,7 +642,7 @@ class Showitems extends Component {
             }
 
             returnproduct=()=>{
-                axios.post('http://localhost:5000/return_product',{"id":this.state.id,'email':getTokenforCredentials()}).then((res)=>{ 
+                axios.post('https://myshop-12.herokuapp.com/return_product',{"id":this.state.id,'email':getTokenforCredentials()}).then((res)=>{ 
                     if(res.data===true){
                         alert("Product is returned")
                     }
@@ -656,7 +656,7 @@ class Showitems extends Component {
 
     
     componentDidMount(){
-        axios.post('http://localhost:5000/get_item_by_id',{"id":this.state.id}).then((res)=>{ 
+        axios.post('https://myshop-12.herokuapp.com/get_item_by_id',{"id":this.state.id}).then((res)=>{ 
                 this.setState({productDetails:res.data}
                     
                     )  
@@ -821,7 +821,7 @@ class MyImageItem extends Component {
     }
 
     componentDidMount(){
-         axios.post('http://localhost:5000/getImage',{"imagename":this.state.pic}).then((res)=>{  
+         axios.post('https://myshop-12.herokuapp.com/getImage',{"imagename":this.state.pic}).then((res)=>{  
            
                            this.setState({pic:res.data})
                       })

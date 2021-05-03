@@ -12,7 +12,7 @@ function getTokenEmail(){
 
 function removeArticle(data){
    
-    axios.post('http://localhost:5000/delete_items',{"id":data}).then((res)=>{  
+    axios.post('https://myshop-12.herokuapp.com/delete_items',{"id":data}).then((res)=>{  
              alert("Successfully Deleted")
              
         }).catch((er)=>{   
@@ -32,7 +32,7 @@ export default class MyItem extends Component {
 
     componentDidMount(){
         
-        axios.post('http://localhost:5000/get_items',{"email":getTokenEmail()}).then((res)=>{  
+        axios.post('https://myshop-12.herokuapp.com/get_items',{"email":getTokenEmail()}).then((res)=>{  
             
              this.setState({dataList:res.data})
         }).catch((er)=>{   
@@ -113,7 +113,7 @@ export default class MyItem extends Component {
      }
 
      componentDidMount(){
-          axios.post('http://localhost:5000/getImage',{"imagename":this.state.pic}).then((res)=>{  
+          axios.post('https://myshop-12.herokuapp.com/getImage',{"imagename":this.state.pic}).then((res)=>{  
             
                             this.setState({pic:res.data})
                        })

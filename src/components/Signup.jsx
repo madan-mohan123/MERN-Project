@@ -21,7 +21,7 @@ const mydata={
         if(email!=="" && username!=="" && password!==""){
         if(password===repassword){
         axios.post(
-            'http://localhost:5000/save_auth',
+            'https://myshop-12.herokuapp.com/save_auth',
             mydata
         )
         .then(res=>{

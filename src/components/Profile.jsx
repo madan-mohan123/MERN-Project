@@ -21,7 +21,7 @@ const Profile = () => {
             const mydata={
                 "email": getToken().emailToken
             }
-        axios.post('http://localhost:5000/get_profile',mydata).then( (res)=>{
+        axios.post('https://myshop-12.herokuapp.com/get_profile',mydata).then( (res)=>{
             setprofiledata(res.data)
 
             
@@ -41,11 +41,11 @@ const Profile = () => {
                 const formdata=new FormData();
             formdata.append('pic',pic);
             formdata.append('email',getToken().emailToken)
-            axios.post('http://localhost:5000/update_ImageForProfile',formdata).then((res)=>{
+            axios.post('https://myshop-12.herokuapp.com/update_ImageForProfile',formdata).then((res)=>{
                 alert("Image Uploaded Successfully")
           
             }).catch((er)=>{
-                alert("Some  Occured")
+                alert("Some Error Occured")
             })  
         }
         else{
@@ -61,11 +61,11 @@ const Profile = () => {
                 "email":  profiledata.Email , 
             }
             
-            axios.post('http://localhost:5000/update_profile',mydata).then((res)=>{
+            axios.post('https://myshop-12.herokuapp.com/update_profile',mydata).then((res)=>{
                 alert("Uploaded Successfully")
           
             }).catch((gh)=>{
-                alert("Some  Occured")
+                alert("Some  Error Occured")
             })
             console.log(updatprofiledata)
         }
@@ -228,7 +228,7 @@ class MyImageItem extends Component {
     }
 
     componentDidMount(){
-         axios.post('http://localhost:5000/getImage',{"imagename":this.state.pic}).then((res)=>{  
+         axios.post('https://myshop-12.herokuapp.com/getImage',{"imagename":this.state.pic}).then((res)=>{  
            
                            this.setState({pic:res.data})
                       })

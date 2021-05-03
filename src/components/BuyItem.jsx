@@ -61,7 +61,7 @@ export default class BuyItem extends Component {
     };
   
     if(this.state.email !==""&& this.state.password!== ""){     
-         axios.post('http://localhost:5000/get_auth',signindata).then((res)=>{ 
+         axios.post('https://myshop-12.herokuapp.com/get_auth',signindata).then((res)=>{ 
             if(res.data.Auth){
                 alert("successfully Login");
                 const emailTokenforbuyer=
@@ -93,7 +93,7 @@ export default class BuyItem extends Component {
   
    if(this.state.username!=="" && this.state.email !==""&& this.state.password!== ""){
        if(this.state.password === this.state.repassword){
-        axios.post('http://localhost:5000/save_auth',signupdata).then((res)=>{ 
+        axios.post('https://myshop-12.herokuapp.com/save_auth',signupdata).then((res)=>{ 
             if(res.data === false){
                 alert("Account Exist, Try another Account");
             }
@@ -117,7 +117,7 @@ export default class BuyItem extends Component {
  }
     addtocart(email){
 
-        axios.post('http://localhost:5000/add_to_cart',{"id":this.state.id,"email":email}).then((res)=>{ 
+        axios.post('https://myshop-12.herokuapp.com/add_to_cart',{"id":this.state.id,"email":email}).then((res)=>{ 
             if(res.data===false){
                 alert("Error") 
             }
@@ -153,7 +153,7 @@ export default class BuyItem extends Component {
         }
         this.setState({address:false})
 
-        axios.post('http://localhost:5000/single_buy',{"email" : getTokenforCredentials(),"address":data,"id":this.state.id}).then((res)=>{ 
+        axios.post('https://myshop-12.herokuapp.com/single_buy',{"email" : getTokenforCredentials(),"address":data,"id":this.state.id}).then((res)=>{ 
             if(res.data===true){
                 alert("Thanks for Buying")
             }
@@ -169,7 +169,7 @@ export default class BuyItem extends Component {
          const id=ob.get('id');
         // alert(id)
          this.setState({id:id}) 
-         await axios.post('http://localhost:5000/get_item_by_id',{"id":id}).then( (res)=>{
+         await axios.post('https://myshop-12.herokuapp.com/get_item_by_id',{"id":id}).then( (res)=>{
              
 
          this.setState({productDetails:res.data})
@@ -613,7 +613,7 @@ class MyImageItem extends Component {
    async componentDidMount(){
         console.log(this.state.picurl)
         if(this.state.picurl != null ){
-         await axios.post('http://localhost:5000/getImage',{"imagename":this.state.picurl}).then((res)=>{  
+         await axios.post('https://myshop-12.herokuapp.com/getImage',{"imagename":this.state.picurl}).then((res)=>{  
         
                            this.setState({picurl:res.data})
                       }).catch((er)=>{

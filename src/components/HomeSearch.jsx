@@ -24,28 +24,28 @@ export default class HomeSearch extends Component {
 
  componentDidMount(){
 
-    axios.post('http://localhost:5000/getItemsforSearchPage',{"shopname":"Mobiles","limit":6}).then((res)=>{
+    axios.post('https://myshop-12.herokuapp.com/getItemsforSearchPage',{"shopname":"Mobiles","limit":6}).then((res)=>{
                     console.log(res.data)
         this.setState({dataListforMobiles:res.data})
 
     }).catch((er)=>{
     
 });
-    axios.post('http://localhost:5000/getItemsforSearchPage',{"shopname":"Electronics","limit":6}).then((res)=>{
+    axios.post('https://myshop-12.herokuapp.com/getItemsforSearchPage',{"shopname":"Electronics","limit":6}).then((res)=>{
             
         this.setState({dataListforElectronics:res.data})
 
         }).catch((er)=>{
         
     });
-    axios.post('http://localhost:5000/getItemsforSearchPage',{"shopname":"Menwear","limit":6}).then((res)=>{
+    axios.post('https://myshop-12.herokuapp.com/getItemsforSearchPage',{"shopname":"Menwear","limit":6}).then((res)=>{
             
         this.setState({dataListforMen:res.data})
 
         }).catch((er)=>{
         
     });
-    axios.post('http://localhost:5000/getItemsforSearchPage',{"shopname":"Womenwear","limit":6}).then((res)=>{
+    axios.post('https://myshop-12.herokuapp.com/getItemsforSearchPage',{"shopname":"Womenwear","limit":6}).then((res)=>{
             
         this.setState({dataListforWomen:res.data})
 
@@ -301,7 +301,7 @@ class MyImageItem extends Component {
     }
 
     componentDidMount(){
-         axios.post('http://localhost:5000/getImage',{"imagename":this.state.pic}).then((res)=>{  
+         axios.post('https://myshop-12.herokuapp.com/getImage',{"imagename":this.state.pic}).then((res)=>{  
            
                            this.setState({pic:res.data})
                       })

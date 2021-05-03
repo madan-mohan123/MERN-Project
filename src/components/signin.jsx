@@ -25,7 +25,7 @@ const Signin = (props) => {
         
 
         axios.post(
-            'http://localhost:5000/get_auth',
+            'https://myshop-12.herokuapp.com/get_auth',
             mydata
         )
         .then(res=>{

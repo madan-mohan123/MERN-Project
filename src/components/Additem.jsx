@@ -49,12 +49,12 @@ const uploadData=(e)=>{
 //         }
 //     };
    
-         axios.post('http://localhost:5000/save_items',formdata).then((res)=>{
+         axios.post('https://myshop-12.herokuapp.com/save_items',formdata).then((res)=>{
         alert("Uploaded Successfully")
       
         
-    }).catch((gh)=>{
-        alert("Some Error Occured")
+    }).catch((er)=>{
+        alert("Some Error Occured" + er)
     })
    
    
