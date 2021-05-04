@@ -7,7 +7,7 @@ const Forget= () =>{
 <div  id="forgetbox" >
                         <form action="" method="post" id="forgetform">
                             <div className="row m-2  d-flex justify-content-center" >
-                                <h3 className="text-center">Recover Your password</h3>
+                                <h3 className="text-center text-white p-2" style={{backgroundColor:'rgb(38, 40, 87)',borderRadius:'15px'}}>Recover Your password</h3>
                             </div>
                             <div className="row">
                                 <div className="col-md m-2">

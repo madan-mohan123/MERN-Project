@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import {Navbar,Nav} from 'react-bootstrap'
 import { NavLink,Route} from 'react-router-dom'
 import {Modal,Button, Container, Form,Row,Col,OverlayTrigger,Popover} from 'react-bootstrap'
 import axios from 'axios'
@@ -23,6 +23,7 @@ function getTokenforCredentials(){
 export default class buyDash extends Component {
 
     logOut(){
+       
         sessionStorage.removeItem('emailtokenforbuyer')
        
      }
@@ -50,7 +51,7 @@ export default class buyDash extends Component {
         }
         
     }  
-    Signup=()=>{
+    Signup=async ()=>{
         const signupdata={
             "username":this.state.username,
             "email":this.state.email,
@@ -59,7 +60,7 @@ export default class buyDash extends Component {
        
         if(this.state.username!=="" && this.state.email !==""&& this.state.password!== ""){
             if(this.state.password === this.state.repassword){
-             axios.post('https://myshop-12.herokuapp.com/save_auth',signupdata).then((res)=>{ 
+            await axios.post('https://myshop-12.herokuapp.com/save_auth',signupdata).then((res)=>{ 
                  if(res.data === false){
                      alert("Account Exist, Try another Account");
                  }
@@ -82,7 +83,7 @@ export default class buyDash extends Component {
        
       }
     
- Signin=()=>{
+ Signin=async ()=>{
 
 
     const signindata={
@@ -93,7 +94,7 @@ export default class buyDash extends Component {
     };
   
     if(this.state.email !==""&& this.state.password!== ""){     
-         axios.post('https://myshop-12.herokuapp.com/get_auth',signindata).then((res)=>{ 
+       await  axios.post('https://myshop-12.herokuapp.com/get_auth',signindata).then((res)=>{ 
             if(res.data.Auth){
                 alert("successfully Login");
                 const emailTokenforbuyer=
@@ -116,8 +117,8 @@ export default class buyDash extends Component {
    
   }
 
-  completebuy=()=>{
-    axios.post('https://myshop-12.herokuapp.com/Cart_buy_item',{"email" : getTokenforCredentials()}).then((res)=>{ 
+  completebuy=async ()=>{
+   await axios.post('https://myshop-12.herokuapp.com/Cart_buy_item',{"email" : getTokenforCredentials()}).then((res)=>{ 
         if(res.data===true){
             alert("Thanks for Buying")
         }
@@ -139,37 +140,40 @@ export default class buyDash extends Component {
 
 getTokenforCredentials()!=null ? 
             <div className="buydash" style={{'backgroundColor':'darkgrey'}}>
-<div className="top p-0 m-0"  >
-<div className="row gx-0 m-0 p-0" >
-                <div class="col-md col-sm-4 col-4" >
-                
-                <h2  class="p-2 text-white d-inline-block d-sm-none d-md-block">DashBoard</h2>
-            </div>
-            
-    <div class="col-md col-sm-8 col-8 d-flex align-items-center justify-content-end" >
-        <Button variant="primary mx-2" onClick={
-            this.completebuy
-        }>Buy At Once</Button>
-            <Dropdown>
-<Dropdown.Toggle variant="mute " style={{'backgroundColor':'white','color':'orange'}}>
+   <Navbar collapseOnSelect expand="lg" className="navbar" variant="dark">
+<Navbar.Brand >Dashboard </Navbar.Brand>
+
+  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+
+  <Navbar.Collapse id="responsive-navbar-nav">
+    
+    <Nav className="ml-auto">
+       <div className="d-lg-none m-2">
+       <Nav.Link href="/buyerdash/cart"><span style={{'fontSize':'18px'}}>Carts</span></Nav.Link>  
+    <Nav.Link href="/buyerdash/address" id="profile" ><span style={{'fontSize':'18px'}}>Address </span></Nav.Link>
+    <Nav.Link href="/buyerdash/" ><span style={{'fontSize':'18px'}}>Purchased</span></Nav.Link>
+    
+       </div>
+       <Button variant="primary m-2 " onClick={ this.completebuy}>Buy At Once</Button>
+    <Dropdown >
+<Dropdown.Toggle variant="mute m-2 "  style={{'backgroundColor':'white','color':'orange'}}>
 {getTokenforCredentials()}
 </Dropdown.Toggle>
 <Dropdown.Menu>
 <Dropdown.Item> 
- <NavLink to={{pathname:"/"}} className="text-decoration-none text-dark" onClick={()=>{
+ <NavLink to={{pathname:"/"}} className="text-decoration-none text-dark m-0 p-0" onClick={()=>{
      this.logOut()
  }} >Logout</NavLink> 
  </Dropdown.Item>
-
 </Dropdown.Menu>
 </Dropdown>
+    </Nav>
+  </Navbar.Collapse>
+</Navbar>
 
-    </div>
-</div>     
-</div>
 
            <div className="row g-0 m-0 p-0 bottom-body" >
-               <div className="col-md-2 p-0">
+               <div className="col-lg-2 d-lg-block d-none p-0">
                <div class="left-side " style={{'backgroundColor':'rgb(58, 56, 56)',height:'91vh'}}>
                    
                     <ul>
@@ -179,7 +183,7 @@ getTokenforCredentials()!=null ?
                     </ul>
                </div>
                </div>
-               <div className="col-md-10 g-0 p-0 ">
+               <div className="col-lg-10 col-12 g-0 p-0 ">
 <div className="right-body-buyer mx-0" style={{height:'91vh',overflow:'auto'}}>
 
     <Route exact path="/buyerdash/cart" component={Buycart} />
@@ -348,7 +352,7 @@ class BuyAddress extends Component {
 
     }
 
-    updateAddress=()=>{
+    updateAddress=async()=>{
         const data={
             country:this.state.country,
             mystate:this.state.mystate,
@@ -356,15 +360,15 @@ class BuyAddress extends Component {
             phoneno:this.state.phoneno 
         }
         
-        axios.post('https://myshop-12.herokuapp.com/save_buy_address',{"email":this.state.email,"address":data}).then((res)=>{ 
+       await axios.post('https://myshop-12.herokuapp.com/save_buy_address',{"email":this.state.email,"address":data}).then((res)=>{ 
           alert("Address Updated")
     }
 )
     }
 
-    componentDidMount(){
-        axios.post('https://myshop-12.herokuapp.com/get_buy_address',{"email":this.state.email}).then((res)=>{ 
-           this.setState({address:res.data})
+    async componentDidMount(){
+      await  axios.post('https://myshop-12.herokuapp.com/get_buy_address',{"email":this.state.email}).then((res)=>{ 
+      this.setState({address:res.data})
            this.setState({pageload:false})
 
     }
@@ -390,7 +394,7 @@ class BuyAddress extends Component {
       <Form.Label style={{color:'skyblue'}}>Country</Form.Label>
       <Form.Control type="text" placeholder="Enter country"
      
-  value={this.state.address["Address"]!=null ? this.state.address["Address"].country: ''}
+  value={this.state.address["Address"] != null ? this.state.address["Address"].country: ''}
       />
     </Form.Group>
         </Col>
@@ -508,8 +512,8 @@ class Buycart extends Component {
         }
     }
 
-    componentDidMount(){
-axios.post('https://myshop-12.herokuapp.com/cart_item',{"email":this.state.email}).then((res)=>{ 
+   async componentDidMount(){
+await axios.post('https://myshop-12.herokuapp.com/cart_item',{"email":this.state.email}).then((res)=>{ 
     this.setState({purchasedinfo:res.data})  
     this.setState({pageload:false})   
     }
@@ -565,13 +569,13 @@ class BuyHistory extends Component {
         }
     }
 
-    componentDidMount(){
-axios.post('https://myshop-12.herokuapp.com/purchase_item',{"email":this.state.email}).then((res)=>{ 
+   async componentDidMount(){
+await axios.post('https://myshop-12.herokuapp.com/purchase_item',{"email":this.state.email}).then((res)=>{ 
     this.setState({purchasedinfo:res.data}) 
     this.setState({pageload:false})   
     }
 ).catch((err)=>{
-    this.setState({pageload:true})  
+    this.setState({pageload:false})  
 })
 }
     render() {
@@ -627,10 +631,10 @@ class Showitems extends Component {
 
         }
     }
-    buy=()=>{
-        axios.post('https://myshop-12.herokuapp.com/get_buy_address',{"email":getTokenforCredentials()}).then((res)=>{ 
+    buy=async ()=>{
+        await axios.post('https://myshop-12.herokuapp.com/get_buy_address',{"email":getTokenforCredentials()}).then(async (res)=>{ 
             if(res.data["Address"] !== null){
-                axios.post('https://myshop-12.herokuapp.com/single_buy',{"email" : getTokenforCredentials(),"id":this.state.id}).then((res)=>{ 
+                await axios.post('https://myshop-12.herokuapp.com/single_buy',{"email" : getTokenforCredentials(),"id":this.state.id}).then((res)=>{ 
                     if(res.data===true){
                         alert("Thanks for Buying and You can update Address Later")
                     }
@@ -650,7 +654,7 @@ class Showitems extends Component {
     }
 
 
-    buywhenaddressnotcomplete=()=>{
+    buywhenaddressnotcomplete=async ()=>{
       this.setState({showaddress:false})
         const data={
             "country":this.state.country,
@@ -659,7 +663,7 @@ class Showitems extends Component {
             "address":this.state.address
         }
   
-                axios.post('https://myshop-12.herokuapp.com/single_buy',{"email" : getTokenforCredentials(),"id":this.state.id,"address":data}).then((res)=>{ 
+                await axios.post('https://myshop-12.herokuapp.com/single_buy',{"email" : getTokenforCredentials(),"id":this.state.id,"address":data}).then((res)=>{ 
                     if(res.data===true){
                         alert("Thanks for Buying $ You can update Address Later")
                     }
@@ -670,8 +674,8 @@ class Showitems extends Component {
             });
             }
 
-            remove=()=>{
-                axios.post('https://myshop-12.herokuapp.com/remove_from_cart',{"id":this.state.id,'email':getTokenforCredentials()}).then((res)=>{ 
+            remove=async ()=>{
+               await axios.post('https://myshop-12.herokuapp.com/remove_from_cart',{"id":this.state.id,'email':getTokenforCredentials()}).then((res)=>{ 
                     if(res.data===true){
                         alert("Cart is Removed")
                     }
@@ -682,8 +686,8 @@ class Showitems extends Component {
             });
             }
 
-            returnproduct=()=>{
-                axios.post('https://myshop-12.herokuapp.com/return_product',{"id":this.state.id,'email':getTokenforCredentials()}).then((res)=>{ 
+            returnproduct= async ()=>{
+                await axios.post('https://myshop-12.herokuapp.com/return_product',{"id":this.state.id,'email':getTokenforCredentials()}).then((res)=>{ 
                     if(res.data===true){
                         alert("Product is returned")
                     }

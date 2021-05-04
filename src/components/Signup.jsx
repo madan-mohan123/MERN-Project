@@ -59,8 +59,8 @@ else{
       {signup ? <Redirect to={{pathname:"/Register/CreateShop",state:{"email":email}}} /> : 
                   <div  id="signupformbox" >
                         <form  id="signupform" >
-                            <div className="row m-4">
-                                <h3 className="text-center">Signup for Free</h3>
+                            <div className="row m-2">
+                                <h3 className="text-center text-white p-2" style={{backgroundColor:'rgb(38, 40, 87)',borderRadius:'15px'}}>Signup for Free</h3>
                             </div>
                             <div className="row">
                                 <div className="col-md m-2 ">

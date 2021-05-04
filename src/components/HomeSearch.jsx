@@ -185,7 +185,7 @@ await axios.post('https://myshop-12.herokuapp.com/getItemsforSearchPage',{"shopn
                                        
                                         <div className="col-md-3 col-sm-4 col-6 col-lg-2 p-2" >
                                         <div className="card border-0 searchhome">
-                                        <NavLink to={{pathname:'Search/explore/buy?id='+key._id}} id={key._id} className="text-decoration-none">
+                                        <NavLink to={{pathname:'explore/buy?id='+key._id}} id={key._id} className="text-decoration-none">
                                        
                                         
         

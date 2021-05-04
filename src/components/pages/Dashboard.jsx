@@ -8,7 +8,7 @@ import { Route} from 'react-router-dom';
 import React,{ useState} from 'react'
 import '../css/dashboard.css';
 import {Dropdown} from 'react-bootstrap';
-
+import {Navbar,Nav} from 'react-bootstrap'
 
 
 function getTokenShop(){
@@ -19,7 +19,7 @@ function getTokenShop(){
 }
 function Auth(){
     const tokenString = sessionStorage.getItem('token');
-    // alert(tokenString)
+   
     if(tokenString != null){
         const tokenData=JSON.parse(tokenString).emailToken
         return(tokenData)
@@ -32,9 +32,6 @@ function Auth(){
 }
 export default function Dashboard(props) {
     function logOut(){
-      
-      
-        // sessionStorage.setItem('token',JSON.stringify(token))
         sessionStorage.removeItem('token')
     }
   
@@ -51,9 +48,7 @@ export default function Dashboard(props) {
                             <h5  class="p-2 text-white">Myshop.com</h5>
                    </div>
                     <ul>
-                  
                     <li><NavLink to="/Dashboard/Profile/" id="profile" onClick={()=>{setNameondashboard("MyProfile")}}>Profile</NavLink> </li>
-                    
                     <li><NavLink to="/Dashboard/MyStatic/" onClick={()=>{setNameondashboard("Statics")}}>Statics</NavLink></li>
                     <li><NavLink to="/Dashboard/Myitem/" onClick={()=>{setNameondashboard("MyProducts")}}>MyProducts</NavLink></li>
                     <li><NavLink to="/Dashboard/Additem" id="additems" onClick={()=>{setNameondashboard("Additem")}}>Add Items</NavLink></li>
@@ -63,7 +58,46 @@ export default function Dashboard(props) {
 
             <div class="col-md-12 col-lg-10 gx-0  p-0" >
                 <div class="right-body " >
-                    <div class="top p-0 m-0" style={{backgroundColor:'rgb(38, 61, 87)'}} >
+
+
+
+                <Navbar collapseOnSelect expand="lg" className="navbar" variant="dark">
+<Navbar.Brand >
+{nameondashboard}
+  </Navbar.Brand>
+  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+  <Navbar.Collapse id="responsive-navbar-nav">
+    <Nav className="d-lg-none">
+        <p style={{'backgroundColor':'grey','color':'black',fontSize:'20px',padding:'3px'}}><b>{getTokenShop()}</b></p>
+    <Nav.Link  href="/Dashboard/Profile/"  id="profile" onClick={()=>{setNameondashboard("MyProfile")}}>Profile</ Nav.Link>
+    
+    <Nav.Link  href="/Dashboard/MyStatic/" onClick={()=>{setNameondashboard("Statics")}}>Statics</ Nav.Link>
+    
+    <Nav.Link  href="/Dashboard/Myitem/" onClick={()=>{setNameondashboard("MyProducts")}}>MyProducts</ Nav.Link>
+    <Nav.Link  href="/Dashboard/Additem" id="additems" onClick={()=>{setNameondashboard("Additem")}}>AddItems</ Nav.Link>
+    <Nav.Link  href="/" className="btn btn-success text-white" id="additems" onClick={logOut}>LogOut</ Nav.Link>
+    </Nav>
+    <Nav className="ml-auto">
+    
+    <Dropdown className="d-lg-block d-none">
+                <Dropdown.Toggle variant="mute " style={{'backgroundColor':'white','color':'green'}}>
+                    {getTokenShop()}
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                <Dropdown.Item> 
+                         <NavLink to={{pathname:"/Dashboard/Profile"}} className="text-decoration-none text-dark" >Profile</NavLink> 
+                         </Dropdown.Item>
+                   
+                    <Dropdown.Item> 
+                         <NavLink to={{pathname:"/"}} className="text-decoration-none text-dark" onClick={logOut}>Logout</NavLink> 
+                         </Dropdown.Item>
+                    
+                </Dropdown.Menu>
+                </Dropdown>
+    </Nav>
+  </Navbar.Collapse>
+</Navbar>
+                    {/* <div class="top p-0 m-0" style={{backgroundColor:'rgb(38, 61, 87)'}} >
                         <div class="row gx-0 m-0 p-0" >
                              <div class="col-md col-sm-4 col-4" >
                                
@@ -89,7 +123,7 @@ export default function Dashboard(props) {
   
                             </div>
                         </div>     
-                    </div>
+                    </div> */}
                     <div className="right-main-body">
                 
     <Route exact path="/Dashboard/Profile" component={Profile} />

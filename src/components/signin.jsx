@@ -60,9 +60,9 @@ const Signin = (props) => {
 {login  ?
  <Redirect to={{pathname:"/Dashboard",state:{"email":email,"shopName":shopName}}} /> : 
 <div  id="loginformbox">
-                        <form  id="loginform">
-                            <div className="row m-4 d-flex justify-content-center">
-                                <h3 className="text-center">Login to your account</h3>
+                        <form  id="loginform" >
+                            <div className="row m-2 d-flex justify-content-center">
+                                <h3 className="text-center text-white p-2" style={{backgroundColor:'rgb(38, 61, 87)',borderRadius:'15px'}}>Login to your account</h3>
                             </div>
                             <div className="row m-4 d-flex justify-content-center">
                                 <p className="text-center">Don't have an account?<NavLink to={

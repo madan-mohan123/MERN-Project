@@ -26,8 +26,7 @@ export default function Home() {
                         <div className="row p-2"><h1>Grow Your Buisness With US</h1></div>
                         <div className="row p-2"><h2>World Ready shop for You</h2></div>
                         <div className="row p-2"><h3>Share your Thoughts ? To Grow your Shop</h3></div>
-                        {/* <button className="p-2 m-2 btn-start"><NavLink to="/Dashboard/"  className="text-white text-decoration-none">Start from here</NavLink></button> */}
-                        <NavLink to="/Search/"  className="text-decoration-none"><button className="p-2 m-2 btn-start text-white ">Go To Products</button></NavLink>
+                         <NavLink to="/Search/"  className="text-decoration-none"><button className="p-2 m-2 btn-start text-white ">Go To Products</button></NavLink>
                     </div>
                 </div>
                 <div className="col-md d-flex justify-content-center align-items-center p-4"> </div>
@@ -185,7 +184,7 @@ export default function Home() {
             <img src={teamimg} width="100%" alt=""/>
        </div>
             
-            <div className="col-md-8 col-sm-12 col-lg-6 m-2 text-white" style={{opacity:'0.8'}}>
+            <div className="col-md-8 col-sm-12 col-lg-6 m-2 text-white" style={{opacity:'0.8',textAlign:'justify'}}>
 This Website is developed under MERN fullstack Project. It includes The Express As backend and MongoDb 
 is used for database . This is single page Website using the React Js.
 <p>Education</p>

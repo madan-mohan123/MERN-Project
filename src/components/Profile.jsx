@@ -2,7 +2,7 @@ import picpro from '../images/purchase.jpg';
 import axios from 'axios'
 import React,{useState,useEffect} from 'react'
 import { storage } from "../firebase/firebase";
-import {Spinner} from 'react-bootstrap';
+import {Spinner,ProgressBar} from 'react-bootstrap';
 function getToken(){
     const tokenString = sessionStorage.getItem('token');
     const tokenData=JSON.parse(tokenString)
@@ -11,13 +11,13 @@ function getToken(){
 
 const Profile = () => {
     const [updatprofiledata, setUpdatprofiledata] =  useState({"FirstName":"","LastName":"","Address":"","toggle":false})
-
+    const [progress, setProgress] = useState()
     const [profiledata, setprofiledata] = useState({})
        const [pic, setPic] = useState('')
        const [pageload, setPageload] = useState(true)
 
      useEffect(() => {
-         document.title='Profile'
+        //  document.title='Profile'
             const mydata={
                 "email": getToken().emailToken
             }
@@ -45,20 +45,33 @@ const Profile = () => {
                 const formdata=new FormData();
                 formdata.append('pic',pic);
                 var picName= Date.now() + formdata.get('pic').name;
-                 await storage.ref(`/profiles/${picName}`).put(formdata.get('pic'));
-                 await storage.ref("profiles").child(picName).getDownloadURL().then(async (url) => {
-                      const data={
-                        pic:url,
-                        email:getToken().emailToken
-
-                    } 
-                      await axios.post('https://myshop-12.herokuapp.com/update_ImageForProfile',data).then((res)=>{
-                        alert("Image Uploaded Successfully")
-                  
-                    }).catch((er)=>{
-                        alert(er)
-                    })
-                    });
+                await storage.ref(`/profiles/${picName}`).put(formdata.get('pic'))
+                .on('state_changed',function(picdata){
+                    setProgress((picdata.bytesTransferred / picdata.totalBytes) * 100);
+                
+                 },function(error) {
+                    alert("File not Upload successfully")
+                  },
+                 async function(){
+                    await storage.ref("profiles").child(picName).getDownloadURL().then(async (url) => {
+                        const data={
+                          pic:url,
+                          email:getToken().emailToken
+  
+                      } 
+                        await axios.post('https://myshop-12.herokuapp.com/update_ImageForProfile',data,
+                      
+                        ).then((res)=>{
+                          alert("Image Uploaded Successfully")
+                          setProgress()
+                    
+                      }).catch((er)=>{
+                          alert(er)
+                      })
+                      });
+                  }
+                  )
+                
                     
                    
                
@@ -101,8 +114,7 @@ const Profile = () => {
                                     {
                                        
                                     ( profiledata.Pic !== 'null' && pic === '') ?
-                                    // <MyImageItem pic={profiledata.Pic} />
-                                
+                                    
                                     <img src={profiledata.Pic} alt="profile Pic" className='img-fluid border-primary border border-primary w-100'/>
                                    
                                     :
@@ -114,7 +126,11 @@ const Profile = () => {
                                 <div className="col-md-6 p-2 col-sm-8 col-8 col-lg-8">
                                     <input type="file" className="btn btn-primary border-0" onChange={(e)=>{setPic(e.target.files[0])}}/>
                                     <p>Format should be .jpg,.png etc</p>
-                                    <button className="btn btn-dark border-0 px-4" onClick={handleClickforImage}>Done</button>
+                                    <button className="btn btn-dark border-0 px-4 m-2" onClick={handleClickforImage}>Done</button>
+                                    <div>
+                                    {progress && <ProgressBar now={progress} variant='success' animated label={`${progress}%`} />}
+                                    </div>
+                                   
                                 </div>
                             </div>
                             <div className="row gx-0 m-4">

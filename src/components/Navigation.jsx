@@ -1,14 +1,37 @@
 import React from 'react'
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import logo1 from '../images/images.png';
-import { NavLink } from 'react-router-dom'
+
 import './css/Navigation.css';
+import {Navbar,Nav} from 'react-bootstrap';
 
 export default function Navigation() {
     return (
        <div>
 <div className="container-fluid m-0 p-0" >
-    <div className="row gx-0 m-0">
+
+<Navbar collapseOnSelect expand="lg" className="navbar" variant="dark">
+<Navbar.Brand href="/Contact">
+  <div className=" text-white">
+<img src={logo1} className="img-fluid rounded-circle px-2" alt="img" style={{ height:"50px"}}/>
+MyShop.<span className="brand">com</span> </div>
+  </Navbar.Brand>
+  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+  <Navbar.Collapse id="responsive-navbar-nav">
+    <Nav className="mr-auto">
+      
+    </Nav>
+    <Nav>
+    <Nav.Link  href="/">Home</ Nav.Link>
+    
+    <Nav.Link  href="/Register">Register </ Nav.Link>
+    
+    <Nav.Link  href='/Contact' tabindex="-1" aria-disabled="true">Contact us</ Nav.Link>
+     
+    </Nav>
+  </Navbar.Collapse>
+</Navbar>
+    {/* <div className="row gx-0 m-0">
         <div className="col-md m-0 p-0 ">
         <nav className="navbar navbar-expand-lg navbar-light mb-0">
                 <div className="container-fluid">
@@ -37,7 +60,7 @@ export default function Navigation() {
            </nav>
 
         </div>
-    </div>
+    </div> */}
 </div>
 
             
