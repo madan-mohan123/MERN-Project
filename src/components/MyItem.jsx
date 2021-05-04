@@ -117,28 +117,3 @@ export default class MyItem extends Component {
     }
 }
 
- class MyImageItem extends Component {
-     constructor(props){
-         super(props)
-         this.state={
-             pic:this.props.pic
-         }
-     }
-
-     componentDidMount(){
-          axios.post('https://myshop-12.herokuapp.com/getImage',{"imagename":this.state.pic}).then((res)=>{  
-            
-                            this.setState({pic:res.data})
-                       })
-         
-     }
-     
-    render() {
-        return (
-            <>
-<img src={this.state.pic} class="card-img-top" alt="fds" width="90%"   />
-
-            </>
-        )
-    }
-}

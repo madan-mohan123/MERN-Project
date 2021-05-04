@@ -44,7 +44,7 @@ const uploadData=async (e)=>{
     formdata.append('pbrand',pbrand);
     formdata.append('discount',discount);
     formdata.append('email',email)
-    if(name!='' && cost!='' && desc!='' && category!='' && pbrand!='',discount!='',pic!=''){
+    if(name!=='' && cost!=='' && desc!=='' && category!=='' && pbrand!=='' && discount!==''&& pic!==''){
         setItemupload(false)
         setPageload(false)
 

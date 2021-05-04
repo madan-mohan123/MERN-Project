@@ -1,6 +1,6 @@
 import picpro from '../images/purchase.jpg';
 import axios from 'axios'
-import React,{useState,useEffect,Component} from 'react'
+import React,{useState,useEffect} from 'react'
 import { storage } from "../firebase/firebase";
 import {Spinner} from 'react-bootstrap';
 function getToken(){
@@ -16,19 +16,22 @@ const Profile = () => {
        const [pic, setPic] = useState('')
        const [pageload, setPageload] = useState(true)
 
-     useEffect( async () => {
+     useEffect(() => {
          document.title='Profile'
             const mydata={
                 "email": getToken().emailToken
             }
-        await axios.post('https://myshop-12.herokuapp.com/get_profile',mydata).then( (res)=>{
-            setprofiledata(res.data)
-            setPageload(false)
+            fetchData()
+            async function fetchData(){
+                await axios.post('https://myshop-12.herokuapp.com/get_profile',mydata).then( (res)=>{
+                    setprofiledata(res.data)
+                    setPageload(false)    
+                }).catch((gh)=>{
+                    alert("Error")
             
-        }).catch((gh)=>{
-            alert("Error")
-    
-});
+        });
+            }
+     
         },[]);
 
         const edit=()=>{
@@ -97,7 +100,7 @@ const Profile = () => {
                                 <div className="col-md-4 col-sm-6  mx-2 col-lg-3 col-6">
                                     {
                                        
-                                    ( profiledata.Pic != 'null' && pic === '') ?
+                                    ( profiledata.Pic !== 'null' && pic === '') ?
                                     // <MyImageItem pic={profiledata.Pic} />
                                 
                                     <img src={profiledata.Pic} alt="profile Pic" className='img-fluid border-primary border border-primary w-100'/>
@@ -243,31 +246,3 @@ export default Profile;
 
 
 
-
-class MyImageItem extends Component {
-    constructor(props){
-        super(props)
-        this.state={
-            pic:this.props.pic
-        }
-        console.log('log')
-        console.log(this.props.pic)
-    }
-
-    componentDidMount(){
-         axios.post('https://myshop-12.herokuapp.com/getImage',{"imagename":this.state.pic}).then((res)=>{  
-           
-                           this.setState({pic:res.data})
-                      })
-        
-    }
-    
-   render() {
-       return (
-           <>
-<img src={this.state.pic}  className='img-fluid border-primary border border-primary w-100' alt="bye"   />
-
-           </>
-       )
-   }
-}

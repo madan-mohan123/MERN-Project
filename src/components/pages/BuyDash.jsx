@@ -864,31 +864,31 @@ if(this.state.pageload){
 }
 
 
-class MyImageItem extends Component {
-    constructor(props){
-        super(props)
-        this.state={
-            pic:this.props.pic
-        }
-    }
+// class MyImageItem extends Component {
+//     constructor(props){
+//         super(props)
+//         this.state={
+//             pic:this.props.pic
+//         }
+//     }
 
-    componentDidMount(){
-         axios.post('https://myshop-12.herokuapp.com/getImage',{"imagename":this.state.pic}).then((res)=>{  
+//     componentDidMount(){
+//          axios.post('https://myshop-12.herokuapp.com/getImage',{"imagename":this.state.pic}).then((res)=>{  
            
-                           this.setState({pic:res.data})
-                      })
+//                            this.setState({pic:res.data})
+//                       })
         
-    }
+//     }
     
-   render() {
-       return (
-           <>
-<img src={this.state.pic} alt="img" width="90%"  />
+//    render() {
+//        return (
+//            <>
+// <img src={this.state.pic} alt="img" width="90%"  />
 
-           </>
-       )
-   }
-}
+//            </>
+//        )
+//    }
+// }
 
 
 

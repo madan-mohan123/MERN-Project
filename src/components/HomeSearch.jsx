@@ -199,7 +199,7 @@ await axios.post('https://myshop-12.herokuapp.com/getItemsforSearchPage',{"shopn
                          } */}
                            
                                             {/* {/* {key.Pic != null ? */}
-                                        <img src={key.Pic}  class="card-img-top"  style={{'borderRadius':'10px','height':'170px'}} />
+                                        <img src={key.Pic}  class="card-img-top" alt="img"  style={{'borderRadius':'10px','height':'170px'}} />
                                         <div className="card-body">
                                                 <p className="card-title text-center m-0" style={{'fontSize':'18px'}}><b>{key.Name}</b></p>
                                                 <p className=" m-0 p-0 text-center">{key.Brand}</p>
