@@ -71,6 +71,10 @@ border-bottom: 3px solid white;
    .gal-img-con:hover .overlay {
 opacity: 1;
   }
+  .mybrand p{
+    display: inline-block;
+        }
+
   @media screen and (max-width: 600px) {
     .box h1 {
       font-size: 30px;
@@ -81,5 +85,23 @@ opacity: 1;
     .box h3 {
       display: none;
     }
+    #heading h1{
+      font-size: 30px;
+    }
+    #heading h2{
+      font-size: 20px;
+    }
+    section.description p{
+    text-align: justify;
+    }
+    .description h1{
+      font-size: 30px;
+    }
+    .mybrand p{
+      font-size: 20px;
+    }
+   .contactus img.contactimg{
+height: 200px;
+   }
   
   }

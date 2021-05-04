@@ -4,7 +4,7 @@ import Myitem from '../MyItem';
 import Mystatic from '../Mystatic';
 import { NavLink,Redirect } from 'react-router-dom'
 import logo1 from '../../images/images.png';
-import { Route} from 'react-router-dom';
+import { Route,Link} from 'react-router-dom';
 import React,{ useState} from 'react'
 import '../css/dashboard.css';
 import {Dropdown} from 'react-bootstrap';
@@ -69,14 +69,13 @@ export default function Dashboard(props) {
   <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="d-lg-none">
         <p style={{'backgroundColor':'grey','color':'black',fontSize:'20px',padding:'3px'}}><b>{getTokenShop()}</b></p>
-    <Nav.Link  href="/Dashboard/Profile/"  id="profile" onClick={()=>{setNameondashboard("MyProfile")}}>Profile</ Nav.Link>
+    <Nav.Link ><Link  to="/Dashboard/Profile/" id="profile" className="text-decoration-none " style={{color:'inherit'}} onClick={()=>{setNameondashboard("MyProfile")}}>Profile</Link></ Nav.Link>
+    <Nav.Link ><Link  to="/Dashboard/MyStatic/"  className="text-decoration-none " style={{color:'inherit'}} onClick={()=>{setNameondashboard("Statics")}}>Statics</Link></ Nav.Link>
+    <Nav.Link ><Link  to="/Dashboard/Myitem/"  className="text-decoration-none " style={{color:'inherit'}} onClick={()=>{setNameondashboard("MyProducts")}}>MyProducts</Link></ Nav.Link>
+    <Nav.Link ><Link  to="/Dashboard/Additem"  className="text-decoration-none " style={{color:'inherit'}} id="additems" onClick={()=>{setNameondashboard("Additem")}}>Additems</Link></ Nav.Link>
+    <Nav.Link ><Link  to="/"  className="text-decoration-none btn btn-success text-white" style={{color:'inherit'}} id="additems" onClick={logOut}>Logout</Link></ Nav.Link>
     
-    <Nav.Link  href="/Dashboard/MyStatic/" onClick={()=>{setNameondashboard("Statics")}}>Statics</ Nav.Link>
-    
-    <Nav.Link  href="/Dashboard/Myitem/" onClick={()=>{setNameondashboard("MyProducts")}}>MyProducts</ Nav.Link>
-    <Nav.Link  href="/Dashboard/Additem" id="additems" onClick={()=>{setNameondashboard("Additem")}}>AddItems</ Nav.Link>
-    <Nav.Link  href="/" className="btn btn-success text-white" id="additems" onClick={logOut}>LogOut</ Nav.Link>
-    </Nav>
+     </Nav>
     <Nav className="ml-auto">
     
     <Dropdown className="d-lg-block d-none">
@@ -97,34 +96,7 @@ export default function Dashboard(props) {
     </Nav>
   </Navbar.Collapse>
 </Navbar>
-                    {/* <div class="top p-0 m-0" style={{backgroundColor:'rgb(38, 61, 87)'}} >
-                        <div class="row gx-0 m-0 p-0" >
-                             <div class="col-md col-sm-4 col-4" >
-                               
-                                <h2  class="p-2 text-white d-inline-block d-sm-none d-md-block">{nameondashboard}</h2>
-                            </div>
-                            <div class="col-md col-sm-8 col-8 d-flex align-items-center justify-content-end" >
-                                
-                                    <Dropdown>
-                <Dropdown.Toggle variant="mute " style={{'backgroundColor':'white','color':'green'}}>
-                    {getTokenShop()}
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                <Dropdown.Item> 
-                         <NavLink to={{pathname:"/Dashboard/Profile"}} className="text-decoration-none text-dark" >Profile</NavLink> 
-                         </Dropdown.Item>
-                   
-                    <Dropdown.Item> 
-                         <NavLink to={{pathname:"/"}} className="text-decoration-none text-dark" onClick={logOut}>Logout</NavLink> 
-                         </Dropdown.Item>
-                    
-                </Dropdown.Menu>
-                </Dropdown>
-  
-                            </div>
-                        </div>     
-                    </div> */}
-                    <div className="right-main-body">
+                   <div className="right-main-body">
                 
     <Route exact path="/Dashboard/Profile" component={Profile} />
     <Route exact path="/Dashboard/Additem" component={Additem}/>
@@ -139,9 +111,6 @@ export default function Dashboard(props) {
                     
                 </div>
             </div>
-
-
-
 
 
     </div>

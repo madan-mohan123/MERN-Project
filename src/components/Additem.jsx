@@ -79,42 +79,42 @@ if(!pageload && itemupload){
        <>
      <div className="additembox" >
           <form onSubmit={onsubmit} encType="multitype">
-                            <div className="row m-2 p-2 gx-0">
-                                <div className="col-md-3 col-sm-4 col-4" >
-                                    <img src={pic ==='' ? defaultimage : URL.createObjectURL(pic)} alt="nn" class='product-logo img-fluid' style={{height:"200px",'borderRadius':'10px'}} />
+                            <div className="row gx-0 my-4 mx-2">
+                                <div className="col-md-4 col-sm-6 mx-2 col-lg-3 col-6" >
+                                    <img src={pic ==='' ? defaultimage : URL.createObjectURL(pic)} alt="nn" className='img-fluid border-primary border border-primary w-100' style={{'borderRadius':'10px'}} />
                                    
                                 </div>
-                                <div className="col-md-4 col-sm-2 col-4 py-4"  >
+                                <div className="col-md-6 col-sm-8 col-8 col-lg-8 mx-2 my-2"  >
                                   
-                                   <input type="file"  onChange={(e)=>{setPic(e.target.files[0])}}/>
+                                   <input type="file" className="btn btn-primary border-0 w-100" onChange={(e)=>{setPic(e.target.files[0])}}/>
                                 </div>
                                 
                             </div>
                             <hr />
-                            <div className="row m-2 p-2 ">
-                                <div className="col-md-3 col-sm-3 col-3 ">
-                                    <label for="">Product Name</label>
+                            <div className="row gx-0 my-4 mx-2">
+                                <div className="col-md-3 col-sm-4 col-lg-3 col-12">
+                                    <label for=""><b>Product Name</b></label>
                                 </div>
                                 
-                                <div className="col-md-9 col-sm-9 col-9" >
-                                    <input type="text" className='w-75 form-control' onChange={(e)=>{setName(e.target.value)}} placeholder="Product Name" value={name} />
+                                <div className="col-md-8  col-lg-8 col-sm-8 col-12" >
+                                    <input type="text" className='form-control' onChange={(e)=>{setName(e.target.value)}} placeholder="Product Name" value={name} />
                                 </div>    
                             </div>
-                            <div className="row m-2 p-2">
-                                <div className="col-md-3 col-sm-3 col-3">
-                                    <label for="">Cost</label>
+                            <div className="row gx-0 my-4 mx-2">
+                                <div className="col-md-3 col-sm-4 col-lg-3 col-12">
+                                    <label for=""><b>Cost</b></label>
                                 </div>
-                                <div className="col-md-9 col-sm-9 col-9 ">
-                                    <input type="text" className='w-75 form-control' placeholder="Cost" value={cost} onChange={(e)=>{setCost(e.target.value)}} />
+                                <div className="col-md-8  col-lg-8 col-sm-8 col-12">
+                                    <input type="text" className='form-control' placeholder="Cost" value={cost} onChange={(e)=>{setCost(e.target.value)}} />
                                 </div>
                             </div>
-                            <div className="row m-2 p-2 ">
-                                <div className="col-md-3 col-sm-3 col-3">
-                                    <label for="">Category</label>
+                            <div className="row gx-0 my-4 mx-2 ">
+                                <div className="col-md-3 col-sm-4 col-lg-3 col-12">
+                                    <label for=""><b>Category</b></label>
                                 </div>
-                                <div className="col-md-9 col-sm-9 col-9 ">
+                                <div className="col-md-8  col-lg-8 col-sm-8 col-12">
                                     <select name="" onChange={(e)=>{setCategory(e.target.value)
-                                    }} id="" className='w-75 form-control '>
+                                    }} id="" className='form-control '>
                                         <optgroup>
                                             <option value="Electronics">Electronic</option>
                                            
@@ -131,34 +131,34 @@ if(!pageload && itemupload){
                                 </div>
                                 
                             </div>
-                            <div className="row m-2 p-2">
-                                <div className="col-md-3 col-sm-3 col-3">
-                                    <label for="">Brand</label>
+                            <div className="row gx-0 my-4 mx-2">
+                                <div className="col-md-3 col-sm-4 col-lg-3 col-12">
+                                    <label for=""><b>Brand</b></label>
                                 </div>
-                                <div className="col-md-9 col-sm-9 col-9 ">
-                                    <input type="text" className='w-75 form-control'  value={pbrand} onChange={(e)=>{setPbrand(e.target.value)}} />
-                                </div>
-                            </div>
-                            <div className="row m-2 p-2">
-                                <div className="col-md-3 col-sm-3 col-3">
-                                    <label for="">Discount</label>
-                                </div>
-                                <div className="col-md-9 col-sm-9 col-9 ">
-                                    <input type="text" className='w-75 form-control'  value={discount} onChange={(e)=>{setDiscount(e.target.value)}} />
+                                <div className="col-md-8  col-lg-8 col-sm-8 col-12">
+                                    <input type="text" className='form-control'  value={pbrand} onChange={(e)=>{setPbrand(e.target.value)}} />
                                 </div>
                             </div>
-                            <div className="row m-2 p-2 ">
-                                <div className="col-md-3 col-sm-3 col-3">
-                                    <label for="">Description</label>
+                            <div className="row gx-0 my-4 mx-2">
+                                <div className="col-md-3 col-sm-4 col-lg-3 col-12">
+                                    <label for=""><b>Discount</b></label>
                                 </div>
-                                <div className="col-md-9 col-sm-9 col-9">
-                                    <textarea name="" id="" cols="50" rows="5" className='form-control w-75' value={desc} onChange={(e)=>{setDesc(e.target.value)}}></textarea>
+                                <div className="col-md-8  col-lg-8 col-sm-8 col-12">
+                                    <input type="text" className='form-control'  value={discount} onChange={(e)=>{setDiscount(e.target.value)}} />
+                                </div>
+                            </div>
+                            <div className="row gx-0 my-4 mx-2 ">
+                                <div className="col-md-3 col-sm-4 col-lg-3 col-12">
+                                    <label for=""><b>Description</b></label>
+                                </div>
+                                <div className="col-md-8  col-lg-8 col-sm-8 col-12">
+                                    <textarea name="" id="" cols="50" rows="5" className='form-control' value={desc} onChange={(e)=>{setDesc(e.target.value)}}></textarea>
                                 </div>
                             </div>
                 
-                            <div className="row m-2 p-2 ">
-                                <div className="col-md col-sm-6 col-6 d-flex justify-content-center align-items-center p-2">
-                                    <input type="reset" value="Reset" className="btn btn-warning"/>
+                            <div className="row gx-0 my-4 mx-2 ">
+                                <div className="col-md col-sm-6 col-6 d-flex justify-content-end align-items-center p-2">
+                                    <input type="reset" value="Reset" className="btn btn-danger"/>
                                 </div>
                                 <div className="col-md col-sm-6 col-6 d-flex justify-content-center align-items-center p-2">
                                     <input type="submit" className="btn btn-warning" onClick={uploadData}/>

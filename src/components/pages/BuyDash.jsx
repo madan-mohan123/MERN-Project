@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {Navbar,Nav} from 'react-bootstrap'
-import { NavLink,Route} from 'react-router-dom'
+import { NavLink,Route,Link} from 'react-router-dom'
 import {Modal,Button, Container, Form,Row,Col,OverlayTrigger,Popover} from 'react-bootstrap'
 import axios from 'axios'
 import {Dropdown,Spinner} from 'react-bootstrap';
@@ -149,9 +149,22 @@ getTokenforCredentials()!=null ?
     
     <Nav className="ml-auto">
        <div className="d-lg-none m-2">
-       <Nav.Link href="/buyerdash/cart"><span style={{'fontSize':'18px'}}>Carts</span></Nav.Link>  
-    <Nav.Link href="/buyerdash/address" id="profile" ><span style={{'fontSize':'18px'}}>Address </span></Nav.Link>
-    <Nav.Link href="/buyerdash/" ><span style={{'fontSize':'18px'}}>Purchased</span></Nav.Link>
+
+       <Nav.Link >
+           <Link to="/buyerdash/cart" className="text-decoration-none " style={{color:'inherit'}}>
+           <span style={{'fontSize':'18px'}}>Carts</span>
+           </Link>
+        </Nav.Link>  
+    <Nav.Link   >
+    <Link to="/buyerdash/address" className="text-decoration-none " style={{color:'inherit'}}>
+           <span style={{'fontSize':'18px'}}>Address</span>
+           </Link>
+        </Nav.Link>
+    <Nav.Link >
+    <Link to="/buyerdash/" className="text-decoration-none " style={{color:'inherit'}}>
+           <span style={{'fontSize':'18px'}}>Mypurchased</span>
+           </Link>
+        </Nav.Link>
     
        </div>
        <Button variant="primary m-2 " onClick={ this.completebuy}>Buy At Once</Button>
@@ -481,7 +494,7 @@ class BuyAddress extends Component {
   </div>
       
   </div>
-  <div className="col-md-4 m-0 p-0">
+  <div className="col-md-4 m-0 p-0 buyadddressimg">
 <img src={addressimg} alt="" width="90%" className="my-4 mx-2" style={{borderRadius:'10px'}} />
   </div>
 </div>
@@ -711,10 +724,10 @@ class Showitems extends Component {
 if(!this.state.pageload){
         return (
             <>
-               <div className="col-md-3 my-2 ">
+               <div className="col-md-4 col-sm-6 col-lg-3 p-2 ">
 
                    {this.props.cart==="true" ? 
-                   <div class="card p-0 m-0" style={{'width': '16.5rem'}}>
+                   <div class="card mx-2 my-2 mx-auto" style={{'width': '16.5rem'}}>
                    {this.state.productDetails['Pic']!=null ?
                    <img src={this.state.productDetails["Pic"]} alt="img" className="w-100" />
                        :''
@@ -742,7 +755,7 @@ if(!this.state.pageload){
                
                 </div> 
                    :
-        <div class="card p-0 m-0" style={{'width': '16.5rem'}}>
+        <div class="card mx-2 my-2 mx-auto" style={{'width': '16.5rem'}}>
                           {this.state.productDetails['Pic']!=null ?
                               <img src={this.state.productDetails["Pic"]} alt="img" className="w-100" />:''
                           }

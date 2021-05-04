@@ -103,13 +103,13 @@ const Profile = () => {
         <>
   <div className="profile py-4">
       
-                            <div className="row gx-0 m-4">
+                            <div className="row gx-0 m-2">
                                 <div className="col-md">
-                                    <h2> Edit Information</h2>
+                                    <h2>EDIT INFORMATION</h2>
                                 </div>
                             </div>
                             <hr />
-                            <div className="row gx-0 m-4">
+                            <div className="row gx-0 my-4 mx-2">
                                 <div className="col-md-4 col-sm-6  mx-2 col-lg-3 col-6">
                                     {
                                        
@@ -124,7 +124,7 @@ const Profile = () => {
 
                                 </div>
                                 <div className="col-md-6 p-2 col-sm-8 col-8 col-lg-8">
-                                    <input type="file" className="btn btn-primary border-0" onChange={(e)=>{setPic(e.target.files[0])}}/>
+                                    <input type="file" className="btn btn-primary border-0 w-100" onChange={(e)=>{setPic(e.target.files[0])}}/>
                                     <p>Format should be .jpg,.png etc</p>
                                     <button className="btn btn-dark border-0 px-4 m-2" onClick={handleClickforImage}>Done</button>
                                     <div>
@@ -133,113 +133,111 @@ const Profile = () => {
                                    
                                 </div>
                             </div>
-                            <div className="row gx-0 m-4">
+                            <div className="row gx-0 m-2">
                                 <div className="col-md">
                                     <h3>ACCOUNT INFORMATION</h3>
                                 </div>
                             </div>
                             <hr/>
-                            <div className="row gx-0 m-4">
-                                <div className="col-md-6 col-sm-4 col-lg-6 col-12">
-                                    <label for="" >ShopName</label>
+                            <div className="row gx-0 my-4 mx-2">
+                                <div className="col-md-6 col-sm-4 col-lg-4 col-12">
+                                    <label for="" ><b>Shop Name</b></label>
                                 </div>
-                                <div className="col-md-6  col-lg-6 col-sm-8 col-12">
-                                    <input type="text" className='w-75 form-control ' value={profiledata.Shopname}  readonly/>
+                                <div className="col-md-6 col-lg-7 col-sm-8 col-12">
+                                    <input type="text" className='form-control ' value={profiledata.Shopname}  readonly/>
                                 </div>
                             </div>
 
-                            <div className="row gx-0 m-4">
-                                <div className="col-md-6 col-sm-4 col-lg-6 col-12">
-                                    <label for="">First Name</label>
+                            <div className="row gx-0 my-4 mx-2">
+                                <div className="col-md-6 col-sm-4 col-lg-4 col-12">
+                                    <label for=""><b>First Name</b></label>
                                 </div>
-                                <div className="col-md-6  col-lg-6 col-sm-8 col-12" >
-                                
-                                
-                                <input type="text" className='w-75 form-control d-inline-block' value={! updatprofiledata.toggle ? profiledata.FirstName : updatprofiledata.FirstName} onChange={(e)=>{setUpdatprofiledata({...updatprofiledata,"FirstName":e.target.value})}}/>
+                                <div className="col-md-6 col-lg-7 col-sm-8 col-12" >
+                                <input type="text" className='form-control d-inline-block' value={! updatprofiledata.toggle ? profiledata.FirstName : updatprofiledata.FirstName} onChange={(e)=>{setUpdatprofiledata({...updatprofiledata,"FirstName":e.target.value})}}/>
                                 <span class="bg-white  p-0 mx-2" onClick={edit} >
                                 <i class="fa fa-pencil-square" style={{color:'green'}}></i>
                                 </span>
                             
                                 </div>
                             </div>
-                            <div className="row gx-0 m-4">
-                                <div className="col-md-6 col-sm-4 col-lg-6 col-12">
-                                    <label for="">Last Name</label>
+                            <div className="row gx-0 my-4 mx-2">
+                                <div className="col-md-6 col-sm-4 col-lg-4 col-12">
+                                    <label for=""><b>Last Name</b></label>
                                 </div>
-                                <div className="col-md-6  col-lg-6 col-sm-8 col-12">
-                                    <input type="text" className='w-75 form-control d-inline-block'  value={! updatprofiledata.toggle ?profiledata.LastName:updatprofiledata.LastName} onChange={(e)=>{setUpdatprofiledata({...updatprofiledata,"LastName":e.target.value})}}/>
+                                <div className="col-md-6 col-lg-7 col-sm-8 col-12">
+                                    <input type="text" className='form-control d-inline-block'  value={! updatprofiledata.toggle ?profiledata.LastName:updatprofiledata.LastName} onChange={(e)=>{setUpdatprofiledata({...updatprofiledata,"LastName":e.target.value})}}/>
                                     <span class="bg-white  p-0 mx-2" onClick={edit}>
                                 <i class="fa fa-pencil-square" style={{color:'green'}}></i>
                                 </span>
                                 </div>
                             </div>
-                            <div className="row gx-0 m-4">
-                                <div className="col-md-6 col-sm-4 col-lg-6 col-12">
-                                    <label for="">Email</label>
+                            <div className="row gx-0 my-4 mx-2">
+                                <div className="col-md-6 col-sm-4 col-lg-4 col-12">
+                                    <label for=""><b>Email</b></label>
                                 </div>
-                                <div className="col-md-6  col-lg-6 col-sm-8 col-12">
-                                    <input type="text" className='w-75 form-control d-inline-block' value={profiledata.Email}/>
+                                <div className="col-md-6 col-lg-7 col-sm-8 col-12">
+                                    <input type="text" className='form-control d-inline-block' value={profiledata.Email}/>
                                 </div>
                             </div>
-                            <div className="row gx-0 m-4">
-                                <div className="col-md-6 col-sm-4 col-lg-6 col-12">
-                                    <label for="">Address</label>
+                            <div className="row gx-0 my-4 mx-2">
+                                <div className="col-md-6 col-sm-4 col-lg-4 col-12">
+                                    <label for=""><b>Address</b></label>
                                 </div>
-                                <div className="col-md-6  col-lg-6 col-sm-8 col-12">
-                                    <input type="text" className='w-75 form-control d-inline-block' value={! updatprofiledata.toggle  ? profiledata.Address:updatprofiledata.Address} onChange={(e)=>{setUpdatprofiledata({...updatprofiledata,"Address":e.target.value})}}/>
+                                <div className="col-md-6 col-lg-7 col-sm-8 col-12">
+                                    <input type="text" className='form-control d-inline-block' value={! updatprofiledata.toggle  ? profiledata.Address:updatprofiledata.Address} onChange={(e)=>{setUpdatprofiledata({...updatprofiledata,"Address":e.target.value})}}/>
                                     <span class=" p-0 mx-2" onClick={edit}>
                                 <i class="fa fa-pencil-square" style={{color:'green'}}></i>
                                 </span>
                                 </div>
                             </div>
-                            <div className="row gx-0 m-4">
-                                <div className="col-md-6 col-sm-4 col-lg-6 col-12">
-                                    <label for="">Shop Type</label>
+                            <div className="row gx-0 my-4 mx-2">
+                                <div className="col-md-6 col-sm-4 col-lg-4 col-12">
+                                    <label for=""><b>Shop Type</b></label>
                                 </div>
-                                <div className="col-md-6  col-lg-6 col-sm-8 col-12">
-                                    <input type="text" className='w-75 form-control d-inline-block' value={profiledata.ShopCategory} readonly/>
+                                <div className="col-md-6 col-lg-7 col-sm-8 col-12">
+                                    <input type="text" className='form-control d-inline-block' value={profiledata.ShopCategory} readonly/>
                                    
                                 </div>
                             </div>
                             <div className="row m-2 p-2 ">
                                 
-                                <div className="col-md col-sm-6 col-6 d-flex justify-content-end  p-2">
-                                    <input type="submit" className="btn btn-secondary" onClick={updateprofile} value="Update"/>
+                                <div className="col-md-10 col-sm-10 col-lg-10 mx-auto col-10 d-flex justify-content-end  p-2">
+                                    <input type="submit" className="btn btn-warning" onClick={updateprofile} value="Update"/>
                                 </div>
                             </div>
-                            <div className="row gx-0 m-4">
+                            <div className="row gx-0 my-2 mx-4">
                                 <h3>CHANGE PASSWORD</h3>
                             </div>
                             <hr/>
                 
-                            <div className="row gx-0 m-4">
-                                <div className="col-md-6 col-sm-4 col-lg-6 col-12">
-                                    <label for="">Current Password</label>
+                            <div className="row gx-0 my-4 mx-2">
+                                <div className="col-md-6 col-sm-4 col-lg-4 col-12">
+                                    <label for=""><b>Current Password</b></label>
                                 </div>
-                                <div className="col-md-6  col-lg-6 col-sm-8 col-12">
-                                    <input type="text" className='w-75 form-control' />
-                                </div>
-                            </div>
-                            <div className="row gx-0 m-4">
-                                <div className="col-md-6 col-sm-4 col-lg-6 col-12">
-                                    <label for="">New Password</label>
-                                </div>
-                                <div className="col-md-6  col-lg-6 col-sm-8 col-12">
-                                    <input type="text" className='w-75 form-control' />
+                                <div className="col-md-6 col-lg-7 col-sm-8 col-12">
+                                    <input type="text" className='form-control' />
                                 </div>
                             </div>
-                            <div className="row gx-0 m-4">
-                                <div className="col-md-6 col-sm-4 col-lg-6 col-12">
-                                    <label for="">Re Password</label>
+                            <div className="row gx-0 my-4 mx-2">
+                                <div className="col-md-6 col-sm-4 col-lg-4 col-12">
+                                    <label for=""><b>New Password</b></label>
                                 </div>
-                                <div className="col-md-6  col-lg-6 col-sm-8 col-12">
-                                    <input type="text" className='w-75 form-control' />
+                                <div className="col-md-6 col-lg-7 col-sm-8 col-12">
+                                    <input type="text" className='form-control' />
+                                </div>
+                            </div>
+                            <div className="row gx-0 my-4 mx-2">
+                                <div className="col-md-6 col-sm-4 col-lg-4 col-12">
+                                    <label for=""><b>Re Password</b></label>
+                                </div>
+                                <div className="col-md-6 col-lg-7 col-sm-8 col-12">
+                                    <input type="text" className='form-control' />
                                 </div>
                             </div>
                             <div className="row m-2 p-2 ">
                                 
-                                <div className="col-md col-sm-6 col-6 d-flex justify-content-end  p-2">
-                                    <input type="submit" className="btn btn-warning"  />
+                                <div className="col-10 mx-auto d-flex justify-content-end  p-2">
+                                    <input type="submit" className="btn btn-danger"  />
                                 </div>
                             </div>
                         </div>

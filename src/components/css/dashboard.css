@@ -102,3 +102,25 @@ box-shadow: 0 0 5px 2px orange;
     color: rgb(12, 155, 238);
     transform: scale(1.1);
 }
+
+.additembox .btn:hover{
+    transform: scale(0.9);
+}
+.profile .form-control{
+    width: 80%;   
+}
+@media screen and (max-width: 600px) {
+.profile h2{
+    font-size: 20px;
+}
+.profile h3{
+    font-size: 20px;
+}
+.additembox .form-control {
+width: 100%;
+}
+.address .buyadddressimg img{
+    display: none;
+}
+
+}

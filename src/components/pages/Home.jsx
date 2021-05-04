@@ -8,7 +8,6 @@ import realmex2 from '../../images/mobile/realmex2.jpg';
 import img1 from '../../images/manya.jpg';
 import img2 from '../../images/suitr.jpg';
 import img3 from '../../images/suit.png';
-
 import img6 from '../../images/manyawar.jpg';
 import teamimg from '../../images/team.jpg';
 import addressimg from '../../images/addcon.png';
@@ -95,13 +94,13 @@ export default function Home() {
 
 
             
-    <section id="description " >
+    <section id="description" className="description" >
         <h1 className="text-primary text-center my-4">Know About us ? </h1>
-        <div class="row   gx-0 m-0" >
-            <div class="col-md p-5" >
+        <div className="row  gx-0 m-0" >
+            <div className="col-md p-4" >
                 <img src={teamimg} alt="" className="img-fluid"  style={{borderRadius:'30px 0 0px 0', boxShadow: '0 0 5px rgb(98, 238, 243);'}}/>
             </div>
-            <div class="col-md p-5">
+            <div className="col-md py-2 px-4">
                 <h1 className="text-warning">About Team</h1>
                 <p style={{color:'grey'}}>
                     I am B.tech 3rd year student of GlA University. Currently I work on this project and it becomes Complete 
@@ -119,7 +118,7 @@ export default function Home() {
         <hr/>
         <div class="row gx-0 m-0" >
             
-            <div class="col-md p-5">
+            <div class="col-md p-4">
                 <h1 className="text-warning">Address</h1>
                 <p style={{color:'grey'}}>Know are Office Located In Mathura , Uttar Pradesh
                 </p>
@@ -129,7 +128,7 @@ export default function Home() {
                 </p>
                 <p style={{color:'grey'}}><span style={{color:'black'}}> Address: </span> Sant Nagar , Pushpanjali Road</p>
             </div>
-            <div class="col-md p-5">
+            <div class="col-md p-4">
                 <img src={addressimg} alt="" className="img-fluid" style={{borderRadius:'0px 0 30px 0',boxShadow: '0 0 5px rgb(98, 238, 243);',width:'500px'}} />
             </div>
         </div>

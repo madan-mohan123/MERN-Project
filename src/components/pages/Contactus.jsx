@@ -3,12 +3,12 @@ import cont from '../../images/contact.jpg';
 import Navigation from '../Navigation';
 export default function Contact() {
     return (
-        <div className="container-fluid m-0 p-0 text-white" style={{backgroundColor:'rgb(58, 56, 56)',height:'100vh'}}>
+        <div className="container-fluid m-0 p-0 text-white contactus" style={{backgroundColor:'rgb(58, 56, 56)'}}>
            
             <Navigation />
             <div className="row gx-0 mt-4 mx-0">
-                <div className="col-md-6 ">    
-            <h1 style={{color:'blue'}}>Contact Us</h1>
+                <div className="col-lg-5 col-12 col-md-5 px-2 mx-2">    
+            <h1 style={{color:'blue'}} >Contact Us</h1>
 
             <h2>
                 We are With You 
@@ -38,14 +38,14 @@ export default function Contact() {
   </div>
 </form>
 </div>
-<div className="col-md-6">
+<div className="col-lg-6 col-md-6 col-12 px-2">
 <div className=" d-flex justify-content-center" >
-                <img src={cont} alt="" height='400px' width="100%"style={{'borderRadius':'20px'}} />
+                <img src={cont} alt="" height='400px' className="contactimg" width="100%"style={{'borderRadius':'20px'}} />
             </div>
 </div>
 
             </div>
-            <h1 className="text-center " style={{marginTop:'30px'}}>MyShop.com</h1>
+            <h1 className="text-center " style={{padding:'30px'}}>MyShop.com</h1>
         </div>
     )
 }
