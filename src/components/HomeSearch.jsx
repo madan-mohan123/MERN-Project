@@ -18,42 +18,46 @@ export default class HomeSearch extends Component {
         dataListforMobiles:[],
         dataListforMen:[],
         dataListforWomen:[],
-        dataListforElectronics:[]
+        dataListforElectronics:[],
+        pageload:true
      }
  }
+ imageLoaded=()=>{
+this.setState({loading:false})
+ }
+ async componentDidMount(){
 
- componentDidMount(){
-
-    axios.post('https://myshop-12.herokuapp.com/getItemsforSearchPage',{"shopname":"Mobiles","limit":6}).then((res)=>{
+    await axios.post('https://myshop-12.herokuapp.com/getItemsforSearchPage',{"shopname":"Mobiles","limit":6}).then((res)=>{
                     console.log(res.data)
         this.setState({dataListforMobiles:res.data})
-
+        // this.setState({pageload:false})
     }).catch((er)=>{
     
 });
-    axios.post('https://myshop-12.herokuapp.com/getItemsforSearchPage',{"shopname":"Electronics","limit":6}).then((res)=>{
+await axios.post('https://myshop-12.herokuapp.com/getItemsforSearchPage',{"shopname":"Electronics","limit":6}).then((res)=>{
             
         this.setState({dataListforElectronics:res.data})
-
+        // this.setState({pageload:false})
         }).catch((er)=>{
         
     });
-    axios.post('https://myshop-12.herokuapp.com/getItemsforSearchPage',{"shopname":"Menwear","limit":6}).then((res)=>{
+    await axios.post('https://myshop-12.herokuapp.com/getItemsforSearchPage',{"shopname":"Menwear","limit":6}).then((res)=>{
             
         this.setState({dataListforMen:res.data})
-
+        // this.setState({pageload:false})
         }).catch((er)=>{
         
     });
-    axios.post('https://myshop-12.herokuapp.com/getItemsforSearchPage',{"shopname":"Womenwear","limit":6}).then((res)=>{
+    await axios.post('https://myshop-12.herokuapp.com/getItemsforSearchPage',{"shopname":"Womenwear","limit":6}).then((res)=>{
             
         this.setState({dataListforWomen:res.data})
-
+        this.setState({pageload:false})
         }).catch((er)=>{
         
     });
  }
-    render() {
+   render() {
+       if (!this.state.pageload){
         return (
             <>
    <section className="m-2 p-2" >
@@ -135,15 +139,16 @@ export default class HomeSearch extends Component {
                                         
                                         <div className="col-md-3 col-sm-4 col-6 col-lg-2 p-2">
                                         <div className="card border-0 searchhome">
-                                        {key.Pic!=null ?
-                                        < MyImageItem pic={key.Pic}/> :<Spinner animation="grow" variant="warning" /> }
+                                        <NavLink to={{pathname:'explore/buy?id='+key._id}} id={key._id} className="text-decoration-none">
+                                        {key.Pic != null ?
+                                        <img src={key.Pic} alt="img" class="card-img-top"  style={{'borderRadius':'10px','height':'170px'}}  /> :<Spinner animation="grow" variant="warning" /> }
                                             <div className="card-body">
                                                 <p className="card-title text-center m-0" style={{'fontSize':'18px'}}><b>{key.Name}</b></p>
                                                 <p className=" m-0 p-0 text-center">{key.Brand}</p>
                                                 <p className="m-0 p-0 text-center">Rs {key.Cost}</p>
                                                 <p className="m-0 p-0 text-center" ><span style={{'color':'grey'}}>Myshop.com</span> </p>
                                             </div>
-                                           
+                                           </NavLink>
                                         </div>
                                     </div>
                                 
@@ -177,19 +182,34 @@ export default class HomeSearch extends Component {
             <div className="row gx-0 m-0">
             {this.state.dataListforMen.map((key,index)=>{
                                        return(
+                                       
                                         <div className="col-md-3 col-sm-4 col-6 col-lg-2 p-2" >
                                         <div className="card border-0 searchhome">
-                                            {key.Pic!=null ?
-                                        < MyImageItem pic={key.Pic}/> :<Spinner animation="grow" variant="warning" /> }
+                                        <NavLink to={{pathname:'explore/buy?id='+key._id}} id={key._id} className="text-decoration-none">
+                                       
+                                        
+                         {/* {
+                             this.state.loading ? 
+                             <div style={{display: this.state.loading ? "block" : "none"}}>
+                                        <Spinner animation="grow" variant="warning" className="d-flex justify-content-center align-items-center" />
+                                        </div>
+                                        :
+                                        <img src={key.Pic}  class="card-img-top"  style={{'borderRadius':'10px','height':'170px'}}  onLoad={this.imageLoaded} />
+                                        
+                         } */}
+                           
+                                            {/* {/* {key.Pic != null ? */}
+                                        <img src={key.Pic}  class="card-img-top"  style={{'borderRadius':'10px','height':'170px'}} />
                                         <div className="card-body">
                                                 <p className="card-title text-center m-0" style={{'fontSize':'18px'}}><b>{key.Name}</b></p>
                                                 <p className=" m-0 p-0 text-center">{key.Brand}</p>
                                                 <p className="m-0 p-0 text-center">Rs {key.Cost}</p>
                                                 <p className="m-0 p-0 text-center" ><span style={{'color':'grey'}}>Myshop.com</span> </p>
                                             </div>
-                                           
+                                            </NavLink>
                                         </div>
                                     </div>
+                                  
                                        )})}
                
                 
@@ -224,14 +244,15 @@ export default class HomeSearch extends Component {
                                        return(
                                         <div className="col-md-3 col-sm-4 col-6 col-lg-2 p-2">
                                         <div className="card border-0 searchhome">
-                                        < MyImageItem pic={key.Pic}/>
+                                        <NavLink to={{pathname:'explore/buy?id='+key._id}} id={key._id} className="text-decoration-none">
+                                        <img src={key.Pic} alt="img" class="card-img-top"  style={{'borderRadius':'10px','height':'170px'}}  />
                                         <div className="card-body">
                                                 <p className="card-title text-center m-0" style={{'fontSize':'18px'}}><b>{key.Name}</b></p>
                                                 <p className=" m-0 p-0 text-center">{key.Brand}</p>
                                                 <p className="m-0 p-0 text-center">Rs {key.Cost}</p>
                                                 <p className="m-0 p-0 text-center" ><span style={{'color':'grey'}}>Myshop.com</span> </p>
                                             </div>
-                                           
+                                           </NavLink>
                                         </div>
                                     </div>
                                        )})}
@@ -268,14 +289,15 @@ export default class HomeSearch extends Component {
                                        return(
                                         <div className="col-md-3 col-sm-4 col-6 col-lg-2 p-2">
                                         <div className="card border-0 searchhome">
-                                        < MyImageItem pic={key.Pic}/>
+                                        <NavLink to={{pathname:'explore/buy?id='+key._id}} id={key._id} className="text-decoration-none">
+                                        <img src={key.Pic} alt="img" class="card-img-top"  style={{'borderRadius':'10px','height':'170px'}}  />
                                         <div className="card-body">
                                                 <p className="card-title text-center m-0" style={{'fontSize':'18px'}}><b>{key.Name}</b></p>
                                                 <p className=" m-0 p-0 text-center">{key.Brand}</p>
                                                 <p className="m-0 p-0 text-center">Rs {key.Cost}</p>
                                                 <p className="m-0 p-0 text-center" ><span style={{'color':'grey'}}>Myshop.com</span> </p>
                                             </div>
-                                           
+                                           </NavLink>
                                         </div>
                                     </div>
                                        )})}
@@ -286,34 +308,17 @@ export default class HomeSearch extends Component {
 
         </article>
     </section>
+    
 
 </>
         )
     }
-}
-
-class MyImageItem extends Component {
-    constructor(props){
-        super(props)
-        this.state={
-            pic:this.props.pic
-        }
+    else{
+        return (
+            <div className="d-flex justify-content-center align-items-center" style={{height:'100vh'}}>
+              <Spinner animation="border" variant="danger" />
+            </div>
+             )
     }
-
-    componentDidMount(){
-         axios.post('https://myshop-12.herokuapp.com/getImage',{"imagename":this.state.pic}).then((res)=>{  
-           
-                           this.setState({pic:res.data})
-                      })
-        
     }
-    
-   render() {
-       return (
-           <>
-<img src={this.state.pic} alt="img" class="card-img-top"  style={{'borderRadius':'10px','height':'170px'}}  />
-
-           </>
-       )
-   }
 }

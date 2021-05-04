@@ -2,6 +2,8 @@
 import axios from 'axios'
 import React,{useEffect, useState} from 'react'
 import defaultimage from '../images/purchase.jpg';
+import { storage } from "../firebase/firebase";
+import {Spinner} from 'react-bootstrap';
 function getToken(){
     const tokenString = sessionStorage.getItem('token');
     const tokenData=JSON.parse(tokenString)
@@ -20,21 +22,20 @@ const [desc, setDesc] = useState('')
 const [pic, setPic] = useState('')
 const [discount, setDiscount] = useState('')
 const [email, setemail] = useState('')
-
+const [pageload, setPageload] = useState(true)
+const [itemupload, setItemupload] = useState(true)
 useEffect(()=>{   
     setemail(getToken().emailToken)
     setShopname(getToken().shopNameToken) 
-   
+     setPageload(false)
     
 }, [])
 
-const uploadData=(e)=>{
+const uploadData=async (e)=>{
     e.preventDefault();
-    
    
-
     const formdata=new FormData();
-    formdata.append('pic',pic);
+    formdata.append('picloc',pic);
     formdata.append('name',name);
     formdata.append('cost',cost);
     formdata.append('category',category);
@@ -43,22 +44,36 @@ const uploadData=(e)=>{
     formdata.append('pbrand',pbrand);
     formdata.append('discount',discount);
     formdata.append('email',email)
-//    const config = {
-//         headers: {
-//             'content-type': 'multipart/form-data'
-//         }
-//     };
+    if(name!='' && cost!='' && desc!='' && category!='' && pbrand!='',discount!='',pic!=''){
+        setItemupload(false)
+        setPageload(false)
+
+                 var picName= Date.now() + formdata.get('picloc').name;
+                
+                 await storage.ref(`/items/${picName}`).put(formdata.get('picloc'));
+                 await storage.ref("items").child(picName).getDownloadURL().then(async (url) => {
+                    formdata.append('pic',url);
+                    await axios.post('https://myshop-12.herokuapp.com/save_items',formdata).then((res)=>{
+                    alert("Uploaded Successfully")
+                    setItemupload(true)
+                   
+                          
+                }).catch((er)=>{
+                    alert("Please Try Again")
+                    setItemupload(true)
+                   
+                })
+                })
+            }
+            else{
+                alert("All field are required ? ")
+            }
    
-         axios.post('https://myshop-12.herokuapp.com/save_items',formdata).then((res)=>{
-        alert("Uploaded Successfully")
-      
-        
-    }).catch((er)=>{
-        alert("Some Error Occured" + er)
-    })
+    
    
    
 }
+if(!pageload && itemupload){
 
     return(
        <>
@@ -154,6 +169,17 @@ const uploadData=(e)=>{
 
 </>
     )
+                                }
+                                else{
+                                    return (
+                                        <div className="additembox" >
+                                        <div className="d-flex justify-content-center align-items-center" style={{height:'100vh'}} >
+                                          <Spinner animation="border" variant="danger" />
+                                          <p>Loading...</p>
+                                        </div>
+                                        </div>
+                                         )
+                                }
 }
 
 export default Additem;

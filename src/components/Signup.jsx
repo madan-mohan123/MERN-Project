@@ -1,7 +1,7 @@
 import { NavLink,Redirect  } from "react-router-dom"
 import axios from 'axios'
 import React,{useState} from 'react'
-
+import {Spinner} from 'react-bootstrap';
   
 const Signup = () =>{
     const [username, setusername] = useState('');
@@ -9,10 +9,10 @@ const Signup = () =>{
     const [password, setpassword] = useState('');
     const [repassword, setrepassword] = useState('');
     const [signup, setsignup] = useState(false);
-
+    const [pageload, setPageload] = useState(true)
     const onsubmit=(e)=>{
         e.preventDefault();
-
+        setPageload(false)
 const mydata={
     username:username,
     email:email,
@@ -27,20 +27,24 @@ const mydata={
         .then(res=>{
             if(res.data===false){
                 alert("Account Exist, Try another Account");
+                setPageload(true) 
             }
             else if(res.data===true){
                 alert("Account successfully created ? ")
-                setsignup(true)  
+                setsignup(true) 
+                setPageload(true)  
             }
            
         })
         .catch(err=>{
             alert("OOPs! Something Wrong")
+            setPageload(true) 
         })
     }
 
     else{
         alert("Password Mismatch")
+
     }
 }
 else{
@@ -48,6 +52,7 @@ else{
 }
 
     }
+    if(pageload){
     return(
       <>
       
@@ -100,6 +105,15 @@ else{
 
         </>
     );
+}
+else{
+    return (
+        <div className="d-flex justify-content-center align-items-center h-100" >
+          <Spinner animation="border" variant="danger" />
+          <p>Verifying...</p>
+        </div>
+         )
+}
 }
 
 export default Signup; 

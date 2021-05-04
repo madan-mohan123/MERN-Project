@@ -1,5 +1,5 @@
 
-import {Dropdown} from 'react-bootstrap';
+import {Dropdown,Spinner} from 'react-bootstrap';
 import React, { Component } from 'react'
 import logoimg from '../images/images.png'
 
@@ -17,17 +17,21 @@ constructor(props)
       searchkeyword:'',
       querydata:'',
       searchData:[],
+      pageload:true
     
   } 
    
+}
+componentDidMount(){
+  this.setState({pageload:false})
 }
 handleclk=(e)=>{
 e.preventDefault();
 
 axios.post('https://myshop-12.herokuapp.com/getSearchResult',{"category":this.state.searchkeyword,"productName":this.state.querydata}).then((res)=>{
-  console.log(res.data)
 
 this.setState({searchData:res.data})
+this.setState({pageload:false})
 }).catch((gh)=>{
 
 });
@@ -35,6 +39,7 @@ this.setState({searchData:res.data})
 }
 
   render() {
+    if (!this.state.pageload){
     return (
       <>
           <nav>
@@ -90,39 +95,20 @@ this.setState({searchData:res.data})
 
 <contextapi.Provider value= {this.state}>
 
-<SearchExplore ></SearchExplore>
+<SearchExplore></SearchExplore>
 </contextapi.Provider>
 
       </>
   )
+                                }
+                                else{
+                                  return (
+                                    <div className="d-flex justify-content-center align-items-center" style={{height:'100vh'}}>
+                                      <Spinner animation="border" variant="warning" />
+                                    </div>
+                                     )
+                                }
 }
-}
-
-
-class MyImageItem extends Component {
-  constructor(props){
-      super(props)
-      this.state={
-          pic:this.props.pic
-      }
-  }
-
-  componentDidMount(){
-       axios.post('https://myshop-12.herokuapp.com/getImage',{"imagename":this.state.pic}).then((res)=>{  
-         
-                         this.setState({pic:res.data})
-                    })
-      
-  }
-  
- render() {
-     return (
-         <>
-<img src={this.state.pic} alt="img" class="card-img-top img-fluid"  style={{'borderRadius':'10px','height':'180px'}}  />
-
-         </>
-     )
- }
 }
 
 
@@ -135,30 +121,27 @@ constructor(props)
 {
     super(props);
     this.state={
-        landingData:[]
+        landingData:[],
+        pageload:true
     }
 } 
 
 componentDidMount(){
-console.log(this.context.querydata)
+
     if(this.context.querydata === ""){
     axios.post('https://myshop-12.herokuapp.com/getItemsforSearchPage',{"shopname":this.context.landingpage,"limit":30}).then((res)=>{   
     this.setState({landingData:res.data})
+    this.setState({pageload:false})
     }).catch((gh)=>{
     
 });
     }
-    else{
-
-    }
+   
    
 }
 
-
-
-
-
 render() {
+  if (!this.state.pageload){
         return (
             <>
 <section className="m-2" >
@@ -268,7 +251,7 @@ render() {
                                        return(
               <div className="col-md-3 col-sm-4 col-6 col-lg-2 p-2" >
                         <div className="card p-2 searchexplore border-0" style={{'boxShadow':'0 0 3px 3px grey'}}>
-                        <MyImageItem pic={key.Pic}/>
+                        <img src={key.Pic} alt="img" class="card-img-top"  style={{'borderRadius':'10px','height':'170px'}}  />
                             <div className="my-2">
                                 <p className=" my-0" style={{"opacity": "0.8"}} >{key.Name}</p>
                                <div style={{'height':'20px','overflow':'hidden'}}>
@@ -290,7 +273,7 @@ render() {
                                         return(
                          <div className="col-md-3 col-sm-4 col-6 col-lg-2 p-2">
                         <div className="card p-2 searchexplore border-0" style={{'boxShadow':'0 0 3px blue'}}>
-                         <MyImageItem pic={key.Pic}/>
+                        <img src={key.Pic} alt="img" class="card-img-top"  style={{'borderRadius':'10px','height':'170px'}}  />
                          <div className="my-2">
                                 <p className=" my-0" style={{"opacity": "0.8"}} >{key.Name}</p>
                                 <div style={{'height':'20px','overflow':'hidden'}}>
@@ -329,6 +312,14 @@ render() {
 
 </>
         )
+                                      }
+                                      else{
+                                        return (
+                                          <div className="d-flex justify-content-center align-items-center" style={{height:'100vh'}}>
+                                            <Spinner animation="border" variant="danger" />
+                                          </div>
+                                           )
+                                      }
     }
 }
 

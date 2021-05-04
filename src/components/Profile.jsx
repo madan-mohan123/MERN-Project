@@ -1,29 +1,29 @@
 import picpro from '../images/purchase.jpg';
 import axios from 'axios'
 import React,{useState,useEffect,Component} from 'react'
-
+import { storage } from "../firebase/firebase";
+import {Spinner} from 'react-bootstrap';
 function getToken(){
     const tokenString = sessionStorage.getItem('token');
     const tokenData=JSON.parse(tokenString)
     return(tokenData)  
 }
 
-
-
 const Profile = () => {
     const [updatprofiledata, setUpdatprofiledata] =  useState({"FirstName":"","LastName":"","Address":"","toggle":false})
 
     const [profiledata, setprofiledata] = useState({})
        const [pic, setPic] = useState('')
+       const [pageload, setPageload] = useState(true)
 
-        useEffect( () => {
-         
+     useEffect( async () => {
+         document.title='Profile'
             const mydata={
                 "email": getToken().emailToken
             }
-        axios.post('https://myshop-12.herokuapp.com/get_profile',mydata).then( (res)=>{
+        await axios.post('https://myshop-12.herokuapp.com/get_profile',mydata).then( (res)=>{
             setprofiledata(res.data)
-
+            setPageload(false)
             
         }).catch((gh)=>{
             alert("Error")
@@ -36,17 +36,29 @@ const Profile = () => {
             
         }
 
-        const handleClickforImage=()=>{
+        const handleClickforImage=async ()=>{
+           
             if(pic !== ''){
                 const formdata=new FormData();
-            formdata.append('pic',pic);
-            formdata.append('email',getToken().emailToken)
-            axios.post('https://myshop-12.herokuapp.com/update_ImageForProfile',formdata).then((res)=>{
-                alert("Image Uploaded Successfully")
-          
-            }).catch((er)=>{
-                alert("Some Error Occured")
-            })  
+                formdata.append('pic',pic);
+                var picName= Date.now() + formdata.get('pic').name;
+                 await storage.ref(`/profiles/${picName}`).put(formdata.get('pic'));
+                 await storage.ref("profiles").child(picName).getDownloadURL().then(async (url) => {
+                      const data={
+                        pic:url,
+                        email:getToken().emailToken
+
+                    } 
+                      await axios.post('https://myshop-12.herokuapp.com/update_ImageForProfile',data).then((res)=>{
+                        alert("Image Uploaded Successfully")
+                  
+                    }).catch((er)=>{
+                        alert(er)
+                    })
+                    });
+                    
+                   
+               
         }
         else{
             alert("No File Choosen")
@@ -69,6 +81,8 @@ const Profile = () => {
             })
             console.log(updatprofiledata)
         }
+
+        if(!pageload){
     return(
         <>
   <div className="profile py-4">
@@ -83,8 +97,11 @@ const Profile = () => {
                                 <div className="col-md-4 col-sm-6  mx-2 col-lg-3 col-6">
                                     {
                                        
-                                    ( profiledata.Pic != null && pic === '') ?
-                                    <MyImageItem pic={profiledata.Pic} />
+                                    ( profiledata.Pic != 'null' && pic === '') ?
+                                    // <MyImageItem pic={profiledata.Pic} />
+                                
+                                    <img src={profiledata.Pic} alt="profile Pic" className='img-fluid border-primary border border-primary w-100'/>
+                                   
                                     :
                                     <img src={pic === '' ? picpro : URL.createObjectURL(pic) } className='border-primary border border-primary w-100' alt="hello" style={{height:'200px'}} />
                                     }
@@ -208,7 +225,17 @@ const Profile = () => {
                             </div>
                         </div>
         </>
-    )
+    )}
+    else{
+        return (
+            <div className="profile" >
+            <div className="d-flex justify-content-center align-items-center" style={{height:'100vh'}} >
+              <Spinner animation="border" variant="danger" />
+              <p>Loading...</p>
+            </div>
+            </div>
+             )
+    }
 }
 
 

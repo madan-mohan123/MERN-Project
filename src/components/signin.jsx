@@ -1,7 +1,7 @@
 import { NavLink, Redirect } from "react-router-dom"
 import React,{useState } from 'react'
 import axios from 'axios'
-
+import {Spinner} from 'react-bootstrap';
 function setToken(userToken){
 sessionStorage.setItem('token',userToken)
 }
@@ -11,27 +11,22 @@ const Signin = (props) => {
     const [email, setemail] = useState('');
     const [password, setpassword] = useState('');
     const [login, setlogin] = useState(false);
-    
     const [shopName, setshopName] = useState('')
+    const [pageload, setPageload] = useState(true)
 
-
-    const onsubmit=(e)=>{
+    const onsubmit=async (e)=>{
         e.preventDefault();
+        setPageload(false)
         const mydata={
-        
             email:email,
             password:password
-        }
-        
-
-        axios.post(
+        } 
+       await axios.post(
             'https://myshop-12.herokuapp.com/get_auth',
             mydata
         )
         .then(res=>{
             if(res.data.Auth){
-               
-                alert("successfully Login");
                 const token={
                     emailToken:email,
                     shopNameToken:res.data.ShopName
@@ -39,23 +34,27 @@ const Signin = (props) => {
                
                 setToken(JSON.stringify(token))
                 setlogin(true)
-               
-               setshopName(res.data.ShopName)
-          
-            
+                setPageload(true) 
+                setshopName(res.data.ShopName)      
         }
 
             else{
-                alert("Wrong Email Id Or Password");      
+               
+                alert("Wrong Email Id Or Password");
+                setPageload(true)      
             }
         })
         .catch(err=>{
+           
             alert("OOPs! Something Wrong " + err)
+            setPageload(true)
         })
    
 
     }
 
+    if(pageload){
+  
     return(    
 <>
 {login  ?
@@ -106,6 +105,16 @@ const Signin = (props) => {
 
 </>
     );
+}
+      
+else{
+    return (
+        <div className="d-flex justify-content-center align-items-center h-100" >
+          <Spinner animation="border" variant="danger" />
+          <p>Verifying...</p>
+        </div>
+         )
+}
 }
 
 export default Signin;

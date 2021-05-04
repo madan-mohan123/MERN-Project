@@ -4,7 +4,7 @@ import { NavLink,Route} from 'react-router-dom'
 
 import {Modal,Button, Container, Form,Row,Col,OverlayTrigger,Popover} from 'react-bootstrap'
 import axios from 'axios'
-import {Dropdown} from 'react-bootstrap';
+import {Dropdown,Spinner} from 'react-bootstrap';
 import cartimg from '../../images/cart.jpg'
 import purimg from '../../images/purchase.jpg'
 import addressimg from '../../images/address.jpg'
@@ -46,7 +46,8 @@ export default class buyDash extends Component {
            myaddress:'',
            completebuy:false,
            review:false,
-           reviewmessage:''
+           reviewmessage:'',
+           pageload:true
         }
         
     }  
@@ -343,7 +344,8 @@ class BuyAddress extends Component {
             country:'',
             mystate:'',
             myaddress:'',
-            phoneno:''
+            phoneno:'',
+            pageload:true
         }
 
     }
@@ -365,12 +367,13 @@ class BuyAddress extends Component {
     componentDidMount(){
         axios.post('https://myshop-12.herokuapp.com/get_buy_address',{"email":this.state.email}).then((res)=>{ 
            this.setState({address:res.data})
-           
+           this.setState({pageload:false})
 
     }
 )
     }
     render() {
+        if(!this.state.pageload){
         return (
             <>
               
@@ -484,6 +487,17 @@ class BuyAddress extends Component {
             </>
         )
     }
+    else{
+        return (
+            <div className="profile" >
+            <div className="d-flex justify-content-center align-items-center" style={{height:'100vh'}} >
+              <Spinner animation="border" variant="danger" />
+              <p>Loading...</p>
+            </div>
+            </div>
+             )
+    }
+    }
 }
 class Buycart extends Component {
 
@@ -491,18 +505,21 @@ class Buycart extends Component {
         super(props)
         this.state={
             email:getTokenforCredentials(),
-            purchasedinfo:[]
+            purchasedinfo:[],
+            pageload:true
         }
     }
 
     componentDidMount(){
 axios.post('https://myshop-12.herokuapp.com/cart_item',{"email":this.state.email}).then((res)=>{ 
     this.setState({purchasedinfo:res.data})  
+    this.setState({pageload:false})   
     }
 )
     }
 
     render() {
+        if(this.state.pageload){
         return (
             <>       
             <div className="row g-0 m-0 p-0" >
@@ -523,7 +540,17 @@ axios.post('https://myshop-12.herokuapp.com/cart_item',{"email":this.state.email
                                              }   
             </div>      
                     </>
-        )
+        )}
+        else{
+            return (
+                <div className="history" >
+               <div className="d-flex justify-content-center align-items-center" style={{height:'100vh'}} >
+                 <Spinner animation="border" variant="danger" />
+                 <p>Loading...</p>
+               </div>
+               </div>
+                ) 
+        }
     }
 }
 
@@ -535,17 +562,20 @@ class BuyHistory extends Component {
         this.state={
             email:getTokenforCredentials(),
           
-            purchasedinfo:[]
+            purchasedinfo:[],
+            pageload:true
         }
     }
 
     componentDidMount(){
 axios.post('https://myshop-12.herokuapp.com/purchase_item',{"email":this.state.email}).then((res)=>{ 
-    this.setState({purchasedinfo:res.data})    
+    this.setState({purchasedinfo:res.data}) 
+    this.setState({pageload:false})   
     }
 )
 }
     render() {
+        if(this.state.pageload){
         return (
             <>       
     <div className="row g-0 m-0 p-0" >
@@ -567,7 +597,17 @@ axios.post('https://myshop-12.herokuapp.com/purchase_item',{"email":this.state.e
     </div>
                 
             </>
-        )
+        )}
+        else{
+            return (
+                <div className="history" >
+               <div className="d-flex justify-content-center align-items-center" style={{height:'100vh'}} >
+                 <Spinner animation="border" variant="danger" />
+                 <p>Loading...</p>
+               </div>
+               </div>
+                ) 
+        }
     }
 }
 
@@ -582,7 +622,8 @@ class Showitems extends Component {
             phoneno:'',
             mystate:'',
             country:'',
-            showaddress:false
+            showaddress:false,
+            pageload:true
 
         }
     }
@@ -655,15 +696,15 @@ class Showitems extends Component {
     
 
     
-    componentDidMount(){
-        axios.post('https://myshop-12.herokuapp.com/get_item_by_id',{"id":this.state.id}).then((res)=>{ 
-                this.setState({productDetails:res.data}
-                    
-                    )  
+   async componentDidMount(){
+       await axios.post('https://myshop-12.herokuapp.com/get_item_by_id',{"id":this.state.id}).then((res)=>{ 
+                this.setState({productDetails:res.data})
+                    this.setState({pageload:false})  
                 }
             ) 
 }
     render() {
+if(this.state.pageload){
         return (
             <>
                <div className="col-md-3 my-2 ">
@@ -671,7 +712,8 @@ class Showitems extends Component {
                    {this.props.cart==="true" ? 
                    <div class="card p-0 m-0" style={{'width': '16.5rem'}}>
                    {this.state.productDetails['Pic']!=null ?
-                       < MyImageItem pic={this.state.productDetails['Pic']}/>:''
+                   <img src={this.state.productDetails["Pic"]} alt="img" className="w-100" />
+                       :''
                    }
          
                      <div class="card-body m-0"> 
@@ -698,7 +740,7 @@ class Showitems extends Component {
                    :
         <div class="card p-0 m-0" style={{'width': '16.5rem'}}>
                           {this.state.productDetails['Pic']!=null ?
-                              < MyImageItem pic={this.state.productDetails['Pic']}/>:''
+                              <img src={this.state.productDetails["Pic"]} alt="img" className="w-100" />:''
                           }
                 
                             <div class="card-body m-0"> 
@@ -807,7 +849,17 @@ class Showitems extends Component {
         </Modal.Footer>
       </Modal>
             </>
-        )
+        )}
+        else{
+            return (
+                 <div className="col-md-3 my-2 ">
+                <div className="d-flex justify-content-center align-items-center" style={{height:'100vh'}} >
+                  <Spinner animation="border" variant="danger" />
+                  <p>Loading...</p>
+                </div>
+                </div>
+                 )
+        }
     }
 }
 

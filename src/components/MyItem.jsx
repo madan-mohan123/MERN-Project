@@ -1,7 +1,7 @@
 
 import axios from 'axios'
 import React, { Component } from 'react'
-import {OverlayTrigger,Popover} from 'react-bootstrap'
+import {OverlayTrigger,Popover,Spinner} from 'react-bootstrap'
 function getTokenEmail(){
     const tokenString = sessionStorage.getItem('token');
     const tokenemail=JSON.parse(tokenString).emailToken
@@ -25,16 +25,18 @@ export default class MyItem extends Component {
         super()
         this.state={
             dataList:[],
-            picdata:''
+            picdata:'',
+            pageload:true
         }
     }
    
 
-    componentDidMount(){
+    async componentDidMount(){
         
-        axios.post('https://myshop-12.herokuapp.com/get_items',{"email":getTokenEmail()}).then((res)=>{  
+       await axios.post('https://myshop-12.herokuapp.com/get_items',{"email":getTokenEmail()}).then((res)=>{  
             
              this.setState({dataList:res.data})
+             this.setState({pageload:false})
         }).catch((er)=>{   
 });
         
@@ -42,6 +44,7 @@ export default class MyItem extends Component {
 
 
     render() {
+        if(!this.state.pageload){
         return (
             <>
             < div class="myitems" >
@@ -55,9 +58,8 @@ export default class MyItem extends Component {
                        
                        <div class="col-md-4 col-sm-6 col-lg-3  p-2 d-flex justify-content-center">
                        <div class="card mx-2 my-2" style={{width: '18rem'}}>
-                           < MyImageItem pic={key.Pic}/>
-
-                           
+                           {/* < MyImageItem pic={key.Pic}/> */}
+                           <img src={key.Pic} class="card-img-top" alt="fds" width="90%"   />
 
                                <div class="card-body">
                               
@@ -101,6 +103,17 @@ export default class MyItem extends Component {
 
 </>
         )
+                    }
+                    else{
+                        return (
+                            <div class="myitems">
+                            <div className="d-flex justify-content-center align-items-center" style={{height:'100vh'}} >
+                              <Spinner animation="border" variant="danger" />
+                              <p>Loading...</p>
+                            </div>
+                            </div>
+                             )
+                    }
     }
 }
 

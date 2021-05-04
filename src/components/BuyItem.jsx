@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React,{ Component} from 'react'
-import {Modal,Button, Container, Form} from 'react-bootstrap'
+import {Modal,Button, Container, Form,Spinner} from 'react-bootstrap'
 import { NavLink} from 'react-router-dom'
 
 
@@ -43,10 +43,29 @@ export default class BuyItem extends Component {
          confirametion:false,
          completebuy:false,
          review:false,
-         reviewmessage:''
+         reviewmessage:'',
+         pageload:true
       }
       
   }  
+
+  async componentDidMount(){
+    const ob=new URLSearchParams(window.location.search)
+     const id=ob.get('id');
+    // alert(id)
+     this.setState({id:id}) 
+     await axios.post('https://myshop-12.herokuapp.com/get_item_by_id',{"id":id}).then( (res)=>{
+         
+
+     this.setState({productDetails:res.data})
+     this.setState({page:res.data.Category})
+this.setState({pageload:false})
+
+     
+    }).catch((gh)=>{   
+});   
+}
+
  handleClose = () => this.setState({showsignup:false});
  handleShow = () => this.setState({showsignup:true});;
 
@@ -164,22 +183,7 @@ export default class BuyItem extends Component {
     });     
     }
 
-     async componentDidMount(){
-        const ob=new URLSearchParams(window.location.search)
-         const id=ob.get('id');
-        // alert(id)
-         this.setState({id:id}) 
-         await axios.post('https://myshop-12.herokuapp.com/get_item_by_id',{"id":id}).then( (res)=>{
-             
-
-         this.setState({productDetails:res.data})
-         this.setState({page:res.data.Category})
-
-
-         
-        }).catch((gh)=>{   
-    });   
-    }
+    
 
     logOut(){
        sessionStorage.removeItem('emailtokenforbuyer')
@@ -190,6 +194,7 @@ export default class BuyItem extends Component {
 
 
     render() {
+        if (!this.state.pageload){
       return (
             <>
         
@@ -233,26 +238,28 @@ export default class BuyItem extends Component {
                            <div className="row overflow-auto" style={{"height":"300px"}}>
                            <div className="col-md-12 py-2">
                            {this.state.productDetails["Pic"]!=null ? 
-                                <MyImageItem pic={this.state.productDetails["Pic"]} />
+                                <img src={this.state.productDetails["Pic"]} alt="img" className="w-100"  />
                                 : ''
                             }
                            
                            </div>
                            <div className="col-md-12 py-2">
                            {this.state.productDetails["Pic"]!=null ? 
-                                <MyImageItem pic={this.state.productDetails["Pic"]} />
+                                <img src={this.state.productDetails["Pic"]} alt="img" className="w-100"  />
                                 : ''
                             }
                            </div>
                            <div className="col-md-12 py-2">
                            {this.state.productDetails["Pic"]!=null ? 
-                                <MyImageItem pic={this.state.productDetails["Pic"]} />
+                                <img src={this.state.productDetails["Pic"]} alt="img" className="w-100"  />
+                                
                                 : ''
                             }
                            </div>
                            <div className="col-md-12 py-2">
                            {this.state.productDetails["Pic"]!=null ? 
-                                <MyImageItem pic={this.state.productDetails["Pic"]} />
+                                <img src={this.state.productDetails["Pic"]} alt="img" className="w-100"  />
+                                
                                 : ''
                             }
                            </div>
@@ -260,10 +267,12 @@ export default class BuyItem extends Component {
                         </div>
                         <div className="col-md-9 col-sm-6 p-2 d-flex align-items-center">
                         {this.state.productDetails["Pic"]!=null ? 
-                                <MyImageItem pic={this.state.productDetails["Pic"]} />
+                                <img src={this.state.productDetails["Pic"]} alt="img" className="w-100"  onLoad={
+                                    <h2>heloodsf</h2>
+                                }/>
                                 : ''
                             }
-                            {/* <img src="../images/banner.jpg" width="100%" alt="" /> */}
+                           
                         </div>
                     </div>
                     <div className="row g-0 m-0">
@@ -594,43 +603,20 @@ export default class BuyItem extends Component {
                         
             </>
         )
-                        }
+        
+                        
+                    }
+                    else{
+                        return (
+                            <div className="d-flex justify-content-center align-items-center" style={{height:'100vh'}}>
+                              <Spinner animation="border" variant="danger" />
+                            </div>
+                             )
+                    }
+                }
     
 }
 
 
 
-
-
-class MyImageItem extends Component {
-    constructor(props){
-        super(props)
-        this.state={
-            picurl:this.props.pic
-        }
-    }
-
-   async componentDidMount(){
-        console.log(this.state.picurl)
-        if(this.state.picurl != null ){
-         await axios.post('https://myshop-12.herokuapp.com/getImage',{"imagename":this.state.picurl}).then((res)=>{  
-        
-                           this.setState({picurl:res.data})
-                      }).catch((er)=>{
-                          console.log("fdsfs")
-                      })
-        
-    }
-}
-    
-   render() {
-       return (
-           <>
-           
-<img src={this.state.picurl} alt="img" className="w-100" />
-
-           </>
-       )
-   }
-}
 
