@@ -44,7 +44,10 @@ export default class BuyItem extends Component {
          completebuy:false,
          review:false,
          reviewmessage:'',
-         pageload:true
+         pageload:true,
+         signinload:true,
+         signupload:true,
+         addressload:true,
       }
       
   }  
@@ -79,21 +82,25 @@ this.setState({pageload:false})
         'check':'buyer'
     };
   
-    if(this.state.email !==""&& this.state.password!== ""){     
+    if(this.state.email !==""&& this.state.password!== ""){  
+        this.setState({signinload:false})   
          axios.post('https://myshop-12.herokuapp.com/get_auth',signindata).then((res)=>{ 
             if(res.data.Auth){
-                alert("successfully Login");
+                // alert("successfully Login");
                 const emailTokenforbuyer=
                     this.state.email;    
                 setTokenforbuyer(emailTokenforbuyer)
-                this.setState({showsignin:false})   
+                this.setState({showsignin:false}) 
+                this.setState({signinload:true})   
         }
 
             else{
-                alert("Wrong Email Id Or Password");      
+                alert("Wrong Email Id Or Password"); 
+                this.setState({signinload:true})      
             }           
              }).catch((error)=>{
-                 alert("OOPs! Something Wrong")   
+                 alert("OOPs! Something Wrong") 
+                 this.setState({signinload:true})   
              }); 
         }
     
@@ -112,17 +119,21 @@ this.setState({pageload:false})
   
    if(this.state.username!=="" && this.state.email !==""&& this.state.password!== ""){
        if(this.state.password === this.state.repassword){
+        this.setState({signupload:false}) 
         axios.post('https://myshop-12.herokuapp.com/save_auth',signupdata).then((res)=>{ 
             if(res.data === false){
                 alert("Account Exist, Try another Account");
+                this.setState({signinload:true}) 
             }
             else if(res.data === true){
                 alert("Account successfully created ? ")
                 this.setState({showsignup:false})
+                this.setState({signinload:true}) 
             }
                             
             }).catch((error)=>{
-                alert("OOPs! Something Wrong")   
+                alert("OOPs! Something Wrong")  
+                this.setState({signinload:true})  
             }); 
        }
        else{
@@ -164,6 +175,7 @@ this.setState({pageload:false})
     }
     }
     myaddress=()=>{
+        this.setState({addressload:false})
         const data={
             "country":this.state.country,
             "phoneno":this.state.phoneno,
@@ -175,9 +187,11 @@ this.setState({pageload:false})
         axios.post('https://myshop-12.herokuapp.com/single_buy',{"email" : getTokenforCredentials(),"address":data,"id":this.state.id}).then((res)=>{ 
             if(res.data===true){
                 alert("Thanks for Buying")
+                this.setState({addressload:true})
             }
             else{
-                alert("Error") 
+                alert("Please Try Later ? ") 
+                this.setState({addressload:true})
             }  
         }).catch((gh)=>{   
     });     
@@ -353,10 +367,11 @@ this.setState({pageload:false})
      centered
     >
         <Modal.Header closeButton style={{'backgroundColor':'navy','color':'white'}}>
-          <Modal.Title>MyShop.com</Modal.Title>
+          <Modal.Title><span style={{color:'green'}}><b>SignUp</b></span></Modal.Title>
         </Modal.Header>
         <Modal.Body >
         <Container>
+        {this.state.signupload ?
         <Form >
     <Form.Group controlId="formGroupPassword">
     <Form.Label>Username</Form.Label>
@@ -400,6 +415,12 @@ this.setState({pageload:false})
   </Form.Group>
 
 </Form>
+:
+<div className="d-flex justify-content-center align-items-center h-100" >
+<Spinner animation="border" variant="danger" />
+<p>upload and verify...</p>
+</div> 
+}
           </Container>
         </Modal.Body>
         <Modal.Footer>
@@ -425,12 +446,13 @@ this.setState({pageload:false})
      centered
     >
         <Modal.Header closeButton style={{'backgroundColor':'rgb(38, 61, 87)','color':'white'}}>
-          <Modal.Title><span className="mx-4">Sign In Here</span></Modal.Title>
+          <Modal.Title><span className="mx-4"><span style={{color:'green'}}><b>SignInHere</b></span></span></Modal.Title>
         </Modal.Header>
         <Modal.Body>
 
 
         <Container>
+        {this.state.signinload ?
         <Form >
     
 
@@ -458,6 +480,12 @@ this.setState({pageload:false})
     
   </Form.Group>
 </Form>
+:
+<div className="d-flex justify-content-center align-items-center h-100" >
+<Spinner animation="border" variant="danger" />
+<p>Verifying...</p>
+</div>
+        }
           </Container>
         </Modal.Body>
         <Modal.Footer>
@@ -477,13 +505,12 @@ this.setState({pageload:false})
     
     >
         <Modal.Header closeButton>
-          <Modal.Title>Address</Modal.Title>
+          <Modal.Title><span style={{color:'green'}}><b>Address</b></span></Modal.Title>
         </Modal.Header>
         <Modal.Body>
         <Container>
+        { this.state.addressload ?
         <Form >
-    
-
   <Form.Group controlId="formGroupEmail">
     <Form.Label>Country</Form.Label>
     <Form.Control type="text" placeholder="Enter country"
@@ -525,6 +552,12 @@ this.setState({pageload:false})
     />
   </Form.Group>
 </Form>
+: 
+<div className="d-flex justify-content-center align-items-center h-100" >
+<Spinner animation="border" variant="danger" />
+<p>uploadate Address...</p>
+</div> 
+}
           </Container>
         </Modal.Body>
         <Modal.Footer>

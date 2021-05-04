@@ -7,6 +7,7 @@ import {Dropdown,Spinner} from 'react-bootstrap';
 import cartimg from '../../images/cart.jpg'
 import purimg from '../../images/purchase.jpg'
 import addressimg from '../../images/address.jpg'
+
 function setTokenforbuyer(userToken){
     sessionStorage.setItem('emailtokenforbuyer',userToken)
     }
@@ -47,11 +48,14 @@ export default class buyDash extends Component {
            completebuy:false,
            review:false,
            reviewmessage:'',
+           signinload:true,
+           signupload:true
           
         }
         
     }  
     Signup=async ()=>{
+        this.setState({signinload:true}) 
         const signupdata={
             "username":this.state.username,
             "email":this.state.email,
@@ -60,32 +64,38 @@ export default class buyDash extends Component {
        
         if(this.state.username!=="" && this.state.email !==""&& this.state.password!== ""){
             if(this.state.password === this.state.repassword){
+                this.setState({signupload:false})
             await axios.post('https://myshop-12.herokuapp.com/save_auth',signupdata).then((res)=>{ 
                  if(res.data === false){
                      alert("Account Exist, Try another Account");
+                     this.setState({signupload:true})
                  }
                  else if(res.data === true){
                      alert("Account successfully created ? ")
                      this.setState({showsignup:false})
+                     this.setState({signupload:false})
                  }
                                  
                  }).catch((error)=>{
-                     alert("OOPs! Something Wrong")   
+                     alert("OOPs! Something Wrong")  
+                     this.setState({signupload:true}) 
                  }); 
             }
             else{
              alert("Password Mismatch")  
+             
             }
         }
         else{
             alert("Field cannot be empty")
+            
         }
        
       }
     
  Signin=async ()=>{
-
-
+    this.setState({signupload:true}) 
+    this.setState({signinload:false}) 
     const signindata={
         "username":this.state.username,
         "email":this.state.email,
@@ -96,18 +106,21 @@ export default class buyDash extends Component {
     if(this.state.email !==""&& this.state.password!== ""){     
        await  axios.post('https://myshop-12.herokuapp.com/get_auth',signindata).then((res)=>{ 
             if(res.data.Auth){
-                alert("successfully Login");
+               
                 const emailTokenforbuyer=
                     this.state.email;    
                 setTokenforbuyer(emailTokenforbuyer)
-                this.setState({showsignin:false})   
+                this.setState({showsignin:false}) 
+                this.setState({signinload:false})   
         }
 
             else{
-                alert("Wrong Email Id Or Password");      
+                alert("Wrong Email Id Or Password");
+                this.setState({signinload:true})      
             }           
              }).catch((error)=>{
-                 alert("OOPs! Something Wrong")   
+                 alert("OOPs! Something Wrong")
+                 this.setState({signinload:true})    
              }); 
         }
     
@@ -220,12 +233,13 @@ getTokenforCredentials()!=null ?
         <Modal.Header closeButton 
         style={{'backgroundColor':'navy','color':'white'}}
         >
-          <Modal.Title>MyShop.com</Modal.Title>
+          <Modal.Title>MyShop.com <span style={{color:'grey'}}><b>SignIn</b> </span></Modal.Title>
         </Modal.Header>
         <Modal.Body>
 
 
         <Container>
+            {this.state.signinload ?
         <Form >
     
 
@@ -251,6 +265,12 @@ getTokenforCredentials()!=null ?
     
   </Form.Group>
 </Form>
+:  
+  <div className="d-flex justify-content-center align-items-center h-100" >
+<Spinner animation="border" variant="danger" />
+<p>Verifying...</p>
+</div>
+}
           </Container>
         </Modal.Body>
         <Modal.Footer>
@@ -278,10 +298,11 @@ getTokenforCredentials()!=null ?
      centered
     >
         <Modal.Header closeButton style={{'backgroundColor':'navy','color':'white'}}>
-          <Modal.Title>MyShop.com</Modal.Title>
+          <Modal.Title>MyShop.com <span style={{color:'green'}}><b>SignUp</b></span></Modal.Title>
         </Modal.Header>
         <Modal.Body >
         <Container>
+        {this.state.signupload ?
         <Form >
     <Form.Group controlId="formGroupPassword">
     <Form.Label>Username</Form.Label>
@@ -325,6 +346,12 @@ getTokenforCredentials()!=null ?
   </Form.Group>
 
 </Form>
+:
+<div className="d-flex justify-content-center align-items-center h-100" >
+<Spinner animation="border" variant="danger" />
+<p>upload and verify...</p>
+</div> 
+}
           </Container>
         </Modal.Body>
         <Modal.Footer>
