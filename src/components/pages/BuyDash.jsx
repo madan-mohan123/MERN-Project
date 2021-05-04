@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
 import { NavLink,Route} from 'react-router-dom'
-
 import {Modal,Button, Container, Form,Row,Col,OverlayTrigger,Popover} from 'react-bootstrap'
 import axios from 'axios'
 import {Dropdown,Spinner} from 'react-bootstrap';
@@ -47,7 +46,7 @@ export default class buyDash extends Component {
            completebuy:false,
            review:false,
            reviewmessage:'',
-           pageload:true
+          
         }
         
     }  
@@ -134,7 +133,6 @@ export default class buyDash extends Component {
 
     render() {
 
-
         return (
             <>
 {
@@ -196,7 +194,7 @@ getTokenforCredentials()!=null ?
            :
            <div>
 
-               {/* Signin ============== */}
+            {/* Signin ============== */}
            <Modal show={this.state.showsignin} onHide={()=>{this.setState({showsignin:false})}}
      size="md"
      aria-labelledby="contained-modal-title-vcenter"
@@ -519,7 +517,7 @@ axios.post('https://myshop-12.herokuapp.com/cart_item',{"email":this.state.email
     }
 
     render() {
-        if(this.state.pageload){
+        if(!this.state.pageload){
         return (
             <>       
             <div className="row g-0 m-0 p-0" >
@@ -572,10 +570,12 @@ axios.post('https://myshop-12.herokuapp.com/purchase_item',{"email":this.state.e
     this.setState({purchasedinfo:res.data}) 
     this.setState({pageload:false})   
     }
-)
+).catch((err)=>{
+    this.setState({pageload:true})  
+})
 }
     render() {
-        if(this.state.pageload){
+        if(!this.state.pageload){
         return (
             <>       
     <div className="row g-0 m-0 p-0" >
@@ -704,7 +704,7 @@ class Showitems extends Component {
             ) 
 }
     render() {
-if(this.state.pageload){
+if(!this.state.pageload){
         return (
             <>
                <div className="col-md-3 my-2 ">

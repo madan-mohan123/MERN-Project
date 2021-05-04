@@ -185,20 +185,10 @@ await axios.post('https://myshop-12.herokuapp.com/getItemsforSearchPage',{"shopn
                                        
                                         <div className="col-md-3 col-sm-4 col-6 col-lg-2 p-2" >
                                         <div className="card border-0 searchhome">
-                                        <NavLink to={{pathname:'explore/buy?id='+key._id}} id={key._id} className="text-decoration-none">
+                                        <NavLink to={{pathname:'Search/explore/buy?id='+key._id}} id={key._id} className="text-decoration-none">
                                        
                                         
-                         {/* {
-                             this.state.loading ? 
-                             <div style={{display: this.state.loading ? "block" : "none"}}>
-                                        <Spinner animation="grow" variant="warning" className="d-flex justify-content-center align-items-center" />
-                                        </div>
-                                        :
-                                        <img src={key.Pic}  class="card-img-top"  style={{'borderRadius':'10px','height':'170px'}}  onLoad={this.imageLoaded} />
-                                        
-                         } */}
-                           
-                                            {/* {/* {key.Pic != null ? */}
+        
                                         <img src={key.Pic}  class="card-img-top" alt="img"  style={{'borderRadius':'10px','height':'170px'}} />
                                         <div className="card-body">
                                                 <p className="card-title text-center m-0" style={{'fontSize':'18px'}}><b>{key.Name}</b></p>
