@@ -30,6 +30,7 @@ const App=()=> {
       <Route exact path="/Search/" component={Search} />
       <Route exact path="/Search/explore" component={Search} />
       <Route exact path="/Search/explore/buy:id" component={BuyItem} />
+      <Route exact path="/Search/explore/buy/" component={BuyItem} />
       <Route exact path="/buyerdash" component={BuyDash} />
       <Route exact path="/buyerdash/cart"  component={BuyDash}/>
       <Route exact path="/buyerdash/history" component={BuyDash} />

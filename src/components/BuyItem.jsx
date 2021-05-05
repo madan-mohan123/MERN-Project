@@ -2,7 +2,7 @@ import axios from 'axios'
 import React,{ Component} from 'react'
 import {Modal,Button, Container, Form,Spinner} from 'react-bootstrap'
 import { NavLink} from 'react-router-dom'
-
+import logo1 from '../images/images.png';
 
 
 function setTokenforbuyer(userToken){
@@ -55,7 +55,7 @@ export default class BuyItem extends Component {
   async componentDidMount(){
     const ob=new URLSearchParams(window.location.search)
      const id=ob.get('id');
-    // alert(id)
+   
      this.setState({id:id}) 
      await axios.post('https://myshop-12.herokuapp.com/get_item_by_id',{"id":id}).then( (res)=>{
          
@@ -328,7 +328,7 @@ this.setState({pageload:false})
                 <p style={{'opacity': '0.7'}}>446 rating and 56 reviews</p>
                 <p className="h5" style={{'opacity': '0.7'}}><b>Seller</b> <span className="h6" style={{"color":"blue"}}>@{this.state.productDetails["Shopname"]}</span></p>
                 <hr />
-                <h4>Produc Details</h4>
+                <h4>Product Details</h4>
                 <hr />
                 <div className="row gx-0 m-0">
                     <div className="col-md">
@@ -366,9 +366,9 @@ this.setState({pageload:false})
      aria-labelledby="contained-modal-title-vcenter"
      centered
     >
-        <Modal.Header closeButton style={{'backgroundColor':'navy','color':'white'}}>
-          <Modal.Title><span style={{color:'green'}}><b>SignUp</b></span></Modal.Title>
-        </Modal.Header>
+        <Modal.Header closeButton style={{'color':'white'}}>
+        <Modal.Title><img src={logo1} style={{ height:"40px",borderRadius:'8px',margin:'10px'}} alt="logo"/>
+        <span style={{color:'orange'}}><b>SignUp</b></span></Modal.Title></Modal.Header>
         <Modal.Body >
         <Container>
         {this.state.signupload ?
@@ -424,14 +424,14 @@ this.setState({pageload:false})
           </Container>
         </Modal.Body>
         <Modal.Footer>
-        <Button variant="warning" onClick={
+        <p className="secondary" style={{cursor:'pointer',textDecoration:'underline'}} variant="warning" onClick={
 
             ()=>{
                 this.setState({showsignup:false,showsignin:true})
             }
         }>
-            Sign In
-          </Button>
+            Have an Account
+          </p>
           <Button variant="primary" onClick={this.Signup}>
             Sign Up
           </Button>
@@ -445,9 +445,9 @@ this.setState({pageload:false})
      aria-labelledby="contained-modal-title-vcenter"
      centered
     >
-        <Modal.Header closeButton style={{'backgroundColor':'rgb(38, 61, 87)','color':'white'}}>
-          <Modal.Title><span className="mx-4"><span style={{color:'green'}}><b>SignInHere</b></span></span></Modal.Title>
-        </Modal.Header>
+        <Modal.Header closeButton style={{'color':'white'}}>
+        <Modal.Title><img src={logo1} style={{ height:"40px",borderRadius:'8px',margin:'10px'}} alt="logo"/>
+              <span style={{color:'orange'}}><b>SignIn</b></span></Modal.Title></Modal.Header>
         <Modal.Body>
 
 

@@ -7,6 +7,7 @@ import {Dropdown,Spinner} from 'react-bootstrap';
 import cartimg from '../../images/cart.jpg'
 import purimg from '../../images/purchase.jpg'
 import addressimg from '../../images/address.jpg'
+import logo1 from '../../images/images.png';
 
 function setTokenforbuyer(userToken){
     sessionStorage.setItem('emailtokenforbuyer',userToken)
@@ -225,15 +226,22 @@ getTokenforCredentials()!=null ?
            <div>
 
             {/* Signin ============== */}
-           <Modal show={this.state.showsignin} onHide={()=>{this.setState({showsignin:false})}}
+           <Modal show={this.state.showsignin} onHide={()=>{
+                   this.props.history.push({
+                                       pathname:'/',
+                                      
+                                   })
+           }}
      size="md"
      aria-labelledby="contained-modal-title-vcenter"
      centered
     >
         <Modal.Header closeButton 
-        style={{'backgroundColor':'navy','color':'white'}}
+        style={{'color':'white'}}
         >
-          <Modal.Title>MyShop.com <span style={{color:'grey'}}><b>SignIn</b> </span></Modal.Title>
+            
+          <Modal.Title><img src={logo1} style={{ height:"40px",borderRadius:'8px',margin:'10px'}} alt="logo"/>
+              <span style={{color:'orange'}}><b>SignIn</b></span></Modal.Title>
         </Modal.Header>
         <Modal.Body>
 
@@ -274,13 +282,13 @@ getTokenforCredentials()!=null ?
           </Container>
         </Modal.Body>
         <Modal.Footer>
-        <Button variant="secondary" onClick={()=>{
+        <p className="secondary" style={{cursor:'pointer',textDecoration:'underline'}} onClick={()=>{
              this.setState({showsignup:true,showsignin:false})
           
         }
             }>
-            Sign Up
-          </Button>
+            Don't have an Account
+          </p>
           <Button variant="primary" onClick={this.Signin}>
             Sign In
           </Button>
@@ -290,15 +298,20 @@ getTokenforCredentials()!=null ?
 {/* Signup================= */}
       <Modal show={this.state.showsignup} onHide={
           ()=>{
-              this.setState({showsignup:false})
+            this.props.history.push({
+                pathname:'/',
+               
+            })
           }
       }
      size="lg"
      aria-labelledby="contained-modal-title-vcenter"
      centered
     >
-        <Modal.Header closeButton style={{'backgroundColor':'navy','color':'white'}}>
-          <Modal.Title>MyShop.com <span style={{color:'green'}}><b>SignUp</b></span></Modal.Title>
+        <Modal.Header closeButton style={{'color':'white'}}>
+          <Modal.Title>
+              <img src={logo1} style={{ height:"40px",borderRadius:'8px',margin:'10px'}} alt="logo"/>
+              <span style={{color:'orange'}}><b>SignUp</b></span></Modal.Title>
         </Modal.Header>
         <Modal.Body >
         <Container>
@@ -355,14 +368,14 @@ getTokenforCredentials()!=null ?
           </Container>
         </Modal.Body>
         <Modal.Footer>
-        <Button variant="warning" onClick={
+        <p className="secondary" style={{cursor:'pointer',textDecoration:'underline'}} onClick={
 
             ()=>{
                 this.setState({showsignup:false,showsignin:true})
             }
         }>
-            Sign In
-          </Button>
+            Have an Account
+          </p>
           <Button variant="primary" onClick={this.Signup}>
             Sign Up
           </Button>

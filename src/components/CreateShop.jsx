@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import { Redirect } from 'react-router'
-
+import {Spinner} from 'react-bootstrap';
 import axios from 'axios'
 
 function setToken(userToken){
@@ -20,7 +20,7 @@ const CreateShop=(props) =>{
     const [goToDash, setgoToDash] = useState(false)
     const [shopName, setShopName] = useState('')
     const [category, setcategory] = useState('')
-
+    const [pageload, setPageload] = useState(true)
    const GoToDash=(e)=>{
     e.preventDefault();
    const mydata={
@@ -30,6 +30,7 @@ const CreateShop=(props) =>{
     }
 
     if(shopName!=="" && category!==""){
+        setPageload(false)
         axios.post(
             'https://myshop-12.herokuapp.com/saveProfile',
             mydata
@@ -37,10 +38,10 @@ const CreateShop=(props) =>{
         .then(res=>{
             if(res.data === "Exist"){
                 alert("Shop Exist, Try another Account");
+                setPageload(true)
             }
             else if(res.data === "OK"){
                 alert("Your Shop Created ? ")
-
                 const token={
                     emailToken: props.location.state.email,
                     shopNameToken: shopName
@@ -60,7 +61,7 @@ const CreateShop=(props) =>{
         alert("Field Cannot Be Empty")
     }
 }
-
+if(pageload){ 
     return (
         <>
 
@@ -127,7 +128,17 @@ const CreateShop=(props) =>{
    </div>
    </div>
         </>
+
     )
+                                        }
+                                        else{
+                                            return (
+                                                <div className="d-flex justify-content-center align-items-center h-100" >
+                                                  <Spinner animation="border" variant="danger" />
+                                                  <p>Verifying...</p>
+                                                </div>
+                                                 )
+                                        }
 }
 
 export default CreateShop;

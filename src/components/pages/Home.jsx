@@ -213,13 +213,13 @@ is used for database . This is single page Website using the React Js.
            
         </div>
         <hr/>
-        <address className="m-4" >
+        <address className="m-4" style={{fontFamily:'Verdana, Geneva, Tahoma, sans-serif'}} >
             <h2 style={{color:'white'}}>Contact us @</h2>
             <span className="d-block text-white">
             Email: madan.mohan_cs18@gla.ac.in
             </span>
-            <span className="d-block text-white">Ph: 898986767</span>
-            <span className="d-block" style={{color:'orange'}}>https://linked.in/876954</span>
+            <span className="d-block text-white">Ph No: 898986767</span>
+            <span className="d-block"><NavLink to='/Contact' className='text-white'>Contact us</NavLink></span>
         </address>
     </footer>
       

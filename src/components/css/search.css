@@ -38,3 +38,30 @@ box-shadow: 0 0 3px 3px grey;
        /* background-color: rgb(121, 121, 121); */
        box-shadow:0 0 3px blue;
         }
+        .mycarousal{
+            height: 500px;
+        }
+        .carouseltext{
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            font-weight: bold;
+            text-shadow: 1px 1px 5px skyblue;
+        }
+       .searchtext{
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: bold;
+        text-shadow: 1px 1px 5px rgb(218, 223, 224);
+       }
+
+        @media screen and (max-width: 600px) {
+.mycarousal{
+    height: 200px;
+}
+.carouseltext{
+    font-size: 17px;
+    color: rgb(240, 240, 240);
+    
+}
+.searchtext{
+     font-size: 17px;
+   }
+        }

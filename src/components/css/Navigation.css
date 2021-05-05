@@ -75,15 +75,32 @@ opacity: 1;
     display: inline-block;
         }
 
+        .box h1 { 
+          text-shadow: 1px 1px 5px skyblue;
+        }
+        .box h2 { 
+          text-shadow: 1px 1px 5px skyblue;
+        }
+        .box h3 { 
+          text-shadow: 1px 1px 5px skyblue;
+        }
+        .box h4 { 
+          text-shadow: 1px 1px 5px skyblue;
+        }
+     
+
   @media screen and (max-width: 600px) {
     .box h1 {
       font-size: 30px;
+     
     }
     .box h2 {
       font-size: 20px;
+     
     }
     .box h3 {
       display: none;
+     
     }
     #heading h1{
       font-size: 30px;

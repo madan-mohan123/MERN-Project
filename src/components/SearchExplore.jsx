@@ -1,5 +1,5 @@
 
-import {Dropdown,Spinner} from 'react-bootstrap';
+import {Dropdown,Spinner,ProgressBar,Form} from 'react-bootstrap';
 import React, { Component } from 'react'
 import logoimg from '../images/images.png'
 
@@ -12,14 +12,26 @@ export default class SearchBar extends Component {
 constructor(props)
 {
     super(props)
+    try{ 
     this.state={
-      landingpage:this.props.location.state.category,
+      landingpage:this.props.location.state.category ,
       searchkeyword:'',
       querydata:'',
       searchData:[],
       pageload:true
     
   } 
+}
+catch(e){
+  this.state={
+    landingpage:'Mobiles' ,
+    searchkeyword:'',
+    querydata:'',
+    searchData:[],
+    pageload:true
+  
+}
+}
    
 }
 componentDidMount(){
@@ -69,7 +81,9 @@ this.setState({pageload:false})
      
       <input className="form-control " placeholder="Search here ..." 
       onChange={(e)=>{this.setState({querydata:e.target.value})}}
+      type="text"
       />
+     
       <button onClick={this.handleclk} className="bg-white m-0 btn " style={{"borderRadius":'0 10px 10px 0'}}>Go</button>
  
   </div>
@@ -241,7 +255,7 @@ render() {
             <section className="left-side-bar p-2 " >
             <p>Home <b>&gt;</b> {this.context.querydata === "" ? this.context.landingpage:this.context.searchkeyword}  
             </p>
-            <p> {this.context.querydata === "" ? this.context.landingpage : this.context.querydata} <b>(Showing result 1-20 from 100)</b>
+            <p style={{color:'blue'}}> {this.context.querydata === "" ? this.context.landingpage : this.context.querydata} <b>(Showing result {this.state.landingData.length} from 100)</b>
   </p>
             <hr />
             <article>
@@ -329,46 +343,42 @@ class SearchFilter extends Component {
     return (
       <>
         <section className="left-side-bar p-2 d-sm-none d-md-block d-none" style={{"height": "100vh"}} >
-                <h5>Filter </h5>
+                <h5><b>Filters</b> </h5>
                 <hr />
-              
-                <h6>Brands</h6>
+                <h6><b>Brands</b></h6>
                 <hr/>
                <form >
-                <div className="form-group">
-                    <input type="checkbox" name="" id="" /> Puma
+                <div className="form-group form-control">
+                    <input type="checkbox"  name="" id="" /> Puma
                     
                 </div>
-                <div className="form-group">
+                <div className="form-group form-control">
                  <input type="checkbox" name="" id="" /> Addidas
                  
              </div>
-             <div className="form-group">
+             <div className="form-group form-control">
                  <input type="checkbox" name="" id="" /> Nike
                  
              </div>
-             <div className="form-group">
+             <div className="form-group form-control">
                  <input type="checkbox" name="" id="" /> Reebok
                  
              </div>
                </form>
                <hr />
-               <h6>Price</h6>
-               <div className="progress progress-bar-striped bg-warning my-2">
-               </div>
+               <h6><b>Price</b></h6>
+               <Form>
+            <Form.Group controlId="formBasicRange">
+              <Form.Control type="range" />
+            </Form.Group>
+          </Form>
+               <ProgressBar now={80} variant='success' className="my-2" animated label={5000} />
                <form>
-                   <div className="form-group d-inline " >
-                     <input type="text" name="" id="" placeholder="Min" style={{"width": "80px"}} />
+                   <div className="form-group  m-0 p-0" >
+                     <input type="text" name="" id="" className="form-control" placeholder="Enter price" style={{"width": "100%"}} />
                    </div>
-                   to
-                   <div className="form-group d-inline">
-                   <select name="" id="">
-                       <option value="100">RS 100</option>
-                       <option value="100">Rs 500</option>
-                       <option value="100">Rs 1000</option>
-                       <option value="100">Rs 1500</option>
-                   </select>
-                  </div>
+                  
+                  
                </form>
 
 

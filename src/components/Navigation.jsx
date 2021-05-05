@@ -11,11 +11,13 @@ export default function Navigation() {
 <div className="container-fluid m-0 p-0" >
 
 <Navbar collapseOnSelect expand="lg" className="navbar" variant="dark">
-<Navbar.Brand href="/Contact">
+<Navbar.Brand >
+  <Link to="/Contact"> 
   <div className="text-white mybrand">
 <img src={logo1} className="px-2" alt="img" style={{ height:"40px",borderRadius:'8px'}}/>
 <p>MyShop.<span className="brand">com</span></p> 
 </div>
+  </Link>
   </Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">

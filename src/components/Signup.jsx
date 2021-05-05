@@ -12,14 +12,16 @@ const Signup = () =>{
     const [pageload, setPageload] = useState(true)
     const onsubmit=(e)=>{
         e.preventDefault();
-        setPageload(false)
+        
 const mydata={
     username:username,
     email:email,
     password:password
 }
+
         if(email!=="" && username!=="" && password!==""){
         if(password===repassword){
+            setPageload(false)
         axios.post(
             'https://myshop-12.herokuapp.com/save_auth',
             mydata
