@@ -445,7 +445,7 @@ class BuyAddress extends Component {
         <Col>
         <Form.Group controlId="formGroupEmail">
       <Form.Label style={{color:'skyblue'}}>Country</Form.Label>
-      <Form.Control type="text" placeholder="Enter country"
+      <Form.Control type="text"
      
   value={this.state.address["Address"] != null ? this.state.address["Address"].country: ''}
       />
@@ -454,7 +454,7 @@ class BuyAddress extends Component {
         <Col>
         <Form.Group controlId="formGroupPassword">
       <Form.Label style={{color:'skyblue'}}>State</Form.Label>
-      <Form.Control type="text" placeholder="State" 
+      <Form.Control type="text"  
       value={this.state.address["Address"]!=null ? this.state.address["Address"].mystate:''}
       />
     </Form.Group>
@@ -468,13 +468,13 @@ class BuyAddress extends Component {
     
     <Form.Group controlId="formGroupPassword">
       <Form.Label style={{color:'skyblue'}}>Address</Form.Label>
-      <Form.Control type="text" placeholder="H.N | Street" 
+      <Form.Control type="text" 
     value={this.state.address["Address"]!=null ? this.state.address["Address"].myaddress:''}
       />
     </Form.Group>
     <Form.Group controlId="formGroupPassword">
       <Form.Label style={{color:'skyblue'}}>Phono No</Form.Label>
-      <Form.Control type="text" placeholder="Phone NO" style={{color:'green'}}
+      <Form.Control type="text"  style={{color:'green'}}
    value={this.state.address["Address"]!=null ? this.state.address["Address"].phoneno:''}
       />
     </Form.Group>
@@ -487,11 +487,9 @@ class BuyAddress extends Component {
     
 <Form >
     
-
     <Form.Group controlId="formGroupEmail">
       <Form.Label style={{color:'white'}}>Country</Form.Label>
-      <Form.Control type="text" placeholder="Enter country"
-      
+      <Form.Control type="text" 
       onChange={(e)=>{
           this.setState({country:e.target.value}
           )
@@ -503,7 +501,7 @@ class BuyAddress extends Component {
   
     <Form.Group controlId="formGroupPassword">
       <Form.Label style={{color:'white'}}>State</Form.Label>
-      <Form.Control type="text" placeholder="State" 
+      <Form.Control type="text" 
       onChange={(e)=>{
           this.setState({mystate:e.target.value}
           )
@@ -512,7 +510,7 @@ class BuyAddress extends Component {
     </Form.Group>
     <Form.Group controlId="formGroupPassword">
       <Form.Label style={{color:'white'}}>Address</Form.Label>
-      <Form.Control type="text" placeholder="H.N | Street" 
+      <Form.Control type="text" 
       onChange={(e)=>{
           this.setState({myaddress:e.target.value}
           )
@@ -521,7 +519,7 @@ class BuyAddress extends Component {
     </Form.Group>
     <Form.Group controlId="formGroupPassword">
       <Form.Label style={{color:'white'}}>Phono No</Form.Label>
-      <Form.Control type="text" placeholder="Phone NO" 
+      <Form.Control type="text"  
       onChange={(e)=>{
           this.setState({phoneno:e.target.value}
           )
@@ -857,7 +855,7 @@ if(!this.state.pageload){
 
   <Form.Group controlId="formGroupEmail">
     <Form.Label>Country</Form.Label>
-    <Form.Control type="text" placeholder="Enter country"
+    <Form.Control type="text" 
     
     onChange={(e)=>{
         this.setState({country:e.target.value}
@@ -870,7 +868,7 @@ if(!this.state.pageload){
 
   <Form.Group controlId="formGroupPassword">
     <Form.Label>State</Form.Label>
-    <Form.Control type="text" placeholder="State" 
+    <Form.Control type="text"  
     onChange={(e)=>{
         this.setState({mystate:e.target.value}
         )
@@ -879,7 +877,7 @@ if(!this.state.pageload){
   </Form.Group>
   <Form.Group controlId="formGroupPassword">
     <Form.Label>Address</Form.Label>
-    <Form.Control type="text" placeholder="H.N | Street" 
+    <Form.Control type="text" 
     onChange={(e)=>{
         this.setState({myaddress:e.target.value}
         )
@@ -888,7 +886,7 @@ if(!this.state.pageload){
   </Form.Group>
   <Form.Group controlId="formGroupPassword">
     <Form.Label>Phono No</Form.Label>
-    <Form.Control type="text" placeholder="Phone NO" 
+    <Form.Control type="text"  
     onChange={(e)=>{
         this.setState({phoneno:e.target.value}
         )

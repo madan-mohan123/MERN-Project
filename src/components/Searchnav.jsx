@@ -8,7 +8,6 @@ function setSearchKeyWord(data){
 function setQuery(data){
     sessionStorage.setItem('searchQuery',data)    
 }
-
 const Searchnav=()=>{
     return(
         <>
@@ -39,8 +38,19 @@ const Searchnav=()=>{
              </select>
           
             </span>
+       <form onSubmit={
+        (event)=>{
+          event.preventDefault();
+         
+        }}>
+
+       <input class="form-control " placeholder="Search here ..." onChange={(e)=>{setQuery(e.target.value)}}/>
        
-        <input class="form-control " placeholder="Search here ..." onChange={(e)=>{setQuery(e.target.value)}}/>
+       </form>
+        <NavLink to={{pathname:"/Search/explore/",state:{"category":"Menwear"}}} className='text-white text-decoration-none'>
+                    <button className="btn btn-primary text-white mx-4 px-4 "> 
+                        Done
+        </button></NavLink>
     
     </div>
                         

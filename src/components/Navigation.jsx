@@ -26,9 +26,10 @@ export default function Navigation() {
     </Nav>
     <Nav>
     <Nav.Link ><Link  to='/' className="text-decoration-none " style={{color:'inherit'}}>Home</Link></ Nav.Link>
-    <Nav.Link ><Link  to='/Register' className="text-decoration-none " style={{color:'inherit'}}>Register</Link></Nav.Link>
+    <Nav.Link ><Link  to='/Register' className="text-decoration-none " style={{color:'inherit'}}>Shop Account</Link></Nav.Link>
+    <Nav.Link  ><Link  to='/buyerdash' className="text-decoration-none " style={{color:'inherit'}}>User Account</Link></ Nav.Link>
     <Nav.Link  ><Link  to='/Contact' className="text-decoration-none " style={{color:'inherit'}}>Contact us</Link></ Nav.Link>
-    <Nav.Link  ><Link  to='/buyerdash' className="text-decoration-none " style={{color:'inherit'}}>Customers</Link></ Nav.Link>
+    
      
     </Nav>
   </Navbar.Collapse>

@@ -30,21 +30,20 @@ this.setState({loading:false})
     await axios.post('https://myshop-12.herokuapp.com/getItemsforSearchPage',{"shopname":"Mobiles","limit":6}).then((res)=>{
                     console.log(res.data)
         this.setState({dataListforMobiles:res.data})
-        // this.setState({pageload:false})
     }).catch((er)=>{
     
 });
 await axios.post('https://myshop-12.herokuapp.com/getItemsforSearchPage',{"shopname":"Electronics","limit":6}).then((res)=>{
             
         this.setState({dataListforElectronics:res.data})
-        // this.setState({pageload:false})
+     
         }).catch((er)=>{
         
     });
     await axios.post('https://myshop-12.herokuapp.com/getItemsforSearchPage',{"shopname":"Menwear","limit":6}).then((res)=>{
             
         this.setState({dataListforMen:res.data})
-        // this.setState({pageload:false})
+       
         }).catch((er)=>{
         
     });
@@ -309,7 +308,9 @@ await axios.post('https://myshop-12.herokuapp.com/getItemsforSearchPage',{"shopn
     else{
         return (
             <div className="d-flex justify-content-center align-items-center" style={{height:'100vh'}}>
-              <Spinner animation="border" variant="danger" />
+               <Spinner animation="grow" variant="success" />
+               <Spinner animation="grow" variant="danger" />
+               <Spinner animation="grow" variant="primary" />
             </div>
              )
     }

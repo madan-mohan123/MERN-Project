@@ -1,7 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import Navigation from '../Navigation'
-
 import headphone from '../../images/mobile/head.jpg';
 import giga from '../../images/mobile/giga.jpg';
 import realmex2 from '../../images/mobile/realmex2.jpg';
@@ -12,8 +11,6 @@ import img6 from '../../images/manyawar.jpg';
 import teamimg from '../../images/team.jpg';
 import addressimg from '../../images/addcon.png';
 import '../css/Navigation.css';
-
-
 
 export default function Home() {
     return (
@@ -50,7 +47,7 @@ export default function Home() {
                 </div>
                 <div className="card-body">
                     <h5 className="card-title text-center">Giga</h5>
-                    <NavLink to='/Search' className="text-decoration-none">
+                    <NavLink to='/Search/' className="text-decoration-none">
                 <button className="btn btn-secondary m-2">Shop now</button>
                 </NavLink>
                 </div>
@@ -66,7 +63,7 @@ export default function Home() {
                 </div>
                 <div className="card-body">
                     <h5 className="card-title text-center">Realme x2</h5>
-                    <NavLink to='/Search' className="text-decoration-none">
+                    <NavLink to='/Search/' className="text-decoration-none">
                 <button className="btn btn-secondary m-2">Shop now</button>
                 </NavLink>
                 </div>
@@ -82,7 +79,7 @@ export default function Home() {
                 </div>
                 <div className="card-body" >
                     <h5 className="card-title text-center">Boat Headphone</h5>
-                    <NavLink to='/Search' className="text-decoration-none">
+                    <NavLink to='/Search/' className="text-decoration-none">
                 <button className="btn btn-secondary m-2">Shop now</button>
                 </NavLink>
                 </div>
@@ -181,13 +178,13 @@ export default function Home() {
         <div className="row gx-0 my-4 p-4 px-0 mx-0" >
         <div className="col-md-7 col-sm-8 col-11 col-lg-5 m-0">
             <img src={teamimg} width="100%" alt=""/>
-       </div>
+     </div>
             
             <div className="col-md-8 col-sm-12 col-lg-6 m-2 text-white" style={{opacity:'0.8',textAlign:'justify'}}>
-This Website is developed under MERN fullstack Project. It includes The Express As backend and MongoDb 
-is used for database . This is single page Website using the React Js.
-<p>Education</p>
-<p> B.tech (Madan Mohan)</p> 
+                This Website is developed under MERN fullstack Project. It includes The Express As backend and MongoDb 
+                is used for database . This is single page Website using the React Js.
+                <p>Education</p>
+                <p> B.tech (Madan Mohan)</p> 
    
  </div>
             
@@ -196,17 +193,18 @@ is used for database . This is single page Website using the React Js.
         <div className="row g-0 mx-0 d-flex justify-content-center">
             <div className="col-md mx-auto m-2">
                 <NavLink to='/Register' className="text-decoration-none">
-                <button className="btn btn-warning m-2">SignUp</button>
+                <button className="btn btn-warning m-2">Shop Account</button>
                 </NavLink>
-                <NavLink to='/Search' className="text-decoration-none">
-                <button className="btn btn-secondary m-2">Go To Shops</button>
+                <NavLink to='/Search/' className="text-decoration-none">
+                <button className="btn btn-secondary m-2">Go To Products</button>
                 </NavLink>
                 <NavLink to='/buyerdash' className="text-decoration-none">
-                <button className="btn btn-danger m-2">Customer</button>
+                <button className="btn btn-danger m-2">User Account</button>
                 </NavLink>
             </div>
             <div className="col-md mx-auto m-2">
-                <h3>Follow us on</h3></div>
+                <h3>Follow us on</h3>
+            </div>
             <div className="col-md mx-auto m-2">
             
             </div>
@@ -216,10 +214,10 @@ is used for database . This is single page Website using the React Js.
         <address className="m-4" style={{fontFamily:'Verdana, Geneva, Tahoma, sans-serif'}} >
             <h2 style={{color:'white'}}>Contact us @</h2>
             <span className="d-block text-white">
-            Email: madan.mohan_cs18@gla.ac.in
+             <b style={{color:'grey'}}>Email: </b>madan.mohan_cs18@gla.ac.in
             </span>
-            <span className="d-block text-white">Ph No: 898986767</span>
-            <span className="d-block"><NavLink to='/Contact' className='text-white'>Contact us</NavLink></span>
+            <span className="d-block text-white"> <b style={{color:'grey'}}>Ph No:</b> 898986767</span>
+            <span className="d-block"><NavLink to='/Contact' className='text-white ' style={{textDecoration:'underline'}}>Contact us</NavLink></span>
         </address>
     </footer>
       
