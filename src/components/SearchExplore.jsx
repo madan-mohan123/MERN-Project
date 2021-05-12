@@ -7,7 +7,6 @@ import axios from 'axios'
 import {NavLink} from 'react-router-dom';
 //context Api
 const contextapi=React.createContext();
-const cost=0;
 export default class SearchBar extends Component {
 constructor(props)
 {
@@ -142,7 +141,7 @@ constructor(props)
     this.state={
         landingData:[],
         pageload:true,
-        cost:4440,
+        cost:0,
         dataWithCost:[],
         searchload:true,
     }

@@ -88,6 +88,35 @@ opacity: 1;
           text-shadow: 1px 1px 5px skyblue;
         }
      
+.fa-linkedin-square{
+  font-size: 40px;
+  
+  color: rgb(236, 232, 232);
+  margin: 10px;
+}
+
+.fa-github{
+  font-size: 40px;
+ 
+  color: rgb(236, 232, 232);
+  margin: 10px; 
+}
+
+.fa-linkedin-square:hover{
+  color: rgb(236, 232, 232);
+  transform: scale(1.1);
+}
+.fa-github:hover{
+  color: rgb(236, 232, 232);
+  transform: scale(1.1);
+}
+
+footer{
+
+  background-image:url('https://img.freepik.com/free-vector/blue-copy-space-digital-background_23-2148821698.jpg?size=626&ext=jpg');
+background-size: cover;
+background-repeat: no-repeat;
+}
 
   @media screen and (max-width: 600px) {
     .box h1 {

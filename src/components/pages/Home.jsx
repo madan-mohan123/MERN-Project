@@ -173,11 +173,11 @@ export default function Home() {
         
     </section>
 
-    <footer className="m-0 py-4" style={{backgroundImage:'linear-gradient(45deg,blue,red)'}}>
-        <h2 className="text-center">Company</h2>
+    <footer className="m-0 py-4" >
+        <h2 className="text-center text-white">Company</h2>
         <div className="row gx-0 my-4 p-4 px-0 mx-0" >
         <div className="col-md-7 col-sm-8 col-11 col-lg-5 m-0">
-            <img src={teamimg} width="100%" alt=""/>
+            <img src={teamimg} width="100%" alt="img" style={{borderRadius:'10px'}}/>
      </div>
             
             <div className="col-md-8 col-sm-12 col-lg-6 m-2 text-white" style={{opacity:'0.8',textAlign:'justify'}}>
@@ -203,7 +203,10 @@ export default function Home() {
                 </NavLink>
             </div>
             <div className="col-md mx-auto m-2">
-                <h3>Follow us on</h3>
+                <h3 className="text-white">Connect with us on</h3>
+
+                <span><a href="https://linkedin.com/in/madan-mohan-280314192" target="_blank"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></span>
+                <span><a href="https://github.com/madan-mohan123" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a></span>
             </div>
             <div className="col-md mx-auto m-2">
             
