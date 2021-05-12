@@ -205,8 +205,8 @@ export default function Home() {
             <div className="col-md mx-auto m-2">
                 <h3 className="text-white">Connect with us on</h3>
 
-                <span><a href="https://linkedin.com/in/madan-mohan-280314192" target="_blank"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></span>
-                <span><a href="https://github.com/madan-mohan123" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a></span>
+                <span><a href="https://linkedin.com/in/madan-mohan-280314192" ><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></span>
+                <span><a href="https://github.com/madan-mohan123" ><i class="fa fa-github" aria-hidden="true"></i></a></span>
             </div>
             <div className="col-md mx-auto m-2">
             

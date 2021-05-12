@@ -361,7 +361,7 @@ render() {
                         </div>
                     </div>
 
-                                       )}) : this.context.searchData.length != 0 ?
+                                       )}) : this.context.searchData.length !== 0 ?
                                        this.context.searchData.map((key,index)=>{
                                         return(
                          <div className="col-md-3 col-sm-4 col-6 col-lg-2 p-2">
