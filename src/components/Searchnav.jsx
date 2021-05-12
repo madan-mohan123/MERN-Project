@@ -22,7 +22,7 @@ const Searchnav=()=>{
                         <img src={logoimg} className="img-fluid rounded-circle px-2 d-sm-none d-md-inline-block d-none" alt="" style={{ height:"40px"}}/>
                         MyShop.<span style={{color:'blue'}}>com</span> </NavLink>
                     </div>
-                    <div className="col-md-5 col-sm-11 col-11">
+                    <div className="col-md-5 col-sm-11 col-lg-5 col-12">
                     <div class="input-group m-2">
                    
             <span className="input-group-text bg-grey m-0 p-0 border-none d-sm-none d-md-none d-lg-block d-none">
@@ -48,7 +48,7 @@ const Searchnav=()=>{
        
        </form>
         <NavLink to={{pathname:"/Search/explore/",state:{"category":"Menwear"}}} className='text-white text-decoration-none'>
-                    <button className="btn btn-primary text-white mx-4 px-4 "> 
+                    <button className="btn btn-primary text-white mx-2 px-4 "> 
                         Done
         </button></NavLink>
     

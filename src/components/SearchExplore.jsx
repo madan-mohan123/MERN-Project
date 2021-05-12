@@ -61,7 +61,7 @@ this.setState({pageload:false})
                         <img src={logoimg} className="img-fluid rounded-circle px-2 d-sm-none d-md-inline-block d-none" alt="" style={{ height:"40px"}}/>
                         MyShop.<span style={{color:'blue'}}>com</span> </NavLink>
                   </div>
-                  <div className="col-md-5 col-sm-11 col-11">
+                  <div className="col-md-5 col-sm-11 col-lg-5 col-12">
                   <div class="input-group m-2">
                  
           <span class="input-group-text bg-grey m-0 p-0 border-none d-sm-none d-md-none d-lg-block d-none">
@@ -326,7 +326,7 @@ render() {
 
 
             </section> 
-        {/* <SearchFilter /> */}
+      
         </div>
 
         <div className="col-md-10 px-0 my-2 " >
