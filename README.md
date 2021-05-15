@@ -11,7 +11,7 @@
 <h4 align="center">MID-TERM REPORT</h4>
 
 <h4 align="center">Institute of Engineering & Technology</h4>
-
+<p><b>Visit to</b><a href="https://myshop-12.netlify.com">Myshop.com</a> </p>
 ## Submitted by-
 ### `Madan Mohan (181500354-H)`                                               
 ### `Udit Aggarwal (181500765-H)`                                             
@@ -112,7 +112,7 @@ MongoDB
 <li>https://www.npmjs.com/package/react-popper</li>
 <li>https://react-bootstrap.github.io/components/alerts/</li>
 </ul>
-                                                                     v            
+                                                                 
 
 
 
