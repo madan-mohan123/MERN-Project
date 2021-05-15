@@ -11,32 +11,30 @@
 <h4 align="center">MID-TERM REPORT</h4>
 
 <h4 align="center">Institute of Engineering & Technology</h4>
-<p><b>Visit to</b><a href="https://myshop-12.netlify.com">Myshop.com</a> </p>
+<p><b>Visit to </b><a href="https://myshop-12.netlify.com">Myshop.com</a> </p>
+
 ## Submitted by-
-### `Madan Mohan (181500354-H)`                                               
-### `Udit Aggarwal (181500765-H)`                                             
+1. Madan Mohan (181500354-H)                                              
+2. Udit Aggarwal (181500765-H)                                             
 
 ## Supervised By:-
-Mr. Pankaj Kapoor
-### `Senior Technical Trainer`
+- Mr. Pankaj Kapoor
+  Senior Technical Trainer`
 
 
 ## Project Group Members:
 1. Udit Aggarwal (21/181500765-H)
 2. Madan Mohan (09/181500354-H)
 
-## Project Supervisor: 
-@ Mr. Pankaj Kapoor  , Senior Technical Trainer
-
-# Introduction:
+## Introduction:
 In today’s technology everything goes online from tip of pencil to all things that are present everywhere around us. Generally we purchase all thing from available online shops like Amazon, flipchart etc. This web application gives ease access to all customer and owner of shop. In other websites, customers does not know that where the product comes. Here all customers are able to know the details of retailer like location, shop name etc. 
 This is e-commerce plate for buying and selling the product at own their cost and also customer may give the reviews to the products so, that shop owner make thing good as possible. Everyone wants the business online even small shop. Shop owner register here with their credentials and make account for shop. He uploads the product and share the shop name and location also. Now, when customers comes to online store and see different products as per requirement, he made purchased from particular shop.
 
-# Problem Statement
+## Problem Statement
 The online store web application sets up a dashboard for shop owner so that he makes their shop like offline method Also, customers can easily track their location. This system also provides a review system in which user can rate the purchased items.                                                                   ii         
 The proposed is beneficial for those people who make their shop online and grow business in short of time. The payment method is cash on delivery which makes sense for customer who hesitate by sharing their bank details to anyone. 
 
-# Existing system:
+## Existing system:
 There are some problems with the existing system that discussed below.
 
 <p align="center">Table 1.1</p>
