@@ -11,12 +11,10 @@ import 'reactjs-popup/dist/index.css';
 import BuyDash from './components/pages/BuyDash';
 import Contact from './components/pages/Contactus';
 
-
 const App=()=> {
   return (
     <>
-  
-    <Switch> 
+    <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/Dashboard/" component={Dashboard} />
       <Route exact path="/Dashboard/Profile" component={Dashboard} />
@@ -38,8 +36,6 @@ const App=()=> {
       <Route exact path="/Contact" component={Contact} />
       <Route  component={PageNotFound} />
     </Switch >
-    
-  
     </>
   );
 }

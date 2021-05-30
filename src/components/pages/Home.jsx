@@ -204,7 +204,6 @@ export default function Home() {
             </div>
             <div className="col-md mx-auto m-2">
                 <h3 className="text-white">Connect with us on</h3>
-
                 <span><i class="fa fa-linkedin-square" aria-hidden="true"></i></span>
                 <span><i class="fa fa-github" aria-hidden="true"></i></span>
             </div>
@@ -219,7 +218,7 @@ export default function Home() {
             <span className="d-block text-white">
              <b style={{color:'grey'}}>Email: </b>madan.mohan_cs18@gla.ac.in
             </span>
-            <span className="d-block text-white"> <b style={{color:'grey'}}>Ph No:</b> 898986767</span>
+            <span className="d-block text-white"> <b style={{color:'grey'}}>Ph No:</b>8881574438</span>
             <span className="d-block"><NavLink to='/Contact' className='text-white ' style={{textDecoration:'underline'}}>Contact us</NavLink></span>
         </address>
     </footer>

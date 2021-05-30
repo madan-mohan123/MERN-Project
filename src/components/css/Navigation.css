@@ -113,7 +113,8 @@ opacity: 1;
 
 footer{
 
-  background-image:url('https://img.freepik.com/free-vector/blue-copy-space-digital-background_23-2148821698.jpg?size=626&ext=jpg');
+/* background-image:url('https://img.freepik.com/free-vector/blue-copy-space-digital-background_23-2148821698.jpg?size=626&ext=jpg'); */
+background-image: url('../../images/footer.jpg');
 background-size: cover;
 background-repeat: no-repeat;
 }
