@@ -208,7 +208,6 @@ export default function Home() {
                 <span><i class="fa fa-github" aria-hidden="true"></i></span>
             </div>
             <div className="col-md mx-auto m-2">
-            
             </div>
            
         </div>
